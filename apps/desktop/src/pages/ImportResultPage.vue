@@ -258,7 +258,9 @@ onUnmounted(async () => {
         <div class="grid grid-cols-12 gap-8">
             <div class="col-span-12">
                 <div class="flex">
-                    <RouterLink class="btn-new-import" :to="{ name: 'import' }">
+                    <RouterLink
+                      class="px-3 py-1 archive-gradient text-on-primary font-bold rounded-lg flex items-center gap-3 hover:shadow-[0_0_20px_rgba(148,204,255,0.4)] transition-all"
+                      :to="{ name: 'import' }">
                         <span class="material-symbols-outlined">chevron_backward</span>
                         Retour
                     </RouterLink>
@@ -268,6 +270,7 @@ onUnmounted(async () => {
 
                 <ImportResultView
                     v-if="importResult"
+                    class="mt-5"
                     :result="importResult"
                     :image-gen-states="imageGenStates"
                     :scenario-regen-states="scenarioRegenStates"

@@ -12,9 +12,9 @@
   },
   "dependencies": {
     "@open-lore-warden/shared": "workspace:*",
-    "zod": "^4.3.6"
+    "zod": "^4.4.1"
   },
   "devDependencies": {
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.3"
   }
 }

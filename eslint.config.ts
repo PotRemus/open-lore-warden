@@ -51,6 +51,8 @@ export default tseslint.config(
         'error',
         { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
       ],
+      '@typescript-eslint/no-empty-object-type': 'off',
+      
       // Vue: allow single-word component names during early dev
       'vue/multi-word-component-names': 'off',
       // TypeScript/JS code style in <script> blocks

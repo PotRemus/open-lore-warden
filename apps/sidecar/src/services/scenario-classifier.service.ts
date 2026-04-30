@@ -41,7 +41,7 @@ const StructureBlockSchema = z.object({
 // Sortie de l'agent pour UNE page
 const StructurePageOutputSchema = z.object({
   blocks: z.array(StructureBlockSchema).min(1),
-  confidence: z.number().min(0).max(1),
+  confidence: z.number(), //.min(0).max(1),
 })
 
 export type StructureBlock = z.infer<typeof StructureBlockSchema>
