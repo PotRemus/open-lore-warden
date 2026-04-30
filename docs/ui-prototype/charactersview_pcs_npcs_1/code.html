@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Characters - The Obsidian Archive</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,700&amp;family=Manrope:wght@300;400;600;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#152d37",
+                        "surface": "#111316",
+                        "primary-fixed-dim": "#94ccff",
+                        "background": "#111316",
+                        "on-primary-fixed-variant": "#004b74",
+                        "surface-bright": "#37393d",
+                        "on-primary": "#003352",
+                        "surface-container": "#1e2023",
+                        "tertiary-container": "#7c94a0",
+                        "on-surface-variant": "#c1c7d3",
+                        "on-tertiary": "#1c333e",
+                        "secondary-fixed-dim": "#e3c28d",
+                        "surface-container-low": "#1a1c1f",
+                        "outline": "#8b919d",
+                        "surface-container-highest": "#333538",
+                        "surface-container-high": "#282a2d",
+                        "on-secondary-container": "#d0b07d",
+                        "primary": "#94ccff",
+                        "on-tertiary-fixed": "#051e28",
+                        "on-secondary-fixed": "#271900",
+                        "surface-container-lowest": "#0c0e11",
+                        "on-secondary": "#412d05",
+                        "surface-variant": "#333538",
+                        "tertiary": "#b1cad7",
+                        "error": "#ffb4ab",
+                        "on-error-container": "#ffdad6",
+                        "outline-variant": "#414751",
+                        "inverse-surface": "#e2e2e6",
+                        "on-surface": "#e2e2e6",
+                        "on-error": "#690005",
+                        "on-secondary-fixed-variant": "#5a431a",
+                        "secondary-container": "#5a431a",
+                        "tertiary-fixed-dim": "#b1cad7",
+                        "on-primary-fixed": "#001d32",
+                        "secondary": "#e3c28d",
+                        "on-tertiary-fixed-variant": "#334a55",
+                        "primary-fixed": "#cde5ff",
+                        "inverse-on-surface": "#2f3034",
+                        "inverse-primary": "#006398",
+                        "on-primary-container": "#002c47",
+                        "tertiary-fixed": "#cde6f4",
+                        "primary-container": "#4197d6",
+                        "on-background": "#e2e2e6",
+                        "surface-dim": "#111316",
+                        "secondary-fixed": "#ffdeaa",
+                        "error-container": "#93000a",
+                        "surface-tint": "#94ccff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #333538;
+            border-radius: 10px;
+        }
+
+        .noise-overlay {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.02;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="bg-surface text-on-surface font-body overflow-hidden">
+    <!-- TopNavBar Shell -->
+    <nav
+        class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-4 bg-[#111316]/60 backdrop-blur-xl shadow-2xl shadow-black/50 border-b-0">
+        <div class="flex items-center gap-6">
+            <span
+                class="text-2xl font-bold text-[#94ccff] drop-shadow-[0_0_8px_rgba(148,204,255,0.3)] font-headline tracking-tight">The
+                Obsidian Archive</span>
+            <div class="hidden md:flex gap-6 ml-8">
+                <a class="text-[#333538] hover:text-[#94ccff]/70 transition-colors font-headline tracking-tight"
+                    href="#">TableView</a>
+                <a class="text-[#333538] hover:text-[#94ccff]/70 transition-colors font-headline tracking-tight"
+                    href="#">Scene</a>
+                <a class="text-[#94ccff] border-b border-[#94ccff]/50 pb-1 font-headline tracking-tight"
+                    href="#">Characters</a>
+                <a class="text-[#333538] hover:text-[#94ccff]/70 transition-colors font-headline tracking-tight"
+                    href="#">Journal</a>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="relative">
+                <input
+                    class="bg-surface-container border-none text-on-surface text-sm px-4 py-2 rounded-xl focus:ring-1 focus:ring-primary/40 w-64"
+                    placeholder="Search the archive..." type="text" />
+            </div>
+            <button
+                class="text-[#94ccff] hover:bg-[#94ccff]/10 transition-all p-2 rounded active:scale-95 duration-300">
+                <span class="material-symbols-outlined" data-icon="casino">casino</span>
+            </button>
+            <button
+                class="text-[#94ccff] hover:bg-[#94ccff]/10 transition-all p-2 rounded active:scale-95 duration-300">
+                <span class="material-symbols-outlined" data-icon="mic">mic</span>
+            </button>
+            <button
+                class="text-[#94ccff] hover:bg-[#94ccff]/10 transition-all p-2 rounded active:scale-95 duration-300">
+                <span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+            </button>
+        </div>
+        <div
+            class="absolute bottom-0 left-0 bg-linear-to-r from-transparent via-[#94ccff]/20 to-transparent h-px w-full">
+        </div>
+    </nav>
+    <!-- SideNavBar Shell -->
+    <aside
+        class="fixed left-0 top-0 h-full flex flex-col z-40 bg-surface-container-low w-64 border-r border-[#333538]/15 shadow-[40px_0_40px_rgba(0,0,0,0.4)] pt-24">
+        <div class="px-6 mb-8">
+            <div class="flex items-center gap-3 mb-6">
+                <div
+                    class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center border border-primary/20">
+                    <span class="material-symbols-outlined text-primary" data-icon="fort"
+                        style="font-variation-settings: 'FILL' 1;">fort</span>
+                </div>
+                <div>
+                    <h2 class="font-headline text-xl text-[#4A90E2] leading-tight">The Archive</h2>
+                    <p class="font-label uppercase tracking-widest text-[10px] text-primary/60">Campaign Active</p>
+                </div>
+            </div>
+            <button
+                class="w-full bg-linear-to-r from-primary to-primary-container text-on-primary py-2 rounded-lg font-label uppercase tracking-widest text-xs font-bold transition-all hover:shadow-[0_0_15px_rgba(148,204,255,0.4)] active:scale-[0.98]">
+                Roll Initiative
+            </button>
+        </div>
+        <nav class="flex-1 px-4 space-y-1">
+            <div
+                class="group px-4 py-3 flex items-center gap-3 opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 cursor-pointer">
+                <span class="material-symbols-outlined text-lg" data-icon="fort">fort</span>
+                <span class="font-label uppercase tracking-widest text-[10px]">Home</span>
+            </div>
+            <div
+                class="group px-4 py-3 flex items-center gap-3 opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 cursor-pointer">
+                <span class="material-symbols-outlined text-lg" data-icon="grid_view">grid_view</span>
+                <span class="font-label uppercase tracking-widest text-[10px]">TableView</span>
+            </div>
+            <div
+                class="group px-4 py-3 flex items-center gap-3 opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 cursor-pointer">
+                <span class="material-symbols-outlined text-lg" data-icon="theater_comedy">theater_comedy</span>
+                <span class="font-label uppercase tracking-widest text-[10px]">Scene</span>
+            </div>
+            <div
+                class="group px-4 py-3 flex items-center gap-3 bg-linear-to-r from-[#94ccff]/10 to-transparent text-[#94ccff] border-l-2 border-[#94ccff] transition-all duration-500 cursor-pointer">
+                <span class="material-symbols-outlined text-lg" data-icon="group"
+                    style="font-variation-settings: 'FILL' 1;">group</span>
+                <span class="font-label uppercase tracking-widest text-[10px]">Characters</span>
+            </div>
+            <div
+                class="group px-4 py-3 flex items-center gap-3 opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 cursor-pointer">
+                <span class="material-symbols-outlined text-lg" data-icon="menu_book">menu_book</span>
+                <span class="font-label uppercase tracking-widest text-[10px]">Journal</span>
+            </div>
+            <div
+                class="group px-4 py-3 flex items-center gap-3 opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 cursor-pointer">
+                <span class="material-symbols-outlined text-lg" data-icon="upload_file">upload_file</span>
+                <span class="font-label uppercase tracking-widest text-[10px]">Import</span>
+            </div>
+            <div
+                class="group px-4 py-3 flex items-center gap-3 opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 cursor-pointer">
+                <span class="material-symbols-outlined text-lg" data-icon="settings">settings</span>
+                <span class="font-label uppercase tracking-widest text-[10px]">Settings</span>
+            </div>
+        </nav>
+        <div class="mt-auto px-6 py-6 border-t border-[#333538]/15 space-y-4">
+            <div class="flex items-center justify-between group cursor-pointer">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-xs text-primary/60" data-icon="group">group</span>
+                    <span
+                        class="font-label uppercase tracking-widest text-[10px] text-on-surface/60 group-hover:text-primary transition-colors">Connected
+                        Players</span>
+                </div>
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_5px_#10b981]"></span>
+            </div>
+            <div class="flex items-center justify-between group cursor-pointer">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-xs text-primary/60"
+                        data-icon="psychology">psychology</span>
+                    <span
+                        class="font-label uppercase tracking-widest text-[10px] text-on-surface/60 group-hover:text-primary transition-colors">AI
+                        Status</span>
+                </div>
+                <span class="font-label text-[8px] text-primary bg-primary/10 px-1 rounded">READY</span>
+            </div>
+        </div>
+    </aside>
+    <!-- Main Content Canvas -->
+    <main class="ml-64 pt-20 h-screen flex overflow-hidden">
+        <!-- Left Column: Master List -->
+        <section class="w-1/3 min-w-[320px] bg-surface-container-low border-r border-[#333538]/15 flex flex-col h-full">
+            <div class="p-6 pb-2">
+                <h3 class="font-label uppercase tracking-widest text-[10px] text-primary/60 mb-1">Entity Index</h3>
+                <h2 class="font-headline text-3xl font-bold tracking-tight">Dramatis Personae</h2>
+            </div>
+            <div class="px-6 py-4 flex gap-4 border-b border-[#333538]/15">
+                <button
+                    class="font-label text-[10px] uppercase tracking-wider text-primary border-b border-primary pb-1">All</button>
+                <button
+                    class="font-label text-[10px] uppercase tracking-wider text-on-surface/40 hover:text-primary transition-colors">Players</button>
+                <button
+                    class="font-label text-[10px] uppercase tracking-wider text-on-surface/40 hover:text-primary transition-colors">NPCs</button>
+            </div>
+            <div class="flex-1 overflow-y-auto custom-scrollbar p-4 space-y-2">
+                <!-- Active Character -->
+                <div
+                    class="relative group bg-surface-container p-3 rounded-lg border-l-2 border-primary shadow-lg transition-all">
+                    <div class="flex items-center gap-4">
+                        <img alt="Character Portrait"
+                            class="w-14 h-14 rounded-lg object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                            data-alt="Close-up of a weathered fantasy adventurer with striking silver hair, amber eyes, and facial scars in cinematic dark lighting"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0CyIGzLs-WYUFnFQlwBFtHprpX1lzV3CXKzM5vlGQls0rtzpveakYxX0GUuLirHibbNyWpOZvBXs3gQQ3vPISPOPEMIFasQwOXr__hkG-gnNo9Djw9PiyxoeAiyitSkNtxxlZsPpJ2Jy7FO8m9s5YLcXpiqocTlDTRns8z4Yt8vRQQ3BaT1TCIEjKAPR9OcpQnbBSxuCeOB0HiXwcoZjbdp_iogDWWFoLwcFrVim65ULlL4O_PpbVmk0p394MYjClxFTp27uVZami" />
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start">
+                                <h4 class="font-headline text-lg leading-none">Thalric Silverhand</h4>
+                                <span
+                                    class="bg-primary/20 text-primary text-[8px] font-bold px-1.5 py-0.5 rounded uppercase tracking-widest">Level
+                                    12</span>
+                            </div>
+                            <p class="text-[10px] font-label text-on-surface/50 uppercase tracking-wider mt-1">Paladin
+                                of the Oathbreaker</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- NPC Item -->
+                <div
+                    class="group bg-surface-container-low hover:bg-surface-container p-3 rounded-lg transition-all duration-300 cursor-pointer">
+                    <div class="flex items-center gap-4">
+                        <img alt="NPC Portrait"
+                            class="w-14 h-14 rounded-lg object-cover opacity-60 group-hover:opacity-100 transition-all"
+                            data-alt="Portrait of an enigmatic sorceress with glowing purple eyes and intricate gold jewelry under mysterious twilight lighting"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIjx0tcMqD3eM7jFMsx8K-NB6L-NJo9psxTNqgrxvdDg5pYo0BGu4hgo07k2aGH3kUds2aSnBa02s9nSZl63vZJynVZprJ9JEJgKrVwscMHi2VYXzfXP5pHEnnPRix8XdonU5LX3G2HAvFEANTAck2SQy6tQ4ac_e9mQNIJ_gs2jGfZGxpyDWPUelkzzfG9JddG5Kvyu5fF1U3-3dg3eUzhIDgHFcIQr9ENzfrKjKKM2b5iDXUUECb7Uhr2MbcDC4oXNpUZSF-cpyX" />
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start">
+                                <h4
+                                    class="font-headline text-lg leading-none text-on-surface/80 group-hover:text-on-surface transition-colors">
+                                    Elowen Darkweb</h4>
+                                <span
+                                    class="bg-secondary/20 text-secondary text-[8px] font-bold px-1.5 py-0.5 rounded uppercase tracking-widest">NPC</span>
+                            </div>
+                            <p class="text-[10px] font-label text-on-surface/40 uppercase tracking-wider mt-1">
+                                Information Broker • The Gilded Rat</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Another NPC -->
+                <div
+                    class="group bg-surface-container-low hover:bg-surface-container p-3 rounded-lg transition-all duration-300 cursor-pointer">
+                    <div class="flex items-center gap-4">
+                        <img alt="NPC Portrait"
+                            class="w-14 h-14 rounded-lg object-cover opacity-60 group-hover:opacity-100 transition-all"
+                            data-alt="Rugged blacksmith with heavy beard and leather apron standing in front of a glowing forge with floating embers"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQu_pxR7kHyIix7gEcLro4DfWWF0Ucqec6T_wchAgjgbYilsytrmVuwN7x-CQ8PltLKRdoJOPuzbYDJT2vaXFAXgi-TeCgfe2mHY-6DR51Jdwmsc_fU9vz_DuHidwDV5-waaRHmyUZlWkHmEgSdLGxAUocQ9-wnvr9lYA72UgqXj5wv9To5OZl0xrsb67HGee9LQK3bqXBL4RWM7zTTvwymg-4L5jX9pFs8AX1i4cbs_u7PlyS-pl40YguZJYoYw-8AAxVt9ZiMKNh" />
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start">
+                                <h4
+                                    class="font-headline text-lg leading-none text-on-surface/80 group-hover:text-on-surface transition-colors">
+                                    Borgun the Iron</h4>
+                                <span
+                                    class="bg-secondary/20 text-secondary text-[8px] font-bold px-1.5 py-0.5 rounded uppercase tracking-widest">NPC</span>
+                            </div>
+                            <p class="text-[10px] font-label text-on-surface/40 uppercase tracking-wider mt-1">Master
+                                Smith • Ironworks District</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- More placeholders -->
+                <div
+                    class="group bg-surface-container-low hover:bg-surface-container p-3 rounded-lg transition-all duration-300 cursor-pointer opacity-60">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 rounded-lg bg-surface-container-highest flex items-center justify-center">
+                            <span class="material-symbols-outlined text-on-surface/20" data-icon="person">person</span>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-headline text-lg leading-none">The Shadow King</h4>
+                            <p class="text-[10px] font-label text-on-surface/40 uppercase tracking-wider mt-1">Legendary
+                                Threat</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-4 bg-surface-container-highest/20">
+                <button
+                    class="w-full py-3 border border-dashed border-outline-variant/30 hover:border-primary/40 hover:bg-primary/5 transition-all text-xs font-label uppercase tracking-widest text-on-surface/40 hover:text-primary flex items-center justify-center gap-2">
+                    <span class="material-symbols-outlined text-sm" data-icon="add">add</span> New Archive Entry
+                </button>
+            </div>
+        </section>
+        <!-- Right Column: Detail View -->
+        <section class="flex-1 relative overflow-hidden bg-surface">
+            <div class="noise-overlay absolute inset-0 z-0"></div>
+            <div class="relative z-10 h-full flex flex-col custom-scrollbar overflow-y-auto">
+                <!-- Character Header -->
+                <header class="h-80 relative flex items-end px-12 pb-12 overflow-hidden">
+                    <div class="absolute inset-0 bg-linear-to-r from-surface via-surface/60 to-transparent z-10">
+                    </div>
+                    <img alt="Hero Header" class="absolute inset-0 w-full h-full object-cover object-top opacity-40"
+                        data-alt="Wide cinematic shot of a grizzled warrior in silver plate armor standing against a backdrop of stormy mountains"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSi-lUPr-p6yIb9kGksxEEhpI9RdLRFpQ9t2etRRPOLTcI2-iX0Qaz57apscV0JpVg-zLW7lCK2YwauuS5mzrabvKnmHhE-hDSpMyb4XivkAEb9qWu2e08BNOhGOl_9sLe9ND852PQaTbfubHHJy9TqEyHWan1pTVnGDafY1cOsECphMPTWirpgDhEixkIcJB5loPeP3vtvhIChgIhfkv4JMcKJh3IL1jOyWjdXDREXtNhNzMTyF1-WRteaSxM6A394B3rowA-j5YJ" />
+                    <div class="relative z-20 flex items-end gap-8 w-full">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span
+                                    class="bg-primary-container/40 text-primary-fixed-dim text-[10px] font-bold px-2 py-1 rounded-sm uppercase tracking-widest backdrop-blur-md border border-primary/20">Human
+                                    Paladin</span>
+                                <span
+                                    class="bg-secondary-container/40 text-secondary-fixed-dim text-[10px] font-bold px-2 py-1 rounded-sm uppercase tracking-widest backdrop-blur-md border border-secondary/20">Lawful
+                                    Neutral</span>
+                            </div>
+                            <h1 class="font-headline text-6xl font-bold tracking-tight text-on-surface drop-shadow-2xl">
+                                Thalric Silverhand</h1>
+                        </div>
+                        <div class="flex gap-3">
+                            <button
+                                class="bg-surface-container-highest/60 backdrop-blur-xl p-3 rounded-full hover:bg-primary/20 transition-all border border-outline-variant/20">
+                                <span class="material-symbols-outlined" data-icon="edit">edit</span>
+                            </button>
+                            <button
+                                class="bg-surface-container-highest/60 backdrop-blur-xl p-3 rounded-full hover:bg-error/20 transition-all border border-outline-variant/20">
+                                <span class="material-symbols-outlined" data-icon="share">share</span>
+                            </button>
+                        </div>
+                    </div>
+                </header>
+                <!-- Detailed Content -->
+                <div class="px-12 py-8 grid grid-cols-12 gap-12">
+                    <!-- Stats Column -->
+                    <div class="col-span-4 space-y-8">
+                        <div>
+                            <h3 class="font-label uppercase tracking-widest text-[10px] text-primary mb-6">Core
+                                Statistics</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div
+                                    class="bg-surface-container-high p-4 rounded-xl border-b-2 border-primary/20 flex flex-col items-center">
+                                    <span class="font-label text-[10px] uppercase text-on-surface/40 mb-1">STR</span>
+                                    <span class="text-3xl font-headline font-bold text-on-surface">18</span>
+                                    <span class="text-[10px] text-primary">+4</span>
+                                </div>
+                                <div
+                                    class="bg-surface-container-high p-4 rounded-xl border-b-2 border-outline-variant/20 flex flex-col items-center">
+                                    <span class="font-label text-[10px] uppercase text-on-surface/40 mb-1">DEX</span>
+                                    <span class="text-3xl font-headline font-bold text-on-surface">12</span>
+                                    <span class="text-[10px] text-on-surface/40">+1</span>
+                                </div>
+                                <div
+                                    class="bg-surface-container-high p-4 rounded-xl border-b-2 border-primary/20 flex flex-col items-center">
+                                    <span class="font-label text-[10px] uppercase text-on-surface/40 mb-1">CON</span>
+                                    <span class="text-3xl font-headline font-bold text-on-surface">16</span>
+                                    <span class="text-[10px] text-primary">+3</span>
+                                </div>
+                                <div
+                                    class="bg-surface-container-high p-4 rounded-xl border-b-2 border-outline-variant/20 flex flex-col items-center">
+                                    <span class="font-label text-[10px] uppercase text-on-surface/40 mb-1">INT</span>
+                                    <span class="text-3xl font-headline font-bold text-on-surface">10</span>
+                                    <span class="text-[10px] text-on-surface/40">+0</span>
+                                </div>
+                                <div
+                                    class="bg-surface-container-high p-4 rounded-xl border-b-2 border-outline-variant/20 flex flex-col items-center">
+                                    <span class="font-label text-[10px] uppercase text-on-surface/40 mb-1">WIS</span>
+                                    <span class="text-3xl font-headline font-bold text-on-surface">14</span>
+                                    <span class="text-[10px] text-on-surface/40">+2</span>
+                                </div>
+                                <div
+                                    class="bg-surface-container-high p-4 rounded-xl border-b-2 border-primary/20 flex flex-col items-center">
+                                    <span class="font-label text-[10px] uppercase text-on-surface/40 mb-1">CHA</span>
+                                    <span class="text-3xl font-headline font-bold text-on-surface">16</span>
+                                    <span class="text-[10px] text-primary">+3</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Inventory Chips -->
+                        <div>
+                            <h3 class="font-label uppercase tracking-widest text-[10px] text-primary mb-4">Inventory
+                                Highlights</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="bg-tertiary-container text-on-tertiary-container px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Moon-Silver
+                                    Blade</span>
+                                <span
+                                    class="bg-surface-container-highest px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-on-surface/60 border border-outline-variant/30">Ring
+                                    of Truth</span>
+                                <span
+                                    class="bg-surface-container-highest px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-on-surface/60 border border-outline-variant/30">Healing
+                                    Potion x3</span>
+                                <span
+                                    class="bg-surface-container-highest px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-on-surface/60 border border-outline-variant/30">Old
+                                    Locket</span>
+                            </div>
+                        </div>
+                        <!-- AI Secrets Widget -->
+                        <div
+                            class="bg-linear-to-r from-primary/10 to-primary-container/5 border border-primary/20 p-6 rounded-2xl relative overflow-hidden group">
+                            <div
+                                class="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-40 transition-opacity">
+                                <span class="material-symbols-outlined text-4xl"
+                                    data-icon="auto_awesome">auto_awesome</span>
+                            </div>
+                            <h4 class="font-headline text-lg mb-2 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary text-sm"
+                                    data-icon="psychology">psychology</span>
+                                Archive Insights
+                            </h4>
+                            <p class="text-sm text-on-surface/70 leading-relaxed mb-4">Uncover forgotten ties or hidden
+                                motives using the collective archive intelligence.</p>
+                            <button
+                                class="w-full bg-primary/20 hover:bg-primary/30 text-primary py-2 rounded-lg text-[10px] font-label uppercase tracking-[0.2em] transition-all border border-primary/30">
+                                Ask AI about this PC
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Narrative Column -->
+                    <div class="col-span-8 space-y-12">
+                        <!-- History Section -->
+                        <div class="relative pl-8 border-l border-outline-variant/20">
+                            <div class="absolute -left-1.25 top-0 w-2 h-2 rounded-full bg-primary"></div>
+                            <h3 class="font-label uppercase tracking-widest text-[10px] text-primary mb-4">Chronicles
+                                &amp; Background</h3>
+                            <div class="space-y-6 text-on-surface/80">
+                                <p class="text-lg font-headline leading-relaxed italic">"The light is not a shield, it
+                                    is a burden that must be carried until the dark is no more."</p>
+                                <p class="leading-relaxed">Born in the Silvermarches, Thalric was once a rising star in
+                                    the Order of the Radiant Sun. However, during the Siege of Mournhaven, he witnessed
+                                    the order's leadership choose military gain over the lives of civilians. Breaking
+                                    his oath, he slew his commander and led the refugees to safety.</p>
+                                <p class="leading-relaxed">Now a wanderer, he carries his cracked sun-shield as a
+                                    reminder of the day he became an oathbreaker in the eyes of the law, but a hero in
+                                    the eyes of the forgotten.</p>
+                            </div>
+                        </div>
+                        <!-- Relationship Bento Grid -->
+                        <div>
+                            <h3 class="font-label uppercase tracking-widest text-[10px] text-primary mb-6">Established
+                                Connections</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div
+                                    class="bg-surface-container p-4 rounded-xl flex gap-4 hover:shadow-xl transition-all group">
+                                    <img alt="Elowen"
+                                        class="w-12 h-12 rounded object-cover grayscale group-hover:grayscale-0 transition-all"
+                                        data-alt="Portrait of an enigmatic sorceress"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6qx8iepuyRMqWr808jenOIjw2yF7Yl5O9LySQm1trPGUTr0KxqKwG6tUmygtFqxneZqZ3--dMKj1R0BWiXpelT7eyf2rttJS7wMW3c4iIpyZD_eeg88vLfIlxF4xywvFvBA1TOWEnTlFAWnIqPkJFvxxUEct-5fZZml_piDEUuAV5LDo24lRp5lGQ6y4bvnF2SWR48qfP_Mr7pCXUAjWZavtS8jOkrD5bYehoWmXHCfU_s0kXnPejD2YPYsU49hrUtLi-Z1MFIoE8" />
+                                    <div>
+                                        <h5 class="font-headline font-bold text-on-surface">Elowen Darkweb</h5>
+                                        <p class="text-[10px] font-label text-secondary uppercase tracking-widest">
+                                            Tenuous Ally</p>
+                                        <p class="text-[11px] text-on-surface/50 mt-1">Owes him a favor for the escape
+                                            from Ironport.</p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="bg-surface-container p-4 rounded-xl flex gap-4 hover:shadow-xl transition-all group border border-error/10">
+                                    <div class="w-12 h-12 rounded bg-error/10 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-error/60"
+                                            data-icon="skull">skull</span>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-headline font-bold text-on-surface">High Prelate Varick</h5>
+                                        <p class="text-[10px] font-label text-error uppercase tracking-widest">Nemesis
+                                        </p>
+                                        <p class="text-[11px] text-on-surface/50 mt-1">Has placed a massive bounty on
+                                            Thalric's head.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Active Quests -->
+                        <div class="bg-surface-container-low p-6 rounded-2xl border border-outline-variant/10">
+                            <h3 class="font-label uppercase tracking-widest text-[10px] text-primary mb-6">Current
+                                Objectives</h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-start gap-4 group">
+                                    <span class="material-symbols-outlined text-primary text-sm mt-0.5"
+                                        data-icon="radio_button_checked">radio_button_checked</span>
+                                    <div class="flex-1">
+                                        <p
+                                            class="text-sm font-bold text-on-surface group-hover:text-primary transition-colors">
+                                            Locate the Fragments of the Mourn-Blade</p>
+                                        <div class="w-full bg-surface-container-highest h-1 rounded-full mt-2">
+                                            <div class="bg-primary w-2/3 h-full rounded-full"></div>
+                                        </div>
+                                    </div>
+                                    <span class="text-[10px] font-label text-on-surface/40 mt-0.5">2/3 Found</span>
+                                </li>
+                                <li class="flex items-start gap-4 group">
+                                    <span class="material-symbols-outlined text-on-surface/20 text-sm mt-0.5"
+                                        data-icon="radio_button_unchecked">radio_button_unchecked</span>
+                                    <p class="text-sm text-on-surface/60">Seek redemption from the refugees of
+                                        Mournhaven</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Bottom Spacer -->
+                <div class="h-24"></div>
+            </div>
+        </section>
+    </main>
+    <!-- Contextual FAB - Restricted to Archive Actions -->
+    <div class="fixed bottom-8 right-8 z-50">
+        <button
+            class="bg-primary text-on-primary w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all group">
+            <span class="material-symbols-outlined text-2xl group-hover:rotate-90 transition-transform duration-500"
+                data-icon="add">add</span>
+        </button>
+    </div>
+</body>
+
+</html>

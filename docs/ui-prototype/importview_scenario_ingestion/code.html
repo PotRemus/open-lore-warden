@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Import Artifacts | The Obsidian Archive</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#152d37",
+                        "surface": "#111316",
+                        "primary-fixed-dim": "#94ccff",
+                        "background": "#111316",
+                        "on-primary-fixed-variant": "#004b74",
+                        "surface-bright": "#37393d",
+                        "on-primary": "#003352",
+                        "surface-container": "#1e2023",
+                        "tertiary-container": "#7c94a0",
+                        "on-surface-variant": "#c1c7d3",
+                        "on-tertiary": "#1c333e",
+                        "secondary-fixed-dim": "#e3c28d",
+                        "surface-container-low": "#1a1c1f",
+                        "outline": "#8b919d",
+                        "surface-container-highest": "#333538",
+                        "surface-container-high": "#282a2d",
+                        "on-secondary-container": "#d0b07d",
+                        "primary": "#94ccff",
+                        "on-tertiary-fixed": "#051e28",
+                        "on-secondary-fixed": "#271900",
+                        "surface-container-lowest": "#0c0e11",
+                        "on-secondary": "#412d05",
+                        "surface-variant": "#333538",
+                        "tertiary": "#b1cad7",
+                        "error": "#ffb4ab",
+                        "on-error-container": "#ffdad6",
+                        "outline-variant": "#414751",
+                        "inverse-surface": "#e2e2e6",
+                        "on-surface": "#e2e2e6",
+                        "on-error": "#690005",
+                        "on-secondary-fixed-variant": "#5a431a",
+                        "secondary-container": "#5a431a",
+                        "tertiary-fixed-dim": "#b1cad7",
+                        "on-primary-fixed": "#001d32",
+                        "secondary": "#e3c28d",
+                        "on-tertiary-fixed-variant": "#334a55",
+                        "primary-fixed": "#cde5ff",
+                        "inverse-on-surface": "#2f3034",
+                        "inverse-primary": "#006398",
+                        "on-primary-container": "#002c47",
+                        "tertiary-fixed": "#cde6f4",
+                        "primary-container": "#4197d6",
+                        "on-background": "#e2e2e6",
+                        "surface-dim": "#111316",
+                        "secondary-fixed": "#ffdeaa",
+                        "error-container": "#93000a",
+                        "surface-tint": "#94ccff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+.custom-noise {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuCInqNbsBVkzc29_WwbMz0eKonmBp2czx9IZ7IBIb6GW0FIawFb_iaXt6eNd4htR45Sqlq9DbXh9glzOSKxMCKrqUuqIU3mXaq1Br4riarbHmpx2nAq2M14W3cdACVb33eIImaK-NHFKVJnl2EAEQlS9NJJ6aSb0xBU6ObA12zcYzzrTWqC6k_Htn7zCfUqVQqayy46MOxoiwwfCgE4yyc4EdY4rOrVPSA16uqU8aYJ-wIofM9hgvPSNERhWY4e_g1FFDRuWkDzpNCE);
+    opacity: 0.02
+    }</style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-4 bg-[#111316]/60 backdrop-blur-xl shadow-2xl shadow-black/50">
+<div class="flex items-center gap-6">
+<span class="text-2xl font-bold text-[#94ccff] drop-shadow-[0_0_8px_rgba(148,204,255,0.3)] font-['Newsreader'] tracking-tight">The Obsidian Archive</span>
+<nav class="hidden md:flex gap-6 font-['Newsreader'] tracking-tight">
+<a class="text-[#333538] hover:text-[#94ccff]/70 transition-colors" href="#">TableView</a>
+<a class="text-[#333538] hover:text-[#94ccff]/70 transition-colors" href="#">Scene</a>
+<a class="text-[#333538] hover:text-[#94ccff]/70 transition-colors" href="#">Characters</a>
+<a class="text-[#333538] hover:text-[#94ccff]/70 transition-colors" href="#">Journal</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-[#94ccff] hover:bg-[#94ccff]/10 transition-all duration-500 rounded-lg active:scale-95 duration-300">
+<span class="material-symbols-outlined">casino</span>
+</button>
+<button class="p-2 text-[#94ccff] hover:bg-[#94ccff]/10 transition-all duration-500 rounded-lg active:scale-95 duration-300">
+<span class="material-symbols-outlined">mic</span>
+</button>
+<button class="p-2 text-[#94ccff] hover:bg-[#94ccff]/10 transition-all duration-500 rounded-lg active:scale-95 duration-300">
+<span class="material-symbols-outlined">auto_awesome</span>
+</button>
+</div>
+<div class="absolute bottom-0 left-0 bg-gradient-to-b from-[#1a1c1f] to-transparent h-px w-full"></div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full flex flex-col z-40 bg-[#1a1c1f] w-64 border-r border-[#333538]/15 shadow-[40px_0_40px_rgba(0,0,0,0.4)] pt-24">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-highest">
+<img alt="GM Avatar" class="w-full h-full object-cover" data-alt="Stylized portrait of a mysterious hooded figure in a dark indigo cloak with celestial silver embroidery" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_o1qMnbmL3hDL3fMxWo5y98Td4R7BgTHxRnPOO9OpFUnw2_apKS47YBRtY_sk1DF9xSl9Nuu3HyN-UfXu7NkvVE8djxUG_Mqti-pX0bAcsbglVy_Ku0-2m9xmXz_E3YLZJKZOmIDrCyXM7LtG286R3UVwDwZrZ7UBMOMizjSD3asHYINeFOhHII8MuLLm2kK-zE5_d-4as19_RJ-Us_uZRUJs_ZH5uxBE91RVOcDPz-AwI5pcluq6SCM5KV0idZ7VHAb2klYVkHpl"/>
+</div>
+<div>
+<h2 class="font-['Newsreader'] text-xl text-[#4A90E2]">The Archive</h2>
+<p class="font-['Manrope'] uppercase tracking-widest text-[10px] opacity-60">Campaign Active</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-[#333538] opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 font-['Manrope'] uppercase tracking-widest text-[10px]" href="#">
+<span class="material-symbols-outlined">fort</span> Home
+            </a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-[#333538] opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 font-['Manrope'] uppercase tracking-widest text-[10px]" href="#">
+<span class="material-symbols-outlined">grid_view</span> TableView
+            </a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-[#333538] opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 font-['Manrope'] uppercase tracking-widest text-[10px]" href="#">
+<span class="material-symbols-outlined">theater_comedy</span> Scene
+            </a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-[#333538] opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 font-['Manrope'] uppercase tracking-widest text-[10px]" href="#">
+<span class="material-symbols-outlined">group</span> Characters
+            </a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-[#333538] opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 font-['Manrope'] uppercase tracking-widest text-[10px]" href="#">
+<span class="material-symbols-outlined">menu_book</span> Journal
+            </a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg bg-gradient-to-r from-[#94ccff]/10 to-transparent text-[#94ccff] border-l-2 border-[#94ccff] font-['Manrope'] uppercase tracking-widest text-[10px]" href="#">
+<span class="material-symbols-outlined">upload_file</span> Import
+            </a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-[#333538] opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 font-['Manrope'] uppercase tracking-widest text-[10px]" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+</nav>
+<div class="px-4 py-6 border-t border-[#333538]/15 space-y-4">
+<button class="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary py-3 px-4 rounded-md font-bold tracking-tight active:scale-95 transition-transform">
+                Roll Initiative
+            </button>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-[#333538] text-[10px] uppercase tracking-widest">
+<span class="material-symbols-outlined text-sm">group</span> Connected Players
+                </div>
+<div class="flex items-center gap-2 text-[#333538] text-[10px] uppercase tracking-widest">
+<span class="material-symbols-outlined text-sm">psychology</span> AI Status
+                </div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="ml-64 pt-24 px-12 min-h-screen pb-20">
+<header class="mb-12">
+<div class="flex items-center gap-2 mb-2">
+<span class="font-label text-xs uppercase tracking-[0.2em] text-secondary">Campaign Logistics</span>
+<div class="h-px flex-1 bg-outline-variant/20"></div>
+</div>
+<h1 class="font-headline text-5xl text-on-surface drop-shadow-sm">Import Artifacts</h1>
+<p class="font-body text-on-surface-variant max-w-2xl mt-4 leading-relaxed">
+                Weave external lore, character sheets, and scenario metadata into the living record of your campaign. The Archive accepts .PDF and .JSON formats for automated ingestion.
+            </p>
+</header>
+<div class="grid grid-cols-12 gap-8">
+<!-- Left: Upload Zone & Mapping -->
+<div class="col-span-12 lg:col-span-8 space-y-8">
+<!-- Drag & Drop Zone -->
+<section class="relative group">
+<div class="absolute inset-0 custom-noise rounded-xl pointer-events-none"></div>
+<div class="border-2 border-dashed border-outline-variant/30 rounded-xl p-12 bg-surface-container-low flex flex-col items-center justify-center text-center transition-all group-hover:border-primary/50 group-hover:bg-surface-container">
+<div class="w-20 h-20 rounded-full bg-primary/5 flex items-center justify-center mb-6 ring-1 ring-primary/20">
+<span class="material-symbols-outlined text-4xl text-primary">cloud_upload</span>
+</div>
+<h3 class="font-headline text-2xl mb-2 text-on-surface">Submit New Tomes</h3>
+<p class="font-body text-on-surface-variant mb-8 max-w-sm">Drag and drop your adventure modules or character JSON files here to begin the parsing sequence.</p>
+<button class="px-8 py-3 bg-surface-container-highest border border-outline-variant/30 text-on-surface rounded-lg font-label uppercase tracking-widest text-xs hover:bg-surface-variant transition-colors">
+                            Select Local Archive
+                        </button>
+</div>
+</section>
+<!-- Mapping Tool -->
+<section class="bg-surface-container p-8 rounded-xl relative shadow-xl overflow-hidden border border-outline-variant/10">
+<div class="absolute top-0 left-0 w-1 h-full bg-secondary/50"></div>
+<div class="flex justify-between items-end mb-8">
+<div>
+<span class="font-label text-[10px] uppercase tracking-widest text-secondary mb-1 block">Entity Resolution</span>
+<h3 class="font-headline text-3xl">Artifact Mapping</h3>
+</div>
+<span class="text-xs text-on-surface-variant italic">3 detected entities pending assignment</span>
+</div>
+<div class="space-y-4">
+<!-- Entity 1 -->
+<div class="flex items-center gap-6 p-4 rounded-lg bg-surface-container-low border border-outline-variant/5">
+<div class="w-12 h-12 bg-tertiary/10 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary">person_search</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-on-surface">Valerius_Sheet.json</h4>
+<p class="text-xs text-on-surface-variant">Class: Paladin • Level: 8</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-sm opacity-40">arrow_forward</span>
+<select class="bg-surface-container-highest border-none rounded-md text-xs font-label text-on-surface focus:ring-1 focus:ring-primary py-2 px-4 w-48">
+<option>Select Campaign Slot</option>
+<option>Protagonist Alpha</option>
+<option>Side-Quest NPC</option>
+<option>The Fallen Prince</option>
+</select>
+</div>
+</div>
+<!-- Entity 2 -->
+<div class="flex items-center gap-6 p-4 rounded-lg bg-surface-container-low border border-outline-variant/5">
+<div class="w-12 h-12 bg-tertiary/10 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary">landscape</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-on-surface">Shattered_Peaks.pdf</h4>
+<p class="text-xs text-on-surface-variant">Location: Northern Wastes • 12 Scenes</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-sm opacity-40">arrow_forward</span>
+<select class="bg-surface-container-highest border-none rounded-md text-xs font-label text-on-surface focus:ring-1 focus:ring-primary py-2 px-4 w-48">
+<option>Select World Region</option>
+<option>The Frozen North</option>
+<option>Kingdom of Oros</option>
+<option>Distant Realms</option>
+</select>
+</div>
+</div>
+<!-- Entity 3 -->
+<div class="flex items-center gap-6 p-4 rounded-lg bg-surface-container-low border border-outline-variant/5">
+<div class="w-12 h-12 bg-tertiary/10 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary">auto_stories</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-on-surface">Session_04_Notes.txt</h4>
+<p class="text-xs text-on-surface-variant">Raw Narrative Input • 4,200 words</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-sm opacity-40">arrow_forward</span>
+<select class="bg-surface-container-highest border-none rounded-md text-xs font-label text-on-surface focus:ring-1 focus:ring-primary py-2 px-4 w-48">
+<option>Assign to Journal</option>
+<option>Chapter 4: The Breach</option>
+<option>Side Quest: Lost Relics</option>
+</select>
+</div>
+</div>
+</div>
+<div class="mt-8 flex justify-end">
+<button class="px-6 py-2 bg-primary/10 border border-primary/20 text-primary rounded-lg text-xs font-label uppercase tracking-widest hover:bg-primary/20 transition-all">
+                            Confirm Mappings
+                        </button>
+</div>
+</section>
+</div>
+<!-- Right: Status & Insights -->
+<div class="col-span-12 lg:col-span-4 space-y-6">
+<!-- Ingestion Status -->
+<div class="bg-surface-container-high p-6 rounded-xl border border-outline-variant/10 shadow-lg relative">
+<div class="absolute inset-0 custom-noise pointer-events-none"></div>
+<h3 class="font-headline text-xl mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                        AI Ingestion Engine
+                    </h3>
+<div class="space-y-6">
+<!-- Progress Item 1 -->
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-xs font-label uppercase tracking-widest text-on-surface-variant">Scenario Parsing</span>
+<span class="text-xs font-label text-primary">84%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-lowest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[84%] shadow-[0_0_8px_rgba(148,204,255,0.4)]"></div>
+</div>
+</div>
+<!-- Progress Item 2 -->
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-xs font-label uppercase tracking-widest text-on-surface-variant">Entity Extraction</span>
+<span class="text-xs font-label text-primary">42%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-lowest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[42%] shadow-[0_0_8px_rgba(148,204,255,0.4)]"></div>
+</div>
+</div>
+<!-- Progress Item 3 -->
+<div>
+<div class="flex justify-between mb-2 text-on-surface-variant/40">
+<span class="text-xs font-label uppercase tracking-widest">Narrative Stitching</span>
+<span class="text-xs font-label">Waiting</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-lowest rounded-full overflow-hidden">
+<div class="h-full bg-outline-variant/20 w-0"></div>
+</div>
+</div>
+</div>
+<div class="mt-8 p-4 bg-tertiary-container/10 rounded border border-tertiary/20">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-tertiary text-sm">info</span>
+<p class="text-[11px] leading-relaxed text-tertiary">Large PDF detected. Semantic analysis may take up to 2 minutes. Feel free to navigate away; the process will continue in the void.</p>
+</div>
+</div>
+</div>
+<!-- Recent Activity Archive -->
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/10 shadow-lg">
+<h3 class="font-headline text-xl mb-4">Historical Imports</h3>
+<div class="space-y-4">
+<div class="flex gap-4 items-start pb-4 border-b border-outline-variant/5">
+<span class="material-symbols-outlined text-on-surface-variant/50 text-xl">description</span>
+<div>
+<h5 class="text-sm font-bold">Bestiary_Vol_01.json</h5>
+<p class="text-[10px] text-on-surface-variant/60 font-label uppercase">Yesterday • 142 Statblocks</p>
+</div>
+</div>
+<div class="flex gap-4 items-start pb-4 border-b border-outline-variant/5">
+<span class="material-symbols-outlined text-on-surface-variant/50 text-xl">description</span>
+<div>
+<h5 class="text-sm font-bold">Lost_Mines_Handout.pdf</h5>
+<p class="text-[10px] text-on-surface-variant/60 font-label uppercase">Oct 12 • 4 Visual Assets</p>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<span class="material-symbols-outlined text-on-surface-variant/50 text-xl">description</span>
+<div>
+<h5 class="text-sm font-bold">Player_Backup_S3.json</h5>
+<p class="text-[10px] text-on-surface-variant/60 font-label uppercase">Oct 10 • Comprehensive State</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Visual Asset Preview (Contextual Card) -->
+<div class="relative rounded-xl overflow-hidden aspect-[4/3] group shadow-2xl">
+<img alt="Mystic Archive Preview" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Interior of an ancient library at night with floating blue lanterns and dust motes dancing in shafts of moonlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzn0jz58rfWJwbpnH8WGjM1Z0Rvde_eV8KJ5cZnRtKkBd486WRX0qWxJMrJUYjW0nFRSGVHV2quQVuSdLk3iAPPeLqVtW_USD66YYuMuGm_M9iloM5vaXkrSjWlVze-KjARt5DTl7-PyMglEMKTvmYrqGWCO77r3yHCD7DtN_Tvmtz3zw7Dv2oqyc_pNQ6mzBoM0NLXtvARUmhQGPRvK6v8m18vesSs6EnDFWP1IAyShoSMkr18oNXXTl-0E8VbohmYg1xRiuT7g4u"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-80"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<span class="font-label text-[9px] uppercase tracking-widest text-primary mb-1 block">Live Preview</span>
+<p class="font-headline text-lg leading-tight">Extracting visual lore from current upload...</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container-high flex justify-around items-center py-4 z-50 border-t border-outline-variant/10">
+<button class="flex flex-col items-center gap-1 text-[#333538]">
+<span class="material-symbols-outlined">fort</span>
+<span class="text-[10px] font-label uppercase">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-[#94ccff]">
+<span class="material-symbols-outlined">upload_file</span>
+<span class="text-[10px] font-label uppercase">Import</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-[#333538]">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="text-[10px] font-label uppercase">Journal</span>
+</button>
+</nav>
+</body></html>

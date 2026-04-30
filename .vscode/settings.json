@@ -1,0 +1,8 @@
+{
+  "css.lint.unknownAtRules": "ignore",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "vue.autoInsert.dotValue": true,
+  "rust-analyzer.linkedProjects": ["apps/desktop/src-tauri/Cargo.toml"]
+}

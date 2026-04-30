@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HomeView | The Obsidian Archive</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,700&amp;family=Manrope:wght@300;400;600;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#152d37",
+                    "surface": "#111316",
+                    "primary-fixed-dim": "#94ccff",
+                    "background": "#111316",
+                    "on-primary-fixed-variant": "#004b74",
+                    "surface-bright": "#37393d",
+                    "on-primary": "#003352",
+                    "surface-container": "#1e2023",
+                    "tertiary-container": "#7c94a0",
+                    "on-surface-variant": "#c1c7d3",
+                    "on-tertiary": "#1c333e",
+                    "secondary-fixed-dim": "#e3c28d",
+                    "surface-container-low": "#1a1c1f",
+                    "outline": "#8b919d",
+                    "surface-container-highest": "#333538",
+                    "surface-container-high": "#282a2d",
+                    "on-secondary-container": "#d0b07d",
+                    "primary": "#94ccff",
+                    "on-tertiary-fixed": "#051e28",
+                    "on-secondary-fixed": "#271900",
+                    "surface-container-lowest": "#0c0e11",
+                    "on-secondary": "#412d05",
+                    "surface-variant": "#333538",
+                    "tertiary": "#b1cad7",
+                    "error": "#ffb4ab",
+                    "on-error-container": "#ffdad6",
+                    "outline-variant": "#414751",
+                    "inverse-surface": "#e2e2e6",
+                    "on-surface": "#e2e2e6",
+                    "on-error": "#690005",
+                    "on-secondary-fixed-variant": "#5a431a",
+                    "secondary-container": "#5a431a",
+                    "tertiary-fixed-dim": "#b1cad7",
+                    "on-primary-fixed": "#001d32",
+                    "secondary": "#e3c28d",
+                    "on-tertiary-fixed-variant": "#334a55",
+                    "primary-fixed": "#cde5ff",
+                    "inverse-on-surface": "#2f3034",
+                    "inverse-primary": "#006398",
+                    "on-primary-container": "#002c47",
+                    "tertiary-fixed": "#cde6f4",
+                    "primary-container": "#4197d6",
+                    "on-background": "#e2e2e6",
+                    "surface-dim": "#111316",
+                    "secondary-fixed": "#ffdeaa",
+                    "error-container": "#93000a",
+                    "surface-tint": "#94ccff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Newsreader"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .archive-gradient {
+            background: linear-gradient(135deg, #94ccff 0%, #4197d6 100%);
+        }
+        .grainy-overlay {
+            position: relative;
+        }
+        .grainy-overlay::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.02;
+            pointer-events: none;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30 grainy-overlay">
+<!-- TopAppBar Shell -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-4 bg-[#111316]/60 backdrop-blur-xl shadow-2xl shadow-black/50">
+<div class="flex items-center gap-8">
+<h1 class="text-2xl font-bold text-[#94ccff] drop-shadow-[0_0_8px_rgba(148,204,255,0.3)] font-['Newsreader'] tracking-tight">The Obsidian Archive</h1>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-[#333538] hover:text-[#94ccff]/70 transition-colors font-['Newsreader'] tracking-tight" href="#">TableView</a>
+<a class="text-[#333538] hover:text-[#94ccff]/70 transition-colors font-['Newsreader'] tracking-tight" href="#">Scene</a>
+<a class="text-[#333538] hover:text-[#94ccff]/70 transition-colors font-['Newsreader'] tracking-tight" href="#">Characters</a>
+<a class="text-[#333538] hover:text-[#94ccff]/70 transition-colors font-['Newsreader'] tracking-tight" href="#">Journal</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<input class="bg-surface-container-low border-b border-outline-variant/30 focus:border-primary px-4 py-1.5 text-sm w-64 focus:ring-0 transition-all" placeholder="Search the archives..." type="text"/>
+<span class="material-symbols-outlined absolute right-2 top-1.5 text-outline-variant text-lg">search</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-[#94ccff]/10 rounded transition-all duration-500 active:scale-95"><span class="material-symbols-outlined text-[#94ccff]">casino</span></button>
+<button class="p-2 hover:bg-[#94ccff]/10 rounded transition-all duration-500 active:scale-95"><span class="material-symbols-outlined text-[#94ccff]">mic</span></button>
+<button class="p-2 hover:bg-[#94ccff]/10 rounded transition-all duration-500 active:scale-95"><span class="material-symbols-outlined text-[#94ccff]">auto_awesome</span></button>
+</div>
+</div>
+</header>
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-full flex flex-col z-40 bg-surface-container-low w-64 border-r border-[#333538]/15 shadow-[40px_0_40px_rgba(0,0,0,0.4)]">
+<div class="pt-24 px-6 mb-10">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center border border-outline-variant/20 overflow-hidden">
+<img alt="Game Master Sigil" class="w-full h-full object-cover" data-alt="a cryptic wax seal with a stylized eye in aged gold on dark textured paper background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9VQPu4P0H_FvP6agbi967E_Jid0DzCZ1TwPGN1OkBlX8fDHeflfkMQiZt10X5g-p_ZB8t_JVQxjd98MeqbNp1EwY2Rm9H_jjuyhTrHw37DwsZ9hroXpsylgjQOzv_KTr6d5cTfebgZoDj5HXILcY0f5ND6hE20TrYu1UUBe57WqsBxoYEt0ksyZvmMNuFRbgKf-qwcTX4iPHk7n3ILNS_ak7wHOQKqR0R7zkxuuVqX14DuZ3UET_KUf9x88-tdgneWNAI_ISBNFqy"/>
+</div>
+<div>
+<h2 class="font-['Newsreader'] text-xl text-[#4A90E2]">The Archive</h2>
+<p class="font-['Manrope'] uppercase tracking-widest text-[10px] text-tertiary-fixed-dim">Campaign Active</p>
+</div>
+</div>
+<button class="w-full py-3 archive-gradient text-on-primary font-bold rounded-lg active:scale-95 transition-transform flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">bolt</span>
+                Roll Initiative
+            </button>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="bg-linear-to-r from-[#94ccff]/10 to-transparent text-[#94ccff] border-l-2 border-[#94ccff] flex items-center gap-4 px-4 py-3 hover:translate-x-1 transition-all duration-500 ease-in-out group" href="#">
+<span class="material-symbols-outlined group-hover:text-[#94ccff]">fort</span>
+<span class="font-['Manrope'] uppercase tracking-widest text-[10px]">Home</span>
+</a>
+<a class="text-[#333538] opacity-80 flex items-center gap-4 px-4 py-3 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 ease-in-out group" href="#">
+<span class="material-symbols-outlined group-hover:text-[#94ccff]">grid_view</span>
+<span class="font-['Manrope'] uppercase tracking-widest text-[10px]">TableView</span>
+</a>
+<a class="text-[#333538] opacity-80 flex items-center gap-4 px-4 py-3 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 ease-in-out group" href="#">
+<span class="material-symbols-outlined group-hover:text-[#94ccff]">theater_comedy</span>
+<span class="font-['Manrope'] uppercase tracking-widest text-[10px]">Scene</span>
+</a>
+<a class="text-[#333538] opacity-80 flex items-center gap-4 px-4 py-3 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 ease-in-out group" href="#">
+<span class="material-symbols-outlined group-hover:text-[#94ccff]">group</span>
+<span class="font-['Manrope'] uppercase tracking-widest text-[10px]">Characters</span>
+</a>
+<a class="text-[#333538] opacity-80 flex items-center gap-4 px-4 py-3 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 ease-in-out group" href="#">
+<span class="material-symbols-outlined group-hover:text-[#94ccff]">menu_book</span>
+<span class="font-['Manrope'] uppercase tracking-widest text-[10px]">Journal</span>
+</a>
+<a class="text-[#333538] opacity-80 flex items-center gap-4 px-4 py-3 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 ease-in-out group" href="#">
+<span class="material-symbols-outlined group-hover:text-[#94ccff]">upload_file</span>
+<span class="font-['Manrope'] uppercase tracking-widest text-[10px]">Import</span>
+</a>
+<a class="text-[#333538] opacity-80 flex items-center gap-4 px-4 py-3 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 ease-in-out group" href="#">
+<span class="material-symbols-outlined group-hover:text-[#94ccff]">settings</span>
+<span class="font-['Manrope'] uppercase tracking-widest text-[10px]">Settings</span>
+</a>
+</nav>
+<div class="p-6 border-t border-[#333538]/15 space-y-4">
+<div class="flex items-center gap-3 text-[#333538]">
+<span class="material-symbols-outlined text-sm">group</span>
+<span class="font-['Manrope'] uppercase tracking-widest text-[10px]">Connected Players</span>
+<div class="ml-auto flex -space-x-2">
+<div class="w-6 h-6 rounded-full border border-surface bg-primary/20"></div>
+<div class="w-6 h-6 rounded-full border border-surface bg-secondary/20"></div>
+</div>
+</div>
+<div class="flex items-center gap-3 text-[#333538]">
+<span class="material-symbols-outlined text-sm">psychology</span>
+<span class="font-['Manrope'] uppercase tracking-widest text-[10px]">AI Status</span>
+<span class="ml-auto w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_#94ccff]"></span>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 min-h-screen">
+<div class="px-12 py-8 max-w-350 mx-auto">
+<!-- Hero / Quick Access Section -->
+<section class="mb-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+<!-- Large Resume Last Session Card -->
+<div class="lg:col-span-8 group relative overflow-hidden bg-surface-container-low rounded-xl border border-outline-variant/10 p-8 flex flex-col justify-between min-h-85 shadow-2xl">
+<div class="absolute inset-0 z-0 opacity-40 group-hover:opacity-60 transition-opacity">
+<img alt="Active Campaign Backdrop" class="w-full h-full object-cover" data-alt="dramatic cinematic shot of a stone dungeon corridor lit by blue magical torches with mist flowing across the floor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJfIdyu4oAFEyswu5-kAg-ChbHmge6XMFVzw0ZVOKkxvMoNhrblP-awz--08H6hLMlvjXXffBkBLb-wIx2QnOJVM87tS_6Lkt1oYyjrbRAy_9KPSHYgEaFiviDM7xk4M2F_wXG6Fb8R5_69ZdVzRQs90okJfRrGwwFbS-6UP0ExwjKUlXuNnVDZt8hnn2Tuxt41bBJjHHLZ_XA42jmxU8F9hfTBGbdFfconkJ-lW6r1QXJtZZOeNry2Yqn_XXJri60LiU1fOBsgyam"/>
+<div class="absolute inset-0 bg-linear-to-t from-surface via-surface/40 to-transparent"></div>
+</div>
+<div class="relative z-10">
+<span class="font-['Manrope'] uppercase tracking-widest text-[11px] text-primary bg-primary/10 px-3 py-1 rounded-full">Active Session</span>
+<h2 class="mt-4 font-['Newsreader'] text-5xl font-bold text-on-surface">The Lost Mines</h2>
+<p class="mt-4 max-w-lg text-on-surface-variant font-light text-lg">Your party is currently deep within the Echoing Hall. The ambient hum of ancient magic grows louder...</p>
+</div>
+<div class="relative z-10 flex gap-4 mt-8">
+<button class="px-8 py-3 archive-gradient text-on-primary font-bold rounded-lg flex items-center gap-3 hover:shadow-[0_0_20px_rgba(148,204,255,0.4)] transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                            Resume Last Session
+                        </button>
+<button class="px-6 py-3 bg-surface-container-highest/60 backdrop-blur-md text-on-surface font-semibold rounded-lg border border-outline-variant/20 hover:bg-surface-container-highest transition-all">
+                            View Campaign Map
+                        </button>
+</div>
+</div>
+<!-- Create New Campaign CTA -->
+<div class="lg:col-span-4 bg-surface-container-low rounded-xl border border-outline-variant/10 p-8 flex flex-col items-center justify-center text-center group hover:bg-surface-container-high transition-all border-dashed hover:border-primary/50 cursor-pointer">
+<div class="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl text-primary">add_circle</span>
+</div>
+<h3 class="font-['Newsreader'] text-2xl font-bold mb-2">Create New Campaign</h3>
+<p class="text-sm text-outline font-medium max-w-50">Forge a new legend. Start with a blank slate or use a curated template.</p>
+</div>
+</section>
+<!-- Campaign Grid -->
+<section class="mb-12">
+<div class="flex items-end justify-between mb-8">
+<div>
+<span class="font-['Manrope'] uppercase tracking-[0.2em] text-[10px] text-secondary-fixed-dim block mb-1">Your Archives</span>
+<h3 class="font-['Newsreader'] text-3xl font-bold">Campaign Library</h3>
+</div>
+<div class="flex gap-2">
+<button class="p-2 bg-surface-container-low text-outline-variant rounded border border-outline-variant/20 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+<button class="p-2 bg-surface-container-low text-outline-variant rounded border border-outline-variant/20 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">sort</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Campaign Card 1 -->
+<div class="bg-surface-container rounded-xl overflow-hidden border border-outline-variant/10 group hover:border-primary/30 transition-all shadow-xl">
+<div class="h-48 overflow-hidden relative">
+<img alt="Dragon's Peak" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="a majestic red dragon perched on a jagged obsidian mountain peak against a dark stormy sky with lightning" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDup_KMm4yKr9F19bjMXIWpQJ8Va132vmdIRp4er5KhgI6s0XfH6beW8vwsuhRLb9FeSOQGQ9bWJ_hekEuHYfbl2eddrJLQdfmcb97s_NRxXj6REcBiG1mDm3v4RDlvHaqvUuju872n3JJ6xStrb53bi63zImKtPepFNbiHMRw4Va5N2Rqq4ujnxV5ndQPPSoUwhpTlGW5daJ6DDiq0sb5nRNYI9UFKdUC7f1pzZcFnPjKo-HbcW64WqGO0nnDKuel1e93NeQPxh-3F"/>
+<div class="absolute top-4 right-4 bg-surface/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold text-secondary uppercase tracking-widest border border-secondary/20">Planning</div>
+</div>
+<div class="p-6">
+<h4 class="font-['Newsreader'] text-xl font-bold mb-2">Dragon's Peak</h4>
+<p class="text-sm text-on-surface-variant font-light line-clamp-2 mb-6">A high-stakes vertical crawl where the party must summit the spire of the fire-eater before the eclipse.</p>
+<div class="flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-7 h-7 rounded-full bg-surface-container-highest border border-surface flex items-center justify-center text-[10px]">JM</div>
+<div class="w-7 h-7 rounded-full bg-primary/20 border border-surface flex items-center justify-center text-[10px]">AL</div>
+<div class="w-7 h-7 rounded-full bg-secondary/20 border border-surface flex items-center justify-center text-[10px]">KR</div>
+</div>
+<button class="text-primary text-sm font-bold flex items-center gap-1 hover:gap-2 transition-all">
+                                    Details <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Campaign Card 2 -->
+<div class="bg-surface-container rounded-xl overflow-hidden border border-outline-variant/10 group hover:border-primary/30 transition-all shadow-xl">
+<div class="h-48 overflow-hidden relative">
+<img alt="The Silent Sea" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="an ethereal glowing underwater city with bioluminescent towers and giant jellyfish floating in deep indigo water" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJ0aFYIGXgHTmENKeu-c3NMf7Jqw3OK1WO5xYq22X-XFpa_81whgWs081_TrGCB7_MenBDodJM6OzhAw5WZMmSi_ubC0s6ApuIJpSztt_hijuijx1TA9OssSJsOD1F6BM0vXlNX4KbCIbBGIXDpj5-8Y1HI-h3iJmolBukB2oqdY06Vb0PQytOFAJN3za2Cvbal_YwJqiPo_P6yhemBQ0k6CUciHG6-7_FniPtflOaMIQnMlHYGN9gADkt1ZLT_ZhrCTXQun0NspxE"/>
+<div class="absolute top-4 right-4 bg-surface/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold text-primary uppercase tracking-widest border border-primary/20">Ongoing</div>
+</div>
+<div class="p-6">
+<h4 class="font-['Newsreader'] text-xl font-bold mb-2">The Silent Sea</h4>
+<p class="text-sm text-on-surface-variant font-light line-clamp-2 mb-6">Navigating the depths of the sunken kingdom, searching for the Pearl of Eternity while oxygen runs low.</p>
+<div class="flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-7 h-7 rounded-full bg-surface-container-highest border border-surface flex items-center justify-center text-[10px]">SK</div>
+<div class="w-7 h-7 rounded-full bg-tertiary/20 border border-surface flex items-center justify-center text-[10px]">PL</div>
+</div>
+<button class="text-primary text-sm font-bold flex items-center gap-1 hover:gap-2 transition-all">
+                                    Details <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Campaign Card 3 -->
+<div class="bg-surface-container rounded-xl overflow-hidden border border-outline-variant/10 group hover:border-primary/30 transition-all shadow-xl">
+<div class="h-48 overflow-hidden relative">
+<img alt="Shadow of the Empire" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="a dark gothic cathedral interior with purple magical light emanating from a cracked stone altar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqZUBElH2Qo9ISxLUMQ6V97SeJFQhyWJBnGBGYGWEly-XjNDFTJFFKzHD4vNE_vxv-g3TqsQfv1yRO4Y8rgfYXg6g8lkwAwcncTxUpDq8of7CTB3x_q6kAfz960-WSZlDyRJrqyZPqGvJ1NEHRd0fwZiBXHFgMgsdql3aCzcJ4ef1NPrxPRkUyecpm3a7gqiLN_NS1Pft2K7NYoRnR38Oglge2KeS4G-RtW1BUDFJzfRhFpTLZwau7UPGoXzPbjWTFcsBHTO17YfdC"/>
+<div class="absolute top-4 right-4 bg-surface/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold text-on-surface-variant uppercase tracking-widest border border-outline-variant/20">Hiatus</div>
+</div>
+<div class="p-6">
+<h4 class="font-['Newsreader'] text-xl font-bold mb-2">Shadow of the Empire</h4>
+<p class="text-sm text-on-surface-variant font-light line-clamp-2 mb-6">Political intrigue and dark rituals in the heart of the capital city. Trust no one, especially the crown.</p>
+<div class="flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-7 h-7 rounded-full bg-primary/20 border border-surface flex items-center justify-center text-[10px]">GM</div>
+<div class="w-7 h-7 rounded-full bg-secondary/20 border border-surface flex items-center justify-center text-[10px]">RX</div>
+<div class="w-7 h-7 rounded-full bg-tertiary/20 border border-surface flex items-center justify-center text-[10px]">BT</div>
+<div class="w-7 h-7 rounded-full bg-surface-container-highest border border-surface flex items-center justify-center text-[10px]">+2</div>
+</div>
+<button class="text-primary text-sm font-bold flex items-center gap-1 hover:gap-2 transition-all">
+                                    Details <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Section: Archive and Stats -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+<!-- Campaign History / Archive -->
+<div class="lg:col-span-2 bg-surface-container-low rounded-xl border border-outline-variant/10 p-8 shadow-xl">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-['Newsreader'] text-2xl font-bold">Campaign History</h3>
+<a class="text-xs uppercase tracking-widest text-primary font-bold hover:underline" href="#">View All Archive</a>
+</div>
+<div class="space-y-4">
+<div class="flex items-center gap-4 p-4 bg-surface-container hover:bg-surface-container-high rounded-lg border border-outline-variant/5 transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">folder_zip</span>
+<div class="flex-1">
+<h5 class="font-['Newsreader'] font-bold">The Iron Gauntlet (2023)</h5>
+<p class="text-[10px] text-outline-variant uppercase tracking-widest">Completed • 24 Sessions • Level 1-12</p>
+</div>
+<span class="material-symbols-outlined text-sm text-outline-variant">chevron_right</span>
+</div>
+<div class="flex items-center gap-4 p-4 bg-surface-container hover:bg-surface-container-high rounded-lg border border-outline-variant/5 transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">folder_zip</span>
+<div class="flex-1">
+<h5 class="font-['Newsreader'] font-bold">Feywild Frolic</h5>
+<p class="text-[10px] text-outline-variant uppercase tracking-widest">Archived • 8 Sessions • Level 3-5</p>
+</div>
+<span class="material-symbols-outlined text-sm text-outline-variant">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Small Sidebar Insight Card -->
+<div class="bg-surface-container-low rounded-xl border border-outline-variant/10 p-8 flex flex-col justify-between shadow-xl">
+<div>
+<h3 class="font-['Newsreader'] text-xl font-bold mb-4">Archive Stats</h3>
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<span class="text-sm font-light text-on-surface-variant">Total Play Time</span>
+<span class="font-bold text-primary">1,248 hrs</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm font-light text-on-surface-variant">Active Players</span>
+<span class="font-bold text-primary">14</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm font-light text-on-surface-variant">Worlds Created</span>
+<span class="font-bold text-primary">6</span>
+</div>
+</div>
+</div>
+<div class="pt-6 mt-6 border-t border-outline-variant/10">
+<button class="w-full py-2 bg-secondary/10 text-secondary border border-secondary/20 rounded-lg text-sm font-bold uppercase tracking-widest hover:bg-secondary/20 transition-all">
+                            Export Campaign Data
+                        </button>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Mobile Bottom NavBar (Hidden on Web) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-[#111316]/90 backdrop-blur-xl flex justify-around items-center py-4 z-50 border-t border-outline-variant/10">
+<button class="flex flex-col items-center gap-1 text-[#94ccff]">
+<span class="material-symbols-outlined">fort</span>
+<span class="text-[10px] uppercase tracking-tighter">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-outline-variant hover:text-[#94ccff]">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="text-[10px] uppercase tracking-tighter">Table</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-outline-variant hover:text-[#94ccff]">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="text-[10px] uppercase tracking-tighter">Archive</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-outline-variant hover:text-[#94ccff]">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] uppercase tracking-tighter">Settings</span>
+</button>
+</nav>
+</body></html>

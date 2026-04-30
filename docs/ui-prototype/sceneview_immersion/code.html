@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#152d37",
+                    "surface": "#111316",
+                    "primary-fixed-dim": "#94ccff",
+                    "background": "#111316",
+                    "on-primary-fixed-variant": "#004b74",
+                    "surface-bright": "#37393d",
+                    "on-primary": "#003352",
+                    "surface-container": "#1e2023",
+                    "tertiary-container": "#7c94a0",
+                    "on-surface-variant": "#c1c7d3",
+                    "on-tertiary": "#1c333e",
+                    "secondary-fixed-dim": "#e3c28d",
+                    "surface-container-low": "#1a1c1f",
+                    "outline": "#8b919d",
+                    "surface-container-highest": "#333538",
+                    "surface-container-high": "#282a2d",
+                    "on-secondary-container": "#d0b07d",
+                    "primary": "#94ccff",
+                    "on-tertiary-fixed": "#051e28",
+                    "on-secondary-fixed": "#271900",
+                    "surface-container-lowest": "#0c0e11",
+                    "on-secondary": "#412d05",
+                    "surface-variant": "#333538",
+                    "tertiary": "#b1cad7",
+                    "error": "#ffb4ab",
+                    "on-error-container": "#ffdad6",
+                    "outline-variant": "#414751",
+                    "inverse-surface": "#e2e2e6",
+                    "on-surface": "#e2e2e6",
+                    "on-error": "#690005",
+                    "on-secondary-fixed-variant": "#5a431a",
+                    "secondary-container": "#5a431a",
+                    "tertiary-fixed-dim": "#b1cad7",
+                    "on-primary-fixed": "#001d32",
+                    "secondary": "#e3c28d",
+                    "on-tertiary-fixed-variant": "#334a55",
+                    "primary-fixed": "#cde5ff",
+                    "inverse-on-surface": "#2f3034",
+                    "inverse-primary": "#006398",
+                    "on-primary-container": "#002c47",
+                    "tertiary-fixed": "#cde6f4",
+                    "primary-container": "#4197d6",
+                    "on-background": "#e2e2e6",
+                    "surface-dim": "#111316",
+                    "secondary-fixed": "#ffdeaa",
+                    "error-container": "#93000a",
+                    "surface-tint": "#94ccff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Newsreader"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .grain-texture {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.02;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body overflow-hidden">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-4 bg-[#111316]/60 backdrop-blur-xl shadow-2xl shadow-black/50">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold text-[#94ccff] drop-shadow-[0_0_8px_rgba(148,204,255,0.3)] font-['Newsreader'] tracking-tight">The Obsidian Archive</span>
+<nav class="hidden md:flex gap-6 font-['Newsreader'] tracking-tight">
+<a class="text-[#333538] hover:text-[#94ccff]/70 transition-colors" href="#">TableView</a>
+<a class="text-[#94ccff] border-b border-[#94ccff]/50 pb-1" href="#">Scene</a>
+<a class="text-[#333538] hover:text-[#94ccff]/70 transition-colors" href="#">Characters</a>
+<a class="text-[#333538] hover:text-[#94ccff]/70 transition-colors" href="#">Journal</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<input class="bg-surface-container-low border-none rounded-lg px-4 py-1.5 text-sm focus:ring-1 focus:ring-primary/40 w-64 transition-all duration-300" placeholder="Search the Archive..." type="text"/>
+</div>
+<div class="flex gap-2">
+<button class="p-2 text-[#94ccff] hover:bg-[#94ccff]/10 transition-all duration-500 active:scale-95"><span class="material-symbols-outlined">casino</span></button>
+<button class="p-2 text-[#94ccff] hover:bg-[#94ccff]/10 transition-all duration-500 active:scale-95"><span class="material-symbols-outlined">mic</span></button>
+<button class="p-2 text-[#94ccff] hover:bg-[#94ccff]/10 transition-all duration-500 active:scale-95"><span class="material-symbols-outlined">auto_awesome</span></button>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 bg-gradient-to-b from-[#1a1c1f] to-transparent h-px w-full"></div>
+</header>
+<!-- Side Navigation Bar -->
+<aside class="fixed left-0 top-0 h-full flex flex-col z-40 bg-[#1a1c1f] border-r border-[#333538]/15 shadow-[40px_0_40px_rgba(0,0,0,0.4)] w-64 pt-20">
+<div class="px-6 py-4 mb-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden border border-primary/20">
+<img alt="Game Master Sigil" data-alt="Intricate geometric gold sigil on a dark stone background, mystical and ancient aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRm_GyQOsiL3JQNhso8fsQNEpsOk5hC7kaV6ulgx51QkJ_BfNj42ElE4IXDU2SeAmIZ4iEdYTE-t7KxYHDl8v8Etx8tw5DRZ0xxERoFPa1BjDrsCrCYVfYtCigAY_3r_VB6ZkhqJ6Wb9QluJ_67cu8pkhwAMoAgCn1UZJ2sms7TYG10ney86xAIpxijsnyYeKDiGTpp1phjN7nmfsYzEEk4TNxTwy5ekdu-FCXruL-kcua8rc2qOY87RMgi0F2JlqrI3Sq6-UNvO7j"/>
+</div>
+<div>
+<h2 class="font-['Newsreader'] text-xl text-[#4A90E2] leading-none">The Archive</h2>
+<p class="font-['Manrope'] uppercase tracking-widest text-[10px] opacity-60">Campaign Active</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-4 px-4 py-3 text-[#333538] opacity-80 font-['Manrope'] uppercase tracking-widest text-[10px] hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 ease-in-out" href="#">
+<span class="material-symbols-outlined text-lg">fort</span> Home
+            </a>
+<a class="flex items-center gap-4 px-4 py-3 text-[#333538] opacity-80 font-['Manrope'] uppercase tracking-widest text-[10px] hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 ease-in-out" href="#">
+<span class="material-symbols-outlined text-lg">grid_view</span> TableView
+            </a>
+<a class="flex items-center gap-4 px-4 py-3 bg-gradient-to-r from-[#94ccff]/10 to-transparent text-[#94ccff] border-l-2 border-[#94ccff] font-['Manrope'] uppercase tracking-widest text-[10px] transition-all duration-500 ease-in-out" href="#">
+<span class="material-symbols-outlined text-lg">theater_comedy</span> Scene
+            </a>
+<a class="flex items-center gap-4 px-4 py-3 text-[#333538] opacity-80 font-['Manrope'] uppercase tracking-widest text-[10px] hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 ease-in-out" href="#">
+<span class="material-symbols-outlined text-lg">group</span> Characters
+            </a>
+<a class="flex items-center gap-4 px-4 py-3 text-[#333538] opacity-80 font-['Manrope'] uppercase tracking-widest text-[10px] hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 ease-in-out" href="#">
+<span class="material-symbols-outlined text-lg">menu_book</span> Journal
+            </a>
+<a class="flex items-center gap-4 px-4 py-3 text-[#333538] opacity-80 font-['Manrope'] uppercase tracking-widest text-[10px] hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 ease-in-out" href="#">
+<span class="material-symbols-outlined text-lg">upload_file</span> Import
+            </a>
+<a class="flex items-center gap-4 px-4 py-3 text-[#333538] opacity-80 font-['Manrope'] uppercase tracking-widest text-[10px] hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 ease-in-out" href="#">
+<span class="material-symbols-outlined text-lg">settings</span> Settings
+            </a>
+</nav>
+<div class="px-6 py-6 mt-auto border-t border-[#333538]/15 space-y-4">
+<button class="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold py-3 rounded-lg flex items-center justify-center gap-2 active:scale-95 transition-transform">
+                Roll Initiative
+            </button>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-[#333538] text-[10px] uppercase tracking-widest font-['Manrope']">
+<span class="material-symbols-outlined text-sm">group</span> Connected Players
+                </div>
+<div class="flex items-center gap-2 text-[#333538] text-[10px] uppercase tracking-widest font-['Manrope']">
+<span class="material-symbols-outlined text-sm">psychology</span> AI Status
+                </div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas: SceneView -->
+<main class="ml-64 pt-20 h-screen relative flex flex-col">
+<!-- Immersive Scene Background -->
+<div class="absolute inset-0 z-0">
+<img alt="Current Scene" class="w-full h-full object-cover" data-alt="Atmospheric dark fantasy tavern interior with flickering candles, warm amber light, and misty smoke rising from wooden tables" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbgq5HoBbvx9kZJ-imjFIsIzrk_8FydDUizsXrVsgj28ss7qPe81mznsVvWF3O4ZxQBu2-fGERocBsAabZKJf0Gtr_ILWsLhw8_xMWsK1A8bpIzdJT1fmathV18BiEBq39o_AXYC0L7ozq7oKs6uuYJ2Xdn00rjDSbhkylicDaTsqyG1i0dKr_J6eb3T7EUJcJsdt-tkgdshx8NzrRhIG56ggi9h9i_fQ8BqizkKMjDBK1BqvBjBmoT1ynNCxvqdi9ez0SRmc90T7X"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
+<div class="absolute inset-0 bg-black/20"></div>
+<div class="grain-texture absolute inset-0"></div>
+</div>
+<!-- Scene Controls & Status (Top Right Over Scene) -->
+<div class="relative z-10 p-8 flex justify-between items-start">
+<div class="flex flex-col gap-4">
+<div class="bg-surface-container-low/80 backdrop-blur-md border border-outline-variant/10 p-4 rounded-xl max-w-sm">
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.2em] text-secondary block mb-2">Location: Whispering Shadows Tavern</span>
+<h1 class="font-['Newsreader'] text-3xl font-bold text-on-surface leading-tight">The Midnight Deal</h1>
+</div>
+</div>
+<div class="flex flex-col gap-3 items-end">
+<div class="flex gap-2">
+<button class="bg-surface-container-highest/60 hover:bg-surface-container-highest/90 backdrop-blur-md px-4 py-2 rounded-lg flex items-center gap-2 border border-outline-variant/15 transition-all">
+<span class="material-symbols-outlined text-primary text-sm">refresh</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-widest">Regenerate Scene</span>
+</button>
+<button class="bg-surface-container-highest/60 hover:bg-surface-container-highest/90 backdrop-blur-md p-2 rounded-lg border border-outline-variant/15 transition-all">
+<span class="material-symbols-outlined text-on-surface">fullscreen</span>
+</button>
+</div>
+<!-- Active NPCs -->
+<div class="flex flex-col items-end gap-2">
+<span class="font-['Manrope'] text-[10px] uppercase tracking-widest text-on-surface/40">Present NPCs</span>
+<div class="flex -space-x-2">
+<div class="w-12 h-12 rounded-full border-2 border-surface-container ring-2 ring-primary/40 overflow-hidden relative group cursor-help">
+<img alt="NPC 1" data-alt="Portrait of a mysterious hooded figure with glowing eyes, fantasy concept art style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLs2YJvqaklHzyjTPMHwnUq_rP_CCtO_hab4YJ-wcDHa9LY39cVBBqLWNvIQki0-OGSm6DRHmfXqjhKeQCN7wh5Dv2vf9iJ1ELfq_2DLr4lRIki4weola3hN4-Fm1FVLzpBJdC5BHu4ckDDqqLiv-ktGpBxsZoBFP5-Wmibhy8uPkk443zihw1OXHwN44eeqU9tv06OlFBrXqAON3Kn00LPmj46ND-Zp5PbEb3YKFWaEM6vWGYPhb_ryyXaa_5en6gQ52o6uJ-EFGs"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="w-12 h-12 rounded-full border-2 border-surface-container ring-2 ring-transparent hover:ring-primary/40 overflow-hidden relative group cursor-help transition-all">
+<img alt="NPC 2" data-alt="Portrait of a weary barmaid in historical fantasy attire, soft candlelight illumination" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZTyJortRBcpcyvUil5xamZKCavWdewrB8kK0QabA2EypGpkYo2650uTda7-LBs6R53CLBj3W6sfKFOvsvzQyab76rp9rb_Ghyaa8lW2WyxMD5e8BT-86MCQ7SPMtSQqXktdPPRiMFZpQFB0bYAAz22BnwDT5MHNLWtB2zIBXFquHFcPFJjb49EQNSk4mDHbA2QpZRkKvKAzSTYgwub8EicyLMPifN2DHb1WiseXcozJzX3-AWm-XOKyQYIChy0L2UkaAWZwNVmQtx"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Narration Subtitles & Core Interaction -->
+<div class="relative z-10 mt-auto px-8 pb-12 w-full flex flex-col items-center">
+<!-- Narration Box -->
+<div class="w-full max-w-4xl text-center mb-8 relative group">
+<div class="absolute -inset-8 bg-primary/5 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+<p class="font-['Newsreader'] text-2xl italic text-on-surface/90 leading-relaxed drop-shadow-lg">
+                    "The air in the tavern is thick with the scent of pine needles and stale ale. As you approach the hooded figure in the corner, the crackling of the hearth seems to dim, and the murmurs of the patrons fade into a heavy, expectant silence."
+                </p>
+<div class="mt-6 flex items-center justify-center gap-4 text-on-surface/40">
+<div class="h-px w-12 bg-gradient-to-r from-transparent to-outline-variant/30"></div>
+<span class="material-symbols-outlined text-sm">auto_stories</span>
+<div class="h-px w-12 bg-gradient-to-l from-transparent to-outline-variant/30"></div>
+</div>
+</div>
+<!-- Action Cluster -->
+<div class="flex items-center gap-6">
+<!-- Music Controls -->
+<div class="bg-surface-container-low/60 backdrop-blur-xl border border-outline-variant/10 px-6 py-3 rounded-full flex items-center gap-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">music_note</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-widest text-on-surface/60">Tavern Ambience</span>
+</div>
+<div class="h-4 w-px bg-outline-variant/20"></div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-lg hover:text-primary transition-colors">skip_previous</button>
+<button class="material-symbols-outlined text-2xl hover:text-primary transition-colors">pause</button>
+<button class="material-symbols-outlined text-lg hover:text-primary transition-colors">skip_next</button>
+</div>
+<div class="w-24 h-1 bg-outline-variant/20 rounded-full overflow-hidden relative">
+<div class="absolute top-0 left-0 h-full w-[65%] bg-primary"></div>
+</div>
+</div>
+<!-- Primary Progress Button -->
+<button class="group relative px-10 py-4 bg-primary text-on-primary font-bold rounded-lg overflow-hidden transition-all hover:shadow-[0_0_20px_rgba(148,204,255,0.4)] active:scale-95">
+<span class="relative z-10 flex items-center gap-3">
+                        Progress Scene
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</span>
+<div class="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</button>
+</div>
+</div>
+<!-- Scene History / Log Peek -->
+<div class="absolute bottom-4 right-8 z-10">
+<button class="bg-surface-container-low/40 hover:bg-surface-container-low/80 backdrop-blur-md p-3 rounded-full border border-outline-variant/10 transition-all">
+<span class="material-symbols-outlined opacity-60">history</span>
+</button>
+</div>
+</main>
+<!-- Global Noise Overlay -->
+<div class="grain-texture fixed inset-0 z-[100] opacity-5"></div>
+</body></html>

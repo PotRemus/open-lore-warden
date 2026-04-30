@@ -1,0 +1,7 @@
+export * from '@/repositories/campaign.repository'
+export * from '@/repositories/character.repository'
+export * from '@/repositories/memory.repository'
+export * from '@/repositories/npc.repository'
+export * from '@/repositories/quest.repository'
+export * from '@/repositories/scene.repository'
+export * from '@/repositories/turn.repository'

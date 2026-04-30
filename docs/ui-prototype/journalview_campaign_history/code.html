@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#152d37",
+                    "surface": "#111316",
+                    "primary-fixed-dim": "#94ccff",
+                    "background": "#111316",
+                    "on-primary-fixed-variant": "#004b74",
+                    "surface-bright": "#37393d",
+                    "on-primary": "#003352",
+                    "surface-container": "#1e2023",
+                    "tertiary-container": "#7c94a0",
+                    "on-surface-variant": "#c1c7d3",
+                    "on-tertiary": "#1c333e",
+                    "secondary-fixed-dim": "#e3c28d",
+                    "surface-container-low": "#1a1c1f",
+                    "outline": "#8b919d",
+                    "surface-container-highest": "#333538",
+                    "surface-container-high": "#282a2d",
+                    "on-secondary-container": "#d0b07d",
+                    "primary": "#94ccff",
+                    "on-tertiary-fixed": "#051e28",
+                    "on-secondary-fixed": "#271900",
+                    "surface-container-lowest": "#0c0e11",
+                    "on-secondary": "#412d05",
+                    "surface-variant": "#333538",
+                    "tertiary": "#b1cad7",
+                    "error": "#ffb4ab",
+                    "on-error-container": "#ffdad6",
+                    "outline-variant": "#414751",
+                    "inverse-surface": "#e2e2e6",
+                    "on-surface": "#e2e2e6",
+                    "on-error": "#690005",
+                    "on-secondary-fixed-variant": "#5a431a",
+                    "secondary-container": "#5a431a",
+                    "tertiary-fixed-dim": "#b1cad7",
+                    "on-primary-fixed": "#001d32",
+                    "secondary": "#e3c28d",
+                    "on-tertiary-fixed-variant": "#334a55",
+                    "primary-fixed": "#cde5ff",
+                    "inverse-on-surface": "#2f3034",
+                    "inverse-primary": "#006398",
+                    "on-primary-container": "#002c47",
+                    "tertiary-fixed": "#cde6f4",
+                    "primary-container": "#4197d6",
+                    "on-background": "#e2e2e6",
+                    "surface-dim": "#111316",
+                    "secondary-fixed": "#ffdeaa",
+                    "error-container": "#93000a",
+                    "surface-tint": "#94ccff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Newsreader"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>.parchment-texture {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAO1xW6dHMxDZ8dNjnJlUoOvVwUydmkku0MZKw7mT_-5YLJ3O6Xjve-vcH4smYej3HZzy-N-4njCVRePKsRH9-Lx98wknzn4O0_UNPJxuImoK4jcwWNOM-9-q5frcm9JJlxDF0zWeYJmbMnUcYCaPs1EsT4dpLJFomxal4P8c12NScH6ATKJ_76y8B-y8nze7sQOkRrgJaNW-ELZQS66HI8jWvRoRPS5IGJxLQFjHuD-QGjmLV4cNo5uxp4kZgzIj8B00uOuUQ4Igxf);
+    background-blend-mode: overlay
+    }
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px
+    }
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #111316
+    }
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #333538;
+    border-radius: 10px
+    }
+.glow-hover:hover {
+    box-shadow: 0 0 12px rgba(148, 204, 255, 0.3)
+    }</style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-4 bg-[#111316]/60 backdrop-blur-xl shadow-2xl shadow-black/50">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold text-[#94ccff] drop-shadow-[0_0_8px_rgba(148,204,255,0.3)] font-['Newsreader'] tracking-tight">The Obsidian Archive</span>
+<nav class="hidden md:flex gap-6 items-center font-['Newsreader'] tracking-tight">
+<a class="text-[#333538] hover:text-[#94ccff]/70 transition-colors" href="#">TableView</a>
+<a class="text-[#333538] hover:text-[#94ccff]/70 transition-colors" href="#">Scene</a>
+<a class="text-[#333538] hover:text-[#94ccff]/70 transition-colors" href="#">Characters</a>
+<a class="text-[#94ccff] border-b border-[#94ccff]/50 pb-1" href="#">Journal</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined text-[#333538] absolute left-3 top-1/2 -translate-y-1/2">search</span>
+<input class="bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-1.5 text-sm focus:ring-1 focus:ring-primary/40 w-64 transition-all" placeholder="Search archive..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-[#94ccff] p-2 hover:bg-[#94ccff]/10 rounded-full transition-all duration-500">casino</button>
+<button class="material-symbols-outlined text-[#94ccff] p-2 hover:bg-[#94ccff]/10 rounded-full transition-all duration-500">mic</button>
+<button class="material-symbols-outlined text-[#94ccff] p-2 hover:bg-[#94ccff]/10 rounded-full transition-all duration-500">auto_awesome</button>
+</div>
+<div class="bg-gradient-to-b from-[#1a1c1f] to-transparent h-px w-full absolute bottom-0 left-0"></div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full flex flex-col z-40 bg-[#1a1c1f] w-64 border-r border-[#333538]/15 shadow-[40px_0_40px_rgba(0,0,0,0.4)]">
+<div class="p-8 pt-24">
+<div class="flex items-center gap-3 mb-10">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest border border-primary/20 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Stylized obsidian seal with glowing blue cracks in a circular frame" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoDjU6d6XE_w0cgbCglqCl2F4XvQWXs_Jz2fviBaBGv5d9g63fVVNyOXrA97NNSw9c7ZQkFdOSf9t9GLlzxNdE4zdyd05JvBBBipgWDKDNZ6-mbZzfbLYFcqw6NzvVuknEpBqDjvYB9Sixe3_LIjdnqtX2VzxYHrqUkWRPoBx7qkvpj-C7X-bvXUWhFZnVMVpbNyiaFOf3Pgqh7Gf5AOdBGd4qtgaHw-6NWt3x_O1hQkzUojg6VJ0Ser42kmpkOimHjBFivkWP56JL"/>
+</div>
+<div>
+<h2 class="font-['Newsreader'] text-xl text-[#4A90E2] leading-tight">The Archive</h2>
+<p class="font-['Manrope'] uppercase tracking-widest text-[10px] text-primary/60">Campaign Active</p>
+</div>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-4 px-4 py-3 font-['Manrope'] uppercase tracking-widest text-[10px] text-[#333538] opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500" href="#">
+<span class="material-symbols-outlined text-lg">fort</span> Home
+                </a>
+<a class="flex items-center gap-4 px-4 py-3 font-['Manrope'] uppercase tracking-widest text-[10px] text-[#333538] opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500" href="#">
+<span class="material-symbols-outlined text-lg">grid_view</span> TableView
+                </a>
+<a class="flex items-center gap-4 px-4 py-3 font-['Manrope'] uppercase tracking-widest text-[10px] text-[#333538] opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500" href="#">
+<span class="material-symbols-outlined text-lg">theater_comedy</span> Scene
+                </a>
+<a class="flex items-center gap-4 px-4 py-3 font-['Manrope'] uppercase tracking-widest text-[10px] text-[#333538] opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500" href="#">
+<span class="material-symbols-outlined text-lg">group</span> Characters
+                </a>
+<a class="flex items-center gap-4 px-4 py-3 font-['Manrope'] uppercase tracking-widest text-[10px] bg-gradient-to-r from-[#94ccff]/10 to-transparent text-[#94ccff] border-l-2 border-[#94ccff] transition-all duration-500" href="#">
+<span class="material-symbols-outlined text-lg">menu_book</span> Journal
+                </a>
+<a class="flex items-center gap-4 px-4 py-3 font-['Manrope'] uppercase tracking-widest text-[10px] text-[#333538] opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500" href="#">
+<span class="material-symbols-outlined text-lg">upload_file</span> Import
+                </a>
+<a class="flex items-center gap-4 px-4 py-3 font-['Manrope'] uppercase tracking-widest text-[10px] text-[#333538] opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500" href="#">
+<span class="material-symbols-outlined text-lg">settings</span> Settings
+                </a>
+</nav>
+<button class="w-full mt-8 py-3 bg-gradient-to-r from-primary to-primary-container text-on-primary rounded-md font-['Manrope'] uppercase tracking-widest text-[10px] font-bold active:scale-95 duration-300">
+                Roll Initiative
+            </button>
+</div>
+<div class="mt-auto p-8 border-t border-[#333538]/15">
+<div class="space-y-4">
+<div class="flex items-center gap-3 text-[#333538] opacity-80">
+<span class="material-symbols-outlined text-lg">group</span>
+<span class="font-['Manrope'] uppercase tracking-widest text-[10px]">Connected Players</span>
+</div>
+<div class="flex items-center gap-3 text-[#333538] opacity-80">
+<span class="material-symbols-outlined text-lg text-primary">psychology</span>
+<span class="font-['Manrope'] uppercase tracking-widest text-[10px]">AI Status</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 px-8 min-h-screen bg-surface relative overflow-hidden">
+<!-- Background Ambient Glow -->
+<div class="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-primary/5 blur-[120px] rounded-full"></div>
+<div class="absolute bottom-[-5%] left-[-5%] w-[400px] h-[400px] bg-secondary/5 blur-[100px] rounded-full"></div>
+<!-- Journal Header -->
+<div class="relative z-10 flex justify-between items-end mb-12">
+<div>
+<span class="font-label text-xs uppercase tracking-[0.2em] text-primary mb-2 block">Campaign Chronicle</span>
+<h1 class="font-headline text-5xl font-extrabold tracking-tight text-on-surface italic">Journal View</h1>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 px-5 py-2.5 bg-surface-container border border-outline-variant/20 rounded-lg text-sm font-label hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-sm">download</span>
+                    Export Session Summary
+                </button>
+<button class="flex items-center gap-2 px-5 py-2.5 bg-primary/10 text-primary border border-primary/20 rounded-lg text-sm font-label hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">push_pin</span>
+                    Pin to Important Facts
+                </button>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-8 relative z-10">
+<!-- Left Column: Chronological Timeline -->
+<div class="col-span-8 space-y-8">
+<section class="parchment-texture bg-surface-container-low rounded-xl p-8 shadow-2xl relative overflow-hidden border border-outline-variant/10">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-8xl">auto_stories</span>
+</div>
+<div class="mb-10 flex items-center justify-between">
+<h3 class="font-headline text-2xl text-secondary">Historical Log</h3>
+<div class="h-px flex-grow mx-6 bg-gradient-to-r from-secondary/30 to-transparent"></div>
+<span class="font-label text-xs uppercase tracking-widest text-secondary/60">Era of Shadows</span>
+</div>
+<div class="space-y-12 relative">
+<!-- Timeline Vertical Line -->
+<div class="absolute left-[11px] top-2 bottom-2 w-px bg-gradient-to-b from-primary/40 via-primary/5 to-primary/40"></div>
+<!-- Entry 1 -->
+<div class="relative pl-10 group">
+<div class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-surface-container border border-primary flex items-center justify-center z-10 group-hover:scale-110 transition-transform">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+</div>
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="font-headline text-xl text-on-surface">The Descent into Ironbridge</h4>
+<p class="text-xs font-label text-outline uppercase tracking-wider">Session #24 • Midsummer 14th</p>
+</div>
+<span class="bg-secondary-container/20 text-secondary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Active</span>
+</div>
+<p class="text-on-surface-variant leading-relaxed text-sm mb-4">
+                                The party breached the lower gates of Ironbridge under the shroud of a magical eclipse. Kaelen's negotiation with the dwarf sentinels was successful, though Silas's lingering shadow presence nearly alerted the guard hounds. They now rest in the 'Broken Anvil' tavern, awaiting the contact from the resistance.
+                            </p>
+<div class="flex gap-4">
+<img class="w-32 h-20 object-cover rounded-lg border border-outline-variant/20" data-alt="Dramatic low-angle shot of a medieval stone bridge at night under a crescent moon with glowing blue torches" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfu4mzMnvsnDzvIaBvwCZWCPo6pzznl_N-2n-ITpWgNR3qzTLLeWr0U9ysHL9BoVTmnmwXmDP46ftoVU4WreuYJh6sQOhT-_WxsuFVTc3nft3tTOGFeOHuB4drtMCayWVrz08q9j3khUYylFVon_SZga_R2ZwdWmJOtnPvmnbHpLo-6leK1GDb3nK3-CSDAAHbEBmCz9st-CL5j3Ih5y2_R-5igFetZUXgLjr5t_nQkCgCGxwCgmyhHlFXjbhzZwMeU4x6KelVQDU6"/>
+<img class="w-32 h-20 object-cover rounded-lg border border-outline-variant/20" data-alt="Interior of a dimly lit fantasy tavern with amber candle light reflecting off heavy wooden barrels" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAipj-jrGQVQXdpUDD3EfV1S8AIWHqsyc8IRA8z9RdYHquQD50NgW1AzCk9mVMIbk0nH71Pst4fDSXxgtKMif3cnjkHkom-EE8k7RnHx6kV-2nD6xJQZkuguXwLAeS2WEXAC9UpGZk0ZZKGeCWahPnq2cBZg2yPSLkA2ry5sbWCOMQBouADKxuGoUSQk_DTyS5IKEIsLedNkVYmsEyX5pWChJrSaH2lz3W8j6YA-TsD0Uoq24ouBf_NJG1-lIPeD-cuugR7IZgBf7a2"/>
+</div>
+</div>
+<!-- Entry 2 -->
+<div class="relative pl-10 group">
+<div class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-surface-container border border-outline-variant flex items-center justify-center z-10 group-hover:border-primary transition-all">
+<div class="w-2 h-2 rounded-full bg-outline-variant group-hover:bg-primary transition-all"></div>
+</div>
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="font-headline text-xl text-on-surface">The Ritual of Whispering Skulls</h4>
+<p class="text-xs font-label text-outline uppercase tracking-wider">Session #23 • Midsummer 12th</p>
+</div>
+<span class="bg-surface-container-highest text-on-surface-variant px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Completed</span>
+</div>
+<p class="text-on-surface-variant leading-relaxed text-sm italic">
+                                "The bone-dust rose in a spiral, revealing the face of the betrayer..."
+                            </p>
+<p class="text-on-surface-variant leading-relaxed text-sm mt-2">
+                                In the Crypt of Lost Kings, the group successfully banished the remnant of the Wraith-King. Aria obtained the 'Fragment of Eternal Frost'. The price was heavy—Elowen's familiar remains trapped between planes.
+                            </p>
+</div>
+</div>
+</section>
+<!-- Quest Log Bento Style -->
+<div class="grid grid-cols-2 gap-8">
+<div class="bg-surface-container p-6 rounded-xl border border-outline-variant/10 shadow-lg glow-hover transition-all">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+<h3 class="font-headline text-xl text-secondary">Active Goals</h3>
+</div>
+<ul class="space-y-4">
+<li class="flex items-start gap-3 group">
+<div class="mt-1 w-4 h-4 rounded-sm border border-secondary/40 flex items-center justify-center group-hover:bg-secondary/10"></div>
+<span class="text-sm text-on-surface-variant">Infiltrate the Obsidian Spire and disable the mana-well.</span>
+</li>
+<li class="flex items-start gap-3 group">
+<div class="mt-1 w-4 h-4 rounded-sm border border-secondary/40 flex items-center justify-center group-hover:bg-secondary/10"></div>
+<span class="text-sm text-on-surface-variant">Recover the stolen Archive of Elara from the smugglers.</span>
+</li>
+</ul>
+</div>
+<div class="bg-surface-container p-6 rounded-xl border border-outline-variant/10 shadow-lg glow-hover transition-all">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<h3 class="font-headline text-xl text-primary">Concluded Deeds</h3>
+</div>
+<ul class="space-y-4">
+<li class="flex items-start gap-3 opacity-60">
+<span class="material-symbols-outlined text-primary text-sm mt-1">check</span>
+<span class="text-sm text-on-surface-variant line-through">Escort the Merchant Prince to the Southern Coast.</span>
+</li>
+<li class="flex items-start gap-3 opacity-60">
+<span class="material-symbols-outlined text-primary text-sm mt-1">check</span>
+<span class="text-sm text-on-surface-variant line-through">Purify the Well of Silence in the Whispering Woods.</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Right Column: AI Summaries & Quick Facts -->
+<div class="col-span-4 space-y-8">
+<!-- AI Generated Summary Card -->
+<section class="bg-[#1e2023] rounded-xl border border-primary/20 p-6 relative overflow-hidden">
+<div class="absolute -top-4 -right-4 w-24 h-24 bg-primary/10 blur-2xl rounded-full"></div>
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<h3 class="font-label text-xs uppercase tracking-[0.2em] text-primary">Oracle Summary</h3>
+</div>
+<div class="space-y-4">
+<div class="bg-surface-container-highest/50 p-4 rounded-lg border-l-2 border-primary">
+<p class="text-sm text-on-surface leading-relaxed italic">
+                                "The threads of fate are tightening around the Ironbridge resistance. Your actions have shifted the local power balance by 14% towards the rebellion."
+                            </p>
+</div>
+<div class="text-sm text-on-surface-variant leading-relaxed">
+<p class="mb-3">Key takeaways from the last 3 sessions:</p>
+<ul class="space-y-2">
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary/60"></span>
+<span>The Duke knows of your arrival.</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary/60"></span>
+<span>The "Shadow Sickness" is magical, not plague.</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary/60"></span>
+<span>Aria's sword is reacting to proximity to the Spire.</span>
+</li>
+</ul>
+</div>
+</div>
+<button class="w-full mt-6 py-2 bg-primary/5 hover:bg-primary/10 text-primary border border-primary/30 rounded-lg text-xs font-label uppercase tracking-widest transition-all">
+                        Refresh Oracle Insight
+                    </button>
+</section>
+<!-- Important Facts / Lore -->
+<section class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/10 shadow-xl">
+<h3 class="font-headline text-xl text-on-surface mb-6 flex items-center justify-between">
+                        Pinned Lore
+                        <span class="material-symbols-outlined text-sm text-outline">push_pin</span>
+</h3>
+<div class="space-y-4">
+<div class="group p-3 hover:bg-surface-container rounded-lg transition-all border border-transparent hover:border-outline-variant/10 cursor-pointer">
+<h4 class="text-xs font-label uppercase tracking-widest text-secondary mb-1">NPC: Lord Valerius</h4>
+<p class="text-sm text-on-surface-variant">The current regent of Ironbridge. Rumored to be a puppet for the Necromancer's Guild.</p>
+</div>
+<div class="group p-3 hover:bg-surface-container rounded-lg transition-all border border-transparent hover:border-outline-variant/10 cursor-pointer">
+<h4 class="text-xs font-label uppercase tracking-widest text-secondary mb-1">Item: The Frost Key</h4>
+<p class="text-sm text-on-surface-variant">A glowing shard of ice that never melts. Required to open the Chamber of Tides.</p>
+</div>
+<div class="group p-3 hover:bg-surface-container rounded-lg transition-all border border-transparent hover:border-outline-variant/10 cursor-pointer">
+<h4 class="text-xs font-label uppercase tracking-widest text-secondary mb-1">Place: The Whispering Woods</h4>
+<p class="text-sm text-on-surface-variant">Avoid at all costs during the new moon. The trees are sentient and hungry.</p>
+</div>
+</div>
+</section>
+<!-- Decorative Illustration -->
+<div class="relative h-64 w-full rounded-xl overflow-hidden border border-outline-variant/20 shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="Macro photo of an ancient leather-bound book with intricate silver filigree and a glowing blue gemstone in the center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARhAhOUmHqjM42w_H-IYvSLAX725uP4GOt4wdVif-XEGBwTkIGkZysOXQfSYOl6hTmlFinBEac1V6v_4jyVdFIwgWs-4H9DUUAAnD_QzS0tsqV0_AAgCN9hDoUgGiVIEgcE8gAE88bYBwBS9w2Sj9WxOZxhCVXvBp4mh22toXOris9A_vpHC7kmjPPqUrio_oLDqrQIDyX4MDg7f3Pf36RFrRcIabatz0gqvT3XEcZw3NGZVYmplvhP4-IXriCCzIWC5lpHwTY21fo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
+<div class="absolute bottom-4 left-4">
+<p class="font-headline text-lg text-on-surface italic">"The Archive remembers..."</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Decorative Fade -->
+<div class="h-32 w-full mt-12 bg-gradient-to-t from-surface-container-lowest to-transparent pointer-events-none"></div>
+</main>
+</body></html>

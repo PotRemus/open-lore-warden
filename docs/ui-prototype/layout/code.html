@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>[pageTitle] - [appTitle]</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,700&amp;family=Manrope:wght@300;400;600;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#152d37",
+                        "surface": "#111316",
+                        "primary-fixed-dim": "#94ccff",
+                        "background": "#111316",
+                        "on-primary-fixed-variant": "#004b74",
+                        "surface-bright": "#37393d",
+                        "on-primary": "#003352",
+                        "surface-container": "#1e2023",
+                        "tertiary-container": "#7c94a0",
+                        "on-surface-variant": "#c1c7d3",
+                        "on-tertiary": "#1c333e",
+                        "secondary-fixed-dim": "#e3c28d",
+                        "surface-container-low": "#1a1c1f",
+                        "outline": "#8b919d",
+                        "surface-container-highest": "#333538",
+                        "surface-container-high": "#282a2d",
+                        "on-secondary-container": "#d0b07d",
+                        "primary": "#94ccff",
+                        "on-tertiary-fixed": "#051e28",
+                        "on-secondary-fixed": "#271900",
+                        "surface-container-lowest": "#0c0e11",
+                        "on-secondary": "#412d05",
+                        "surface-variant": "#333538",
+                        "tertiary": "#b1cad7",
+                        "error": "#ffb4ab",
+                        "on-error-container": "#ffdad6",
+                        "outline-variant": "#414751",
+                        "inverse-surface": "#e2e2e6",
+                        "on-surface": "#e2e2e6",
+                        "on-error": "#690005",
+                        "on-secondary-fixed-variant": "#5a431a",
+                        "secondary-container": "#5a431a",
+                        "tertiary-fixed-dim": "#b1cad7",
+                        "on-primary-fixed": "#001d32",
+                        "secondary": "#e3c28d",
+                        "on-tertiary-fixed-variant": "#334a55",
+                        "primary-fixed": "#cde5ff",
+                        "inverse-on-surface": "#2f3034",
+                        "inverse-primary": "#006398",
+                        "on-primary-container": "#002c47",
+                        "tertiary-fixed": "#cde6f4",
+                        "primary-container": "#4197d6",
+                        "on-background": "#e2e2e6",
+                        "surface-dim": "#111316",
+                        "secondary-fixed": "#ffdeaa",
+                        "error-container": "#93000a",
+                        "surface-tint": "#94ccff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #333538;
+            border-radius: 10px;
+        }
+
+        .noise-overlay {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.02;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="bg-surface text-on-surface font-body overflow-hidden">
+    <!-- TopNavBar Shell -->
+    <nav
+        class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-4 bg-[#111316]/60 backdrop-blur-xl shadow-2xl shadow-black/50 border-b-0">
+        <div class="flex items-center gap-6">
+            <span
+                class="text-2xl font-bold text-[#94ccff] drop-shadow-[0_0_8px_rgba(148,204,255,0.3)] font-headline tracking-tight">[appTitle]</span>
+            <div class="hidden md:flex gap-6 ml-8">
+                <a class="text-[#94ccff] border-b border-[#94ccff]/50 pb-1 font-headline tracking-tight"
+                    href="#">TableView</a>
+                <a class="text-[#333538] hover:text-[#94ccff]/70 transition-colors font-headline tracking-tight"
+                    href="#">Scene</a>
+                <a class="text-[#333538] hover:text-[#94ccff]/70 transition-colors font-headline tracking-tight"
+                    href="#">Characters</a>
+                <a class="text-[#333538] hover:text-[#94ccff]/70 transition-colors font-headline tracking-tight"
+                    href="#">Journal</a>
+            </div>
+        </div>
+        <div
+            class="absolute bottom-0 left-0 bg-linear-to-r from-transparent via-[#94ccff]/20 to-transparent h-px w-full">
+            <!-- TopNavBar Quick action or player list ? -->
+        </div>
+    </nav>
+    <!-- SideNavBar Shell -->
+    <aside
+        class="fixed left-0 top-0 h-full flex flex-col z-40 bg-surface-container-low w-64 border-r border-[#333538]/15 shadow-[40px_0_40px_rgba(0,0,0,0.4)] pt-24">
+        <div class="px-6 mb-8">
+            <div class="flex items-center gap-3 mb-6">
+                <div
+                    class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center border border-primary/20">
+                    <span class="material-symbols-outlined text-primary" data-icon="fort"
+                        style="font-variation-settings: 'FILL' 1;">fort</span>
+                </div>
+                <div>
+                    <h2 class="font-headline text-xl text-[#4A90E2] leading-tight">[campaignTitle]</h2>
+                    <p class="font-label uppercase tracking-widest text-[10px] text-primary/60">Campaign Active</p>
+                </div>
+            </div>
+            <!-- <button
+                class="w-full bg-gradient-to-r from-primary to-primary-container text-on-primary py-2 rounded-lg font-label uppercase tracking-widest text-xs font-bold transition-all hover:shadow-[0_0_15px_rgba(148,204,255,0.4)] active:scale-[0.98]">
+                Roll Initiative
+            </button> -->
+        </div>
+        <nav class="flex-1 px-4 space-y-1">
+            <div
+                class="group px-4 py-3 flex items-center gap-3 bg-linear-to-r from-[#94ccff]/10 to-transparent text-[#94ccff] border-l-2 border-[#94ccff] transition-all duration-500 cursor-pointer">
+                <span class="material-symbols-outlined text-lg" data-icon="fort">fort</span>
+                <span class="font-label uppercase tracking-widest text-[10px]">Home</span>
+            </div>
+            <div
+                class="group px-4 py-3 flex items-center gap-3 opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 cursor-pointer">
+                <span class="material-symbols-outlined text-lg" data-icon="grid_view">grid_view</span>
+                <span class="font-label uppercase tracking-widest text-[10px]">TableView</span>
+            </div>
+            <div
+                class="group px-4 py-3 flex items-center gap-3 opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 cursor-pointer">
+                <span class="material-symbols-outlined text-lg" data-icon="theater_comedy">theater_comedy</span>
+                <span class="font-label uppercase tracking-widest text-[10px]">Scene</span>
+            </div>
+            <div
+                class="group px-4 py-3 flex items-center gap-3 opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 cursor-pointer">
+                <span class="material-symbols-outlined text-lg" data-icon="group"
+                    style="font-variation-settings: 'FILL' 1;">group</span>
+                <span class="font-label uppercase tracking-widest text-[10px]">Characters</span>
+            </div>
+            <div
+                class="group px-4 py-3 flex items-center gap-3 opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 cursor-pointer">
+                <span class="material-symbols-outlined text-lg" data-icon="menu_book">menu_book</span>
+                <span class="font-label uppercase tracking-widest text-[10px]">Journal</span>
+            </div>
+            <div
+                class="group px-4 py-3 flex items-center gap-3 opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 cursor-pointer">
+                <span class="material-symbols-outlined text-lg" data-icon="upload_file">upload_file</span>
+                <span class="font-label uppercase tracking-widest text-[10px]">Import</span>
+            </div>
+            <div
+                class="group px-4 py-3 flex items-center gap-3 opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-all duration-500 cursor-pointer">
+                <span class="material-symbols-outlined text-lg" data-icon="settings">settings</span>
+                <span class="font-label uppercase tracking-widest text-[10px]">Settings</span>
+            </div>
+        </nav>
+        <div class="mt-auto px-6 py-6 border-t border-[#333538]/15 space-y-4">
+            <!-- <div class="flex items-center justify-between group cursor-pointer">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-xs text-primary/60" data-icon="group">group</span>
+                    <span
+                        class="font-label uppercase tracking-widest text-[10px] text-on-surface/60 group-hover:text-primary transition-colors">Connected
+                        Players</span>
+                </div>
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_5px_#10b981]"></span>
+            </div> -->
+            <div class="flex items-center justify-between group cursor-pointer">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-xs text-primary/60"
+                        data-icon="psychology">psychology</span>
+                    <span
+                        class="font-label uppercase tracking-widest text-[10px] text-on-surface/60 group-hover:text-primary transition-colors">AI
+                        Status</span>
+                </div>
+                <span class="font-label text-[8px] text-primary bg-primary/10 px-1 rounded">READY</span>
+            </div>
+        </div>
+    </aside>
+    <!-- Main Content Canvas -->
+    <main class="ml-64 pt-20 h-screen flex overflow-hidden">
+        <!-- Page content -->
+    </main>
+    <!-- Contextual FAB - Restricted to Archive Actions -->
+    <!-- <div class="fixed bottom-8 right-8 z-50">
+        <button
+            class="bg-primary text-on-primary w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all group">
+            <span class="material-symbols-outlined text-2xl group-hover:rotate-90 transition-transform duration-500"
+                data-icon="add">add</span>
+        </button>
+    </div> -->
+</body>
+
+</html>

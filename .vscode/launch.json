@@ -1,0 +1,56 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node-terminal",
+      "request": "launch",
+      "name": "Sidecar (dev)",
+      "command": "pnpm run dev:sidecar",
+      "cwd": "${workspaceFolder}",
+      "presentation": {
+        "hidden": true
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Sidecar (dev) v2",
+      "outputCapture": "std",
+      "skipFiles": ["<node_internals>/**", "${workspaceFolder}/node_modules/**/*.js"],
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["run", "dev:sidecar"],
+      "presentation": {
+        "hidden": true
+      }
+    },
+    {
+      "type": "node-terminal",
+      "request": "launch",
+      "name": "Tauri (dev)",
+      "command": "pnpm run dev:tauri",
+      "cwd": "${workspaceFolder}",
+      "presentation": {
+        "hidden": true
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Tauri (dev) v2",
+      "outputCapture": "std",
+      "skipFiles": ["<node_internals>/**", "${workspaceFolder}/node_modules/**/*.js"],
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["run", "dev:tauri"],
+      "presentation": {
+        "hidden": true
+      }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Dev (Sidecar + Tauri)",
+      "configurations": ["Sidecar (dev) v2", "Tauri (dev) v2"],
+      "stopAll": true
+    }
+  ]
+}

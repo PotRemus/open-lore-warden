@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#152d37",
+                    "surface": "#111316",
+                    "primary-fixed-dim": "#94ccff",
+                    "background": "#111316",
+                    "on-primary-fixed-variant": "#004b74",
+                    "surface-bright": "#37393d",
+                    "on-primary": "#003352",
+                    "surface-container": "#1e2023",
+                    "tertiary-container": "#7c94a0",
+                    "on-surface-variant": "#c1c7d3",
+                    "on-tertiary": "#1c333e",
+                    "secondary-fixed-dim": "#e3c28d",
+                    "surface-container-low": "#1a1c1f",
+                    "outline": "#8b919d",
+                    "surface-container-highest": "#333538",
+                    "surface-container-high": "#282a2d",
+                    "on-secondary-container": "#d0b07d",
+                    "primary": "#94ccff",
+                    "on-tertiary-fixed": "#051e28",
+                    "on-secondary-fixed": "#271900",
+                    "surface-container-lowest": "#0c0e11",
+                    "on-secondary": "#412d05",
+                    "surface-variant": "#333538",
+                    "tertiary": "#b1cad7",
+                    "error": "#ffb4ab",
+                    "on-error-container": "#ffdad6",
+                    "outline-variant": "#414751",
+                    "inverse-surface": "#e2e2e6",
+                    "on-surface": "#e2e2e6",
+                    "on-error": "#690005",
+                    "on-secondary-fixed-variant": "#5a431a",
+                    "secondary-container": "#5a431a",
+                    "tertiary-fixed-dim": "#b1cad7",
+                    "on-primary-fixed": "#001d32",
+                    "secondary": "#e3c28d",
+                    "on-tertiary-fixed-variant": "#334a55",
+                    "primary-fixed": "#cde5ff",
+                    "inverse-on-surface": "#2f3034",
+                    "inverse-primary": "#006398",
+                    "on-primary-container": "#002c47",
+                    "tertiary-fixed": "#cde6f4",
+                    "primary-container": "#4197d6",
+                    "on-background": "#e2e2e6",
+                    "surface-dim": "#111316",
+                    "secondary-fixed": "#ffdeaa",
+                    "error-container": "#93000a",
+                    "surface-tint": "#94ccff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Newsreader"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(30, 32, 35, 0.6);
+            backdrop-filter: blur(24px);
+        }
+        .noise-overlay {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.02;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-4 bg-[#111316]/60 backdrop-blur-xl shadow-2xl shadow-black/50">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold text-[#94ccff] drop-shadow-[0_0_8px_rgba(148,204,255,0.3)] font-['Newsreader'] tracking-tight">The Obsidian Archive</span>
+<nav class="hidden md:flex gap-6">
+<a class="text-[#333538] hover:text-[#94ccff]/70 transition-colors font-['Newsreader'] tracking-tight" href="#">TableView</a>
+<a class="text-[#333538] hover:text-[#94ccff]/70 transition-colors font-['Newsreader'] tracking-tight" href="#">Scene</a>
+<a class="text-[#333538] hover:text-[#94ccff]/70 transition-colors font-['Newsreader'] tracking-tight" href="#">Characters</a>
+<a class="text-[#333538] hover:text-[#94ccff]/70 transition-colors font-['Newsreader'] tracking-tight" href="#">Journal</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant text-sm">search</span>
+<input class="bg-surface-container-low border-b border-outline-variant/30 focus:border-primary px-10 py-2 text-sm outline-none transition-all w-64 font-label" placeholder="Search the weave..." type="text"/>
+</div>
+<button class="p-2 text-[#94ccff] hover:bg-[#94ccff]/10 transition-all duration-500 rounded-lg active:scale-95">
+<span class="material-symbols-outlined" data-icon="casino">casino</span>
+</button>
+<button class="p-2 text-[#94ccff] hover:bg-[#94ccff]/10 transition-all duration-500 rounded-lg active:scale-95">
+<span class="material-symbols-outlined" data-icon="mic">mic</span>
+</button>
+<button class="p-2 text-[#94ccff] hover:bg-[#94ccff]/10 transition-all duration-500 rounded-lg active:scale-95">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+</button>
+</div>
+<div class="absolute bottom-0 left-0 bg-gradient-to-b from-[#1a1c1f] to-transparent h-px w-full"></div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full flex flex-col z-40 bg-[#1a1c1f] w-64 border-r border-[#333538]/15 shadow-[40px_0_40px_rgba(0,0,0,0.4)] pt-24">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-primary/20">
+<img alt="Game Master Sigil" class="w-full h-full object-cover" data-alt="ancient metallic sigil glowing with blue ethereal energy on a dark stone background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrzPyzRvE-hmCcDpRjf31qnEAAQvmsp62bOCBFmwiojg6-HE-UAl1fIGWjM-rQUNd52u2HFaF_mKAcCqppd0W8U4bAD3qkW0Y_xKkjUKjSh87ZzwwaEV1QGqsiiOMUhDNhZMHHfH9ZZ0-VFPQHdWtZr_lqcnZNi9PB1UVEj0spHD4Myi1JSnUiVhuAJ3Riwqy_trtFiTRWutcVBuB_cozCQGRP2PEgbZJrvF-kSFxB5-5td4iV2gz_hrJ9aqPk5-o1EDhl4OE6PkMl"/>
+</div>
+<div>
+<h2 class="font-['Newsreader'] text-xl text-[#4A90E2] leading-none">The Archive</h2>
+<span class="font-['Manrope'] uppercase tracking-widest text-[8px] text-tertiary">Campaign Active</span>
+</div>
+</div>
+<button class="w-full py-2 px-4 bg-gradient-to-r from-primary to-primary-container text-on-primary font-label text-[10px] uppercase tracking-widest rounded-lg hover:shadow-[0_0_15px_rgba(148,204,255,0.4)] transition-all">
+                Roll Initiative
+            </button>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-4 px-6 py-3 text-[#333538] opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-transform group" href="#">
+<span class="material-symbols-outlined" data-icon="fort">fort</span>
+<span class="font-['Manrope'] uppercase tracking-widest text-[10px]">Home</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-[#333538] opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-transform group" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="font-['Manrope'] uppercase tracking-widest text-[10px]">TableView</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-[#333538] opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-transform group" href="#">
+<span class="material-symbols-outlined" data-icon="theater_comedy">theater_comedy</span>
+<span class="font-['Manrope'] uppercase tracking-widest text-[10px]">Scene</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-[#333538] opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-transform group" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-['Manrope'] uppercase tracking-widest text-[10px]">Characters</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-[#333538] opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-transform group" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-['Manrope'] uppercase tracking-widest text-[10px]">Journal</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-[#333538] opacity-80 hover:translate-x-1 hover:text-[#94ccff] transition-transform group" href="#">
+<span class="material-symbols-outlined" data-icon="upload_file">upload_file</span>
+<span class="font-['Manrope'] uppercase tracking-widest text-[10px]">Import</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 bg-gradient-to-r from-[#94ccff]/10 to-transparent text-[#94ccff] border-l-2 border-[#94ccff] transition-all duration-500 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-['Manrope'] uppercase tracking-widest text-[10px]">Settings</span>
+</a>
+</nav>
+<footer class="p-6 border-t border-[#333538]/15 space-y-4">
+<div class="flex items-center gap-3 text-outline">
+<span class="material-symbols-outlined text-sm" data-icon="group">group</span>
+<span class="font-['Manrope'] uppercase tracking-widest text-[9px]">Connected Players</span>
+</div>
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined text-sm" data-icon="psychology">psychology</span>
+<span class="font-['Manrope'] uppercase tracking-widest text-[9px]">AI Status: Active</span>
+</div>
+</footer>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 px-12 min-h-screen relative overflow-hidden">
+<div class="noise-overlay absolute inset-0 z-0"></div>
+<!-- Header Section -->
+<div class="relative z-10 mb-12">
+<span class="font-label uppercase tracking-[0.2em] text-primary text-[10px] mb-2 block">System Nexus</span>
+<h1 class="font-headline text-5xl font-extrabold text-on-surface tracking-tight">Technical Configuration</h1>
+</div>
+<!-- Bento Grid Layout -->
+<div class="relative z-10 grid grid-cols-12 gap-8 pb-12">
+<!-- Left Column: Navigation Tabs -->
+<div class="col-span-3 space-y-6">
+<div class="flex flex-col gap-2">
+<button class="flex items-center justify-between px-4 py-4 rounded-lg bg-surface-container-high border-l-4 border-primary text-primary transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="model_training">model_training</span>
+<span class="font-label text-sm font-medium">Intelligence</span>
+</div>
+</button>
+<button class="flex items-center justify-between px-4 py-4 rounded-lg hover:bg-surface-container-low text-outline transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="campaign">campaign</span>
+<span class="font-label text-sm font-medium">Narrator Voice</span>
+</div>
+</button>
+<button class="flex items-center justify-between px-4 py-4 rounded-lg hover:bg-surface-container-low text-outline transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="graphic_eq">graphic_eq</span>
+<span class="font-label text-sm font-medium">Audio Diagnostics</span>
+</div>
+</button>
+<button class="flex items-center justify-between px-4 py-4 rounded-lg hover:bg-surface-container-low text-outline transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+<span class="font-label text-sm font-medium">Diagnostic Logs</span>
+</div>
+</button>
+</div>
+<div class="p-6 rounded-xl bg-surface-container-low border border-outline-variant/10">
+<h3 class="font-headline text-lg mb-4 text-secondary">System Health</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center text-xs">
+<span class="text-outline">Neural Link</span>
+<span class="text-primary">Optimized</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[85%] shadow-[0_0_8px_#94ccff]"></div>
+</div>
+<div class="flex justify-between items-center text-xs">
+<span class="text-outline">Memory Buffer</span>
+<span class="text-secondary">4.2 GB / 16 GB</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Panel: Configuration Details -->
+<div class="col-span-9 grid grid-cols-2 gap-8">
+<!-- LLM Selection Card -->
+<div class="col-span-2 glass-panel rounded-2xl p-8 border border-outline-variant/10 shadow-2xl relative group overflow-hidden">
+<div class="noise-overlay absolute inset-0"></div>
+<div class="relative z-10">
+<h2 class="font-headline text-2xl mb-6 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="neurology">neurology</span>
+                            LLM Model Architecture
+                        </h2>
+<div class="grid grid-cols-2 gap-6">
+<!-- Local Option -->
+<div class="p-6 rounded-xl bg-surface-container border border-primary/40 shadow-[0_0_20px_rgba(148,204,255,0.05)] cursor-pointer">
+<div class="flex justify-between mb-4">
+<span class="font-label text-[10px] uppercase tracking-widest text-primary">Priority Model</span>
+<span class="material-symbols-outlined text-primary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h4 class="font-headline text-xl mb-2">Local Llama-3 (8B)</h4>
+<p class="text-sm text-outline mb-4 leading-relaxed">Run entirely on your hardware. Zero latency, maximum privacy for your secret lore.</p>
+<div class="flex gap-2">
+<span class="px-2 py-1 bg-primary/10 text-primary text-[10px] rounded-full font-label">INT4 Quantized</span>
+<span class="px-2 py-1 bg-primary/10 text-primary text-[10px] rounded-full font-label">8GB VRAM</span>
+</div>
+</div>
+<!-- API Option -->
+<div class="p-6 rounded-xl bg-surface-container-low border border-outline-variant/20 hover:border-outline/40 transition-all cursor-pointer group/card">
+<div class="flex justify-between mb-4">
+<span class="font-label text-[10px] uppercase tracking-widest text-outline">Cloud Nexus</span>
+<span class="material-symbols-outlined text-outline group-hover/card:text-primary transition-colors" data-icon="cloud">cloud</span>
+</div>
+<h4 class="font-headline text-xl mb-2">GPT-4o Integration</h4>
+<p class="text-sm text-outline mb-4 leading-relaxed">High-reasoning narrative capabilities. Requires an active API tether and internet.</p>
+<div class="flex gap-2">
+<span class="px-2 py-1 bg-outline/10 text-outline text-[10px] rounded-full font-label">Requires API Key</span>
+<span class="px-2 py-1 bg-outline/10 text-outline text-[10px] rounded-full font-label">Unlimited Context</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Voice Selection -->
+<div class="col-span-1 glass-panel rounded-2xl p-8 border border-outline-variant/10 relative overflow-hidden">
+<div class="noise-overlay absolute inset-0"></div>
+<h2 class="relative z-10 font-headline text-2xl mb-6">Narrator Voice</h2>
+<div class="relative z-10 space-y-4">
+<label class="block">
+<span class="font-label text-[10px] uppercase tracking-widest text-outline mb-2 block">Voice Profile</span>
+<select class="w-full bg-surface-container-high border-b border-outline-variant text-on-surface py-3 px-4 focus:outline-none focus:border-primary transition-all">
+<option>The Chronicler (Gravelly, British)</option>
+<option>The Mystic (Ethereal, Soft)</option>
+<option>The Tavern Keeper (Warm, Jovial)</option>
+<option>The Archmage (Stern, Echoing)</option>
+</select>
+</label>
+<div class="p-4 rounded-lg bg-surface-container-lowest border border-outline-variant/10 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<button class="w-10 h-10 rounded-full bg-primary/20 text-primary flex items-center justify-center hover:bg-primary/30 transition-all">
+<span class="material-symbols-outlined" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<div class="h-2 w-32 bg-outline-variant/30 rounded-full overflow-hidden">
+<div class="h-full w-2/3 bg-primary animate-pulse"></div>
+</div>
+</div>
+<span class="text-[10px] font-label text-outline uppercase tracking-wider">Previewing...</span>
+</div>
+</div>
+</div>
+<!-- Audio Diagnostics -->
+<div class="col-span-1 glass-panel rounded-2xl p-8 border border-outline-variant/10 relative overflow-hidden">
+<div class="noise-overlay absolute inset-0"></div>
+<h2 class="relative z-10 font-headline text-2xl mb-6">Diagnostics</h2>
+<div class="relative z-10 space-y-6">
+<div class="flex justify-between items-center">
+<span class="font-label text-sm text-on-surface">Input Sensitivity</span>
+<span class="text-primary text-xs">-14dB</span>
+</div>
+<input class="w-full h-1 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-primary" type="range"/>
+<div class="grid grid-cols-2 gap-4">
+<button class="py-3 px-4 rounded-lg border border-outline-variant/30 text-xs font-label uppercase tracking-widest hover:bg-surface-container-high transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="mic_external_on">mic_external_on</span>
+                                Test Mic
+                            </button>
+<button class="py-3 px-4 rounded-lg border border-outline-variant/30 text-xs font-label uppercase tracking-widest hover:bg-surface-container-high transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="volume_up">volume_up</span>
+                                Test Out
+                            </button>
+</div>
+</div>
+</div>
+<!-- Diagnostic Logs -->
+<div class="col-span-2 glass-panel rounded-2xl border border-outline-variant/10 overflow-hidden">
+<div class="flex items-center justify-between px-8 py-4 border-b border-outline-variant/10 bg-surface-container-low">
+<h2 class="font-headline text-xl">Chronicle Engine Logs</h2>
+<div class="flex gap-4">
+<span class="px-2 py-0.5 rounded bg-error/10 text-error text-[10px] font-label">2 ERRORS</span>
+<span class="px-2 py-0.5 rounded bg-primary/10 text-primary text-[10px] font-label">14 OK</span>
+</div>
+</div>
+<div class="p-6 h-48 overflow-y-auto font-mono text-[11px] space-y-2 bg-surface-container-lowest/50">
+<div class="flex gap-4 opacity-50">
+<span class="text-outline">[12:44:01]</span>
+<span class="text-tertiary">SYSTEM:</span>
+<span class="text-on-surface">Initializing local model weights...</span>
+</div>
+<div class="flex gap-4">
+<span class="text-outline">[12:44:03]</span>
+<span class="text-primary">INFO:</span>
+<span class="text-on-surface">CUDA pipeline established. 8.2 TFLOPS available.</span>
+</div>
+<div class="flex gap-4">
+<span class="text-outline">[12:45:12]</span>
+<span class="text-error">WARN:</span>
+<span class="text-on-surface">Context buffer nearing 85% capacity. Compression sequence initiated.</span>
+</div>
+<div class="flex gap-4 opacity-70">
+<span class="text-outline">[12:46:00]</span>
+<span class="text-tertiary">SYSTEM:</span>
+<span class="text-on-surface">Narrator module "The Chronicler" loaded successfully.</span>
+</div>
+<div class="flex gap-4">
+<span class="text-outline">[12:46:22]</span>
+<span class="text-primary">INFO:</span>
+<span class="text-on-surface">Session state synchronized with character sheets.</span>
+</div>
+<div class="flex gap-4 opacity-40">
+<span class="text-outline">[12:47:05]</span>
+<span class="text-outline">LOG:</span>
+<span class="text-on-surface">Waiting for GM input...</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Absolute background flair -->
+<div class="fixed top-0 right-0 w-[600px] h-[600px] bg-primary/5 blur-[120px] rounded-full -mr-48 -mt-48 pointer-events-none z-0"></div>
+<div class="fixed bottom-0 left-0 w-[400px] h-[400px] bg-secondary/5 blur-[100px] rounded-full -ml-32 -mb-32 pointer-events-none z-0"></div>
+</body></html>

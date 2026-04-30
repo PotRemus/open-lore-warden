@@ -1,0 +1,132 @@
+{
+  "app": {
+    "title": "Open Lore Warden",
+    "noCampaign": "No campaign"
+  },
+  "nav": {
+    "home": "Home",
+    "tableview": "Game Table",
+    "scene": "Scene",
+    "characters": "Characters",
+    "journal": "Journal",
+    "import": "Import",
+    "settings": "Settings",
+    "test": "Test",
+    "campaignActive": "Campaign Active",
+    "aiStatus": "AI Status",
+    "aiReady": "READY",
+    "aiLoading": "LOADING",
+    "aiError": "ERROR"
+  },
+  "pages": {
+    "home": {
+      "title": "Campaigns",
+      "subtitle": "Create or load a campaign to get started."
+    },
+    "tableview": {
+      "title": "Game Table",
+      "subtitle": "Main game screen."
+    },
+    "scene": {
+      "title": "Scene",
+      "subtitle": "Active scene, atmosphere and progression."
+    },
+    "characters": {
+      "title": "Characters",
+      "subtitle": "PCs, NPCs, stats and relationships."
+    },
+    "journal": {
+      "title": "Journal",
+      "subtitle": "Campaign history and summaries."
+    },
+    "import": {
+      "title": "Import",
+      "subtitle": "Import PDF or JSON scenarios."
+    },
+    "settings": {
+      "title": "Settings",
+      "subtitle": "Local model, voice, audio and diagnostics.",
+      "language": "Language",
+      "languageFr": "Français",
+      "languageEn": "English",
+      "sidecarSection": "Sidecar server",
+      "sidecarDevNote": "In development mode, the sidecar reads .env directly — these fields have no effect. Edit .env to change the port or host in dev.",
+      "llmSection": "Language model (LLM)",
+      "sdSection": "Image generation (Stable Diffusion)",
+      "sdNote": "sd-server is started on demand during scenario import and stopped automatically. Models must be placed in the application data directory (models/base/ and models/lora/).",
+      "url": "Address",
+      "urlInvalid": "Invalid format. Example: http://127.0.0.1:3000",
+      "save": "Save",
+      "saving": "Saving\u2026",
+      "saved": "Saved",
+      "restartRequired": "A restart is required to apply the changes.",
+      "restart": "Restart",
+      "restarting": "Restarting\u2026",
+      "resetDefaults": "Reset defaults"
+    },
+    "test": {
+      "title": "Open Lore Warden",
+      "llmInit": "Initializing AI engine",
+      "llmInitHint": "This step only happens once. The application will be available as soon as the model is loaded.",
+      "boot": "Starting backend\u2026",
+      "backendUnavailable": "Backend unavailable",
+      "sidecarNotResponding": "The sidecar is not responding on",
+      "retry": "\u21bb Retry",
+      "importTitle": "Import a PDF scenario",
+      "gameSystem": "Game system",
+      "chooseSystem": "-- Choose a system --",
+      "pdfFile": "PDF file",
+      "uploading": "Uploading\u2026",
+      "importing": "Importing",
+      "generatingImages": "Generating illustrations",
+      "importSuccess": "\u2713 Scenario imported successfully",
+      "newImport": "New import",
+      "hints": {
+        "sidecarRunning": "The sidecar is running (pnpm run dev:sidecar)",
+        "portAvailable": "Port 3000 is available",
+        "noFirewall": "No firewall is blocking 127.0.0.1:3000"
+      }
+    }
+  },
+  "campaigns": {
+    "title": "Campaigns",
+    "newCampaign": "+ New campaign",
+    "cancel": "\u2715 Cancel",
+    "loading": "Loading\u2026",
+    "empty": "No campaigns yet. Create one!",
+    "form": {
+      "name": "Name *",
+      "namePlaceholder": "The Fall of Neverwinter",
+      "system": "System *",
+      "systemPlaceholder": "D&D 5e",
+      "setting": "Setting",
+      "settingPlaceholder": "Faerun, the Forgotten Realms",
+      "submit": "Create",
+      "submitting": "Creating\u2026"
+    }
+  },
+  "llmStatus": {
+    "idle": "LLM idle\u2026",
+    "downloading": "Downloading llama-server",
+    "extracting": "Extracting binary\u2026",
+    "starting": "Starting LLM\u2026",
+    "startingMeta": "Loading model (first run: downloading in progress)",
+    "ready": "LLM ready",
+    "error": "LLM error"
+  },
+  "sdStatus": {
+    "idle": "Image generator idle\u2026",
+    "downloading": "Downloading sd-server",
+    "extracting": "Extracting binary\u2026",
+    "downloadingModel": "Downloading SD model (~4\u00a0GB)\u2026",
+    "starting": "Loading SD model\u2026",
+    "ready": "SD model ready",
+    "stopped": "Image generator stopped",
+    "error": "SD error"
+  },
+  "systemStatus": {
+    "connecting": "Connecting to sidecar\u2026",
+    "connected": "Backend connected",
+    "unavailable": "Backend unavailable"
+  }
+}

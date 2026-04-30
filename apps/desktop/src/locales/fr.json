@@ -1,0 +1,132 @@
+{
+  "app": {
+    "title": "Open Lore Warden",
+    "noCampaign": "Aucune campagne"
+  },
+  "nav": {
+    "home": "Accueil",
+    "tableview": "Table de jeu",
+    "scene": "Scène",
+    "characters": "Personnages",
+    "journal": "Journal",
+    "import": "Importer",
+    "settings": "Paramètres",
+    "test": "Test",
+    "campaignActive": "Campagne active",
+    "aiStatus": "Statut IA",
+    "aiReady": "PRÊT",
+    "aiLoading": "CHARGEMENT",
+    "aiError": "ERREUR"
+  },
+  "pages": {
+    "home": {
+      "title": "Campagnes",
+      "subtitle": "Créez ou chargez une campagne pour commencer."
+    },
+    "tableview": {
+      "title": "Table de jeu",
+      "subtitle": "Écran principal de jeu."
+    },
+    "scene": {
+      "title": "Scène",
+      "subtitle": "Scène active, ambiance et progression."
+    },
+    "characters": {
+      "title": "Personnages",
+      "subtitle": "PJ, PNJ, statistiques et relations."
+    },
+    "journal": {
+      "title": "Journal",
+      "subtitle": "Historique et résumés de la campagne."
+    },
+    "import": {
+      "title": "Import",
+      "subtitle": "Import de scénarios PDF ou JSON."
+    },
+    "settings": {
+      "title": "Paramètres",
+      "subtitle": "Modèle local, voix, audio et diagnostics.",
+      "language": "Langue",
+      "languageFr": "Français",
+      "languageEn": "English",
+      "sidecarSection": "Serveur sidecar",
+      "sidecarDevNote": "En mode développement, le sidecar lit directement le fichier .env — ces champs n'ont aucun effet. Modifiez .env pour changer le port ou l'hôte en dev.",
+      "llmSection": "Modèle de langage (LLM)",
+      "sdSection": "Génération d'images (Stable Diffusion)",
+      "sdNote": "sd-server est démarré à la demande lors de l'import d'un scénario et arrêté automatiquement. Les modèles doivent être placés dans le répertoire de données de l'application (models/base/ et models/lora/).",
+      "url": "Adresse",
+      "urlInvalid": "Format invalide. Exemple\u00a0: http://127.0.0.1:3000",
+      "save": "Sauvegarder",
+      "saving": "Sauvegarde\u2026",
+      "saved": "Sauvegardé",
+      "restartRequired": "Un redémarrage est nécessaire pour appliquer les changements.",
+      "restart": "Redémarrer",
+      "restarting": "Redémarrage\u2026",
+      "resetDefaults": "Réinitialiser"
+    },
+    "test": {
+      "title": "Open Lore Warden",
+      "llmInit": "Initialisation du moteur IA",
+      "llmInitHint": "Cette étape n'a lieu qu'une seule fois. L'application sera disponible dès que le modèle sera chargé.",
+      "boot": "Démarrage du backend\u2026",
+      "backendUnavailable": "Backend non disponible",
+      "sidecarNotResponding": "Le sidecar ne répond pas sur",
+      "retry": "\u21bb Réessayer",
+      "importTitle": "Importer un scénario PDF",
+      "gameSystem": "Système de jeu",
+      "chooseSystem": "-- Choisir un système --",
+      "pdfFile": "Fichier PDF",
+      "uploading": "Envoi en cours\u2026",
+      "importing": "Import en cours",
+      "generatingImages": "Génération des illustrations",
+      "importSuccess": "\u2713 Scénario importé avec succès",
+      "newImport": "Nouvel import",
+      "hints": {
+        "sidecarRunning": "Le sidecar est bien démarré (pnpm run dev:sidecar)",
+        "portAvailable": "Le port 3000 est disponible",
+        "noFirewall": "Aucun pare-feu ne bloque 127.0.0.1:3000"
+      }
+    }
+  },
+  "campaigns": {
+    "title": "Campagnes",
+    "newCampaign": "+ Nouvelle campagne",
+    "cancel": "\u2715 Annuler",
+    "loading": "Chargement\u2026",
+    "empty": "Aucune campagne. Créez-en une !",
+    "form": {
+      "name": "Nom *",
+      "namePlaceholder": "La Chute de Neverwinter",
+      "system": "Système *",
+      "systemPlaceholder": "D&D 5e",
+      "setting": "Univers",
+      "settingPlaceholder": "Féerune, les Royaumes Oubliés",
+      "submit": "Créer",
+      "submitting": "Création\u2026"
+    }
+  },
+  "llmStatus": {
+    "idle": "LLM en attente\u2026",
+    "downloading": "Téléchargement de llama-server",
+    "extracting": "Extraction du binaire\u2026",
+    "starting": "Démarrage du LLM\u2026",
+    "startingMeta": "Chargement du modèle (première utilisation : téléchargement en cours)",
+    "ready": "LLM prêt",
+    "error": "Erreur LLM"
+  },
+  "sdStatus": {
+    "idle": "Générateur d'images en attente\u2026",
+    "downloading": "Téléchargement de sd-server",
+    "extracting": "Extraction du binaire\u2026",
+    "downloadingModel": "Téléchargement du modèle SD (~4\u00a0Go)\u2026",
+    "starting": "Chargement du modèle SD\u2026",
+    "ready": "Modèle SD prêt",
+    "stopped": "Générateur d'images arrêté",
+    "error": "Erreur SD"
+  },
+  "systemStatus": {
+    "connecting": "Connexion au sidecar\u2026",
+    "connected": "Backend connecté",
+    "unavailable": "Backend non disponible"
+  }
+}

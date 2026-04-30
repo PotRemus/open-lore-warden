@@ -1,0 +1,108 @@
+@import 'tailwindcss';
+
+@import '@fontsource-variable/newsreader';
+@import '@fontsource-variable/manrope';
+@import 'material-symbols/outlined.css' layer(base);
+
+/* Dark mode via .dark class on <html> */
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* Colors */
+  --color-surface: #111316;
+  --color-background: #111316;
+  --color-surface-dim: #111316;
+  --color-surface-bright: #37393d;
+  --color-surface-variant: #333538;
+  --color-surface-container-lowest: #0c0e11;
+  --color-surface-container-low: #1a1c1f;
+  --color-surface-container: #1e2023;
+  --color-surface-container-high: #282a2d;
+  --color-surface-container-highest: #333538;
+  --color-surface-tint: #94ccff;
+
+  --color-on-surface: #e2e2e6;
+  --color-on-surface-variant: #c1c7d3;
+  --color-on-background: #e2e2e6;
+
+  --color-primary: #94ccff;
+  --color-on-primary: #003352;
+  --color-primary-fixed: #cde5ff;
+  --color-primary-fixed-dim: #94ccff;
+  --color-on-primary-fixed: #001d32;
+  --color-on-primary-fixed-variant: #004b74;
+  --color-primary-container: #4197d6;
+  --color-on-primary-container: #002c47;
+  --color-inverse-primary: #006398;
+
+  --color-secondary: #e3c28d;
+  --color-on-secondary: #412d05;
+  --color-secondary-fixed: #ffdeaa;
+  --color-secondary-fixed-dim: #e3c28d;
+  --color-on-secondary-fixed: #271900;
+  --color-on-secondary-fixed-variant: #5a431a;
+  --color-secondary-container: #5a431a;
+  --color-on-secondary-container: #d0b07d;
+
+  --color-tertiary: #b1cad7;
+  --color-on-tertiary: #1c333e;
+  --color-tertiary-container: #7c94a0;
+  --color-on-tertiary-container: #152d37;
+  --color-tertiary-fixed: #cde6f4;
+  --color-tertiary-fixed-dim: #b1cad7;
+  --color-on-tertiary-fixed: #051e28;
+  --color-on-tertiary-fixed-variant: #334a55;
+
+  --color-error: #ffb4ab;
+  --color-on-error: #690005;
+  --color-error-container: #93000a;
+  --color-on-error-container: #ffdad6;
+
+  --color-outline: #8b919d;
+  --color-outline-variant: #414751;
+
+  --color-inverse-surface: #e2e2e6;
+  --color-inverse-on-surface: #2f3034;
+
+  /* Border radius */
+  --radius-DEFAULT: 0.125rem;
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.5rem;
+  --radius-full: 0.75rem;
+
+  /* Fonts */
+  --font-headline: 'Newsreader', serif;
+  --font-body: 'Manrope', sans-serif;
+  --font-label: 'Manrope', sans-serif;
+}
+
+/* Material Symbols */
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+  vertical-align: middle;
+}
+
+/* Custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #333538;
+  border-radius: 10px;
+}
+
+/* Noise overlay */
+.noise-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.02;
+  pointer-events: none;
+}

@@ -1,0 +1,38 @@
+{
+  "name": "open-lore-warden",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=24.0.0",
+    "pnpm": ">=10.0.0",
+    "npm": "UNSUPPORTED — use pnpm"
+  },
+  "scripts": {
+    "dev": "pnpm run dev:sidecar & pnpm run dev:desktop",
+    "dev:sidecar": "pnpm --filter sidecar dev",
+    "dev:desktop": "pnpm --filter desktop dev",
+    "dev:tauri": "pnpm --filter desktop tauri:dev",
+    "build": "pnpm -r build",
+    "build:sidecar": "pnpm --filter @open-lore-warden/sidecar build:sidecar",
+    "build:tauri": "pnpm --filter desktop tauri:build",
+    "typecheck": "pnpm -r typecheck",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.2.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-vue": "^10.8.0",
+    "globals": "^17.4.0",
+    "jiti": "^2.6.1",
+    "prettier": "^3.8.1",
+    "typescript": "^6.0.2",
+    "typescript-eslint": "^8.58.0",
+    "vue-eslint-parser": "^10.4.0"
+  }
+}
