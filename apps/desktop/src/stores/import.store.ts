@@ -34,32 +34,32 @@ export const useImportStore = defineStore('import', () => {
   function startJobPolling(jobId: string) {
     stopJobPolling()
     jobPollingTimer = setInterval(async () => {
-    try {
-      const job = await fetchImportJob(jobId)
-      currentJob.value = job
-      if (job.status === 'done') {
+      try {
+        const job = await fetchImportJob(jobId)
+        currentJob.value = job
+        if (job.status === 'done') {
+          stopJobPolling()
+          pageState.value = 'done'
+        } else if (job.status === 'error') {
+          stopJobPolling()
+          errorMessage.value = job.error ?? 'Erreur lors de l\'import.'
+          pageState.value = 'error'
+        }
+      } catch (err) {
         stopJobPolling()
-        pageState.value = 'done'
-      } else if (job.status === 'error') {
-        stopJobPolling()
-        errorMessage.value = job.error ?? 'Erreur lors de l\'import.'
+        errorMessage.value = err instanceof Error ? err.message : 'Erreur de connexion au sidecar.'
         pageState.value = 'error'
       }
-    } catch (err) {
-      stopJobPolling()
-      errorMessage.value = err instanceof Error ? err.message : 'Erreur de connexion au sidecar.'
-      pageState.value = 'error'
-    }
-  }, 2000)
-}
-
-async function stopJobPolling() {
-  if (jobPollingTimer !== null) {
-    clearInterval(jobPollingTimer)
-    jobPollingTimer = null
-    await modelStore.stopModel('text')
+    }, 2000)
   }
-}
+
+  async function stopJobPolling() {
+    if (jobPollingTimer !== null) {
+      clearInterval(jobPollingTimer)
+      jobPollingTimer = null
+      await modelStore.stopModel('text')
+    }
+  }
 
   return {
     pageState,

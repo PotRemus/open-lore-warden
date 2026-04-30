@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import {
   fetchGameSystems,
@@ -14,6 +14,7 @@ import ImportProcessingPipeline from '@/components/import/ImportProcessingPipeli
 import { useModelStore } from '@/stores/model.store'
 import TitlePage from '@/components/layouts/TitlePage.vue'
 import { useRouter } from 'vue-router'
+import DangerButton from '@/volt/DangerButton.vue'
 
 const router = useRouter()
 // ─── Store (état persisté entre navigations) ──────────────────────────────────
@@ -31,6 +32,11 @@ const importsLoading = ref(false)
 const loadingImportId = ref<string | null>(null)
 
 // ─── Lifecycle ────────────────────────────────────────────────────────────────
+watch(pageState, () => {
+  if (pageState.value === 'done') {
+    onReset()
+  }
+})
 
 onMounted(async () => {
   // Charge toujours les données de contexte
@@ -87,17 +93,38 @@ function onReset() {
 </script>
 
 <template>
-  <div class="import-page relative z-10 h-full w-full flex flex-col custom-scrollbar overflow-y-auto p-10 gap-2">
+  <div
+    :class="[
+      'import-page', 
+      'relative', 
+      'z-10', 
+      'h-full', 
+      'w-full', 
+      'flex', 
+      'flex-col', 
+      'custom-scrollbar', 
+      'overflow-y-auto', 
+      'p-10', 
+      'gap-2']">
     <!-- En-tête de page -->
     <TitlePage 
       title="Import Artifacts"
       category="Campaign Logistics"
       description="Weave external lore, character sheets, and scenario metadata into the living record of your campaign. The Archive accepts .PDF and .JSON formats for automated ingestion."
     />
-    <div class="grid grid-cols-12 gap-8">
+    <div
+      :class="[
+        'grid', 
+        'grid-cols-12', 
+        'gap-8']">
        <!-- Étape 1 : formulaire upload (idle + uploading) -->
       <template v-if="pageState === 'idle' || pageState === 'uploading'">
-        <div class="col-span-12 xl:col-span-8 space-y-8">
+        <div 
+          :class="[
+            'col-span-12', 
+            'xl:col-span-8', 
+            'space-y-8'
+          ]">
           <ImportHistoryList
                 :imports="imports"
                 :loading="importsLoading"
@@ -106,7 +133,12 @@ function onReset() {
               />
           
         </div>
-        <div class="col-span-12 xl:col-span-4 space-y-6">
+        <div
+          :class="[
+            'col-span-12', 
+            'xl:col-span-4', 
+            'space-y-6'
+          ]">
           <ImportUploadForm
             :game-systems="gameSystems"
             :loading="pageState === 'uploading'"
@@ -116,22 +148,65 @@ function onReset() {
       </template>
 
       <!-- Étape 2 : traitement en cours -->
-      <div v-else-if="pageState === 'processing'" class="col-span-12 xl:col-span-8 space-y-8">
+      <div
+        v-else-if="pageState === 'processing'" 
+        :class="[
+          'col-span-12', 
+          'xl:col-span-8', 
+          'space-y-8'
+        ]">
         <ImportProcessingPipeline :job="currentJob" />
       </div>
 
       <!-- État d'erreur -->
-      <div v-else-if="pageState === 'error'" class="col-span-12 xl:col-span-8 space-y-8">
-        <div class="error-card">
-          <span class="material-symbols-outlined error-icon">error</span>
-          <div class="error-content">
-            <p class="error-title">L'import a échoué</p>
-            <p class="error-message">{{ errorMessage }}</p>
+      <div
+        v-else-if="pageState === 'error'" 
+        :class="[
+          'col-span-12', 
+          'xl:col-span-8', 
+          'space-y-8'
+        ]">
+        <div
+          :class="[
+            'flex', 
+            'gap-4', 
+            'px-6', 
+            'py-5', 
+            'bg-[color-mix(in_srgb,var(--color-error)_8%,var(--color-surface-container))]', 
+            'rounded-xl', 
+            'border', 
+            'border-[color-mix(in_srgb,var(--color-error)_35%,transparent)]',
+            'max-w-xl'
+          ]">
+          <span
+            :class="[
+              'material-symbols-outlined', 
+              'text-[1.75rem]',
+              'text-error',
+              'mt-0.5'
+            ]">error</span>
+          <div
+            :class="[
+              'flex', 
+              'flex-col', 
+              'flex-1',
+              'gap-1'
+            ]">
+            <p
+              :class="[
+                'font-semibold',
+              ]">L'import a échoué</p>
+            <p
+              :class="[
+                'text-sm',
+                'opacity-70'
+              ]">{{ errorMessage }}</p>
           </div>
-          <button class="btn-retry" @click="onReset">
+
+          <DangerButton class="" @click="onReset">
             <span class="material-symbols-outlined">refresh</span>
             Réessayer
-          </button>
+          </DangerButton>
         </div>
       </div>
     </div>
@@ -150,23 +225,23 @@ function onReset() {
 } */
 
 /* Conteneurs d'étapes */
-.step-container {
+/* .step-container {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-}
+} */
 
 /*.step-container--result {
   max-width: 900px;
 }*/
 
 /* Barre d'outils résultat */
-.result-toolbar {
+/* .result-toolbar {
   display: flex;
   justify-content: flex-start;
-}
+} */
 
-.btn-new-import {
+/* .btn-new-import {
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
@@ -192,10 +267,10 @@ function onReset() {
 
 .btn-new-import .material-symbols-outlined {
   font-size: 1.125rem;
-}
+} */
 
 /* Carte d'erreur */
-.error-card {
+/* .error-card {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
@@ -260,5 +335,5 @@ function onReset() {
 
 .btn-retry .material-symbols-outlined {
   font-size: 1.125rem;
-}
+} */
 </style>
