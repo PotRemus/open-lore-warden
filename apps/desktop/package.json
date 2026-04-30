@@ -10,7 +10,8 @@
     "tauri": "tauri",
     "tauri:dev": "tauri dev",
     "tauri:build": "tauri build",
-    "typecheck": "vue-tsc --noEmit"
+    "typecheck": "vue-tsc --noEmit",
+    "volt:vue": "npx volt-vue add"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "^5.2.8",
