@@ -22,7 +22,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="llm-status-card" :class="`llm-status--${status.type}`">
+  <div class="olw-llm-status-card llm-status-card" :class="`llm-status--${status.type}`">
 
     <!-- Idle -->
     <template v-if="status.type === 'idle'">

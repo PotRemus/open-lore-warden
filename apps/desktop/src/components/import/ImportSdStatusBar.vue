@@ -30,7 +30,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="sd-bar" :class="`sd-bar--${status.type}`">
+  <div class="olw-import-sd-status-bar sd-bar" :class="`sd-bar--${status.type}`">
     <span class="material-symbols-outlined bar-icon">image</span>
 
     <!-- Idle / stopped -->

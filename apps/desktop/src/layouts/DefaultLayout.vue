@@ -24,7 +24,7 @@ function navigate(page: string) {
 </script>
 
 <template>
-  <div class="h-screen bg-surface text-on-surface font-body overflow-hidden">
+  <div class="olw-default-layout h-screen bg-surface text-on-surface font-body overflow-hidden">
     <TopNavBar
       :app-title="appTitleDisplay"
       :active-page="String(route.name ?? '')"

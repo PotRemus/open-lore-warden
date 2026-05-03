@@ -61,7 +61,7 @@ function onSubmit() {
 </script>
 
 <template>
-  <div class="upload-form">
+  <div class="olw-import-upload-form upload-form">
     <!-- Système de jeu -->
     <div class="field">
       <label class="field-label">Système de jeu</label>

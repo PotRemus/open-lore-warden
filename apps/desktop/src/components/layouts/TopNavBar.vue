@@ -24,7 +24,7 @@ const navItems = computed(() => [
 
 <template>
   <nav
-    class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-4 bg-surface/60 backdrop-blur-xl shadow-2xl shadow-black/50 border-b-0"
+    class="olw-top-nav-bar fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-4 bg-surface/60 backdrop-blur-xl shadow-2xl shadow-black/50 border-b-0"
   >
     <div class="flex items-center gap-6">
       <span

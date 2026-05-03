@@ -49,7 +49,7 @@ onMounted(load)
 </script>
 
 <template>
-  <section class="campaign-list">
+  <section class="olw-campaign-list campaign-list">
     <div class="campaign-list__header">
       <h2>{{ t('campaigns.title') }}</h2>
       <button class="btn-new" @click="showForm = !showForm">

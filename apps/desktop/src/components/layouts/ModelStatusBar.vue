@@ -18,7 +18,7 @@ onUnmounted(() => {
 <template>
   <div
     v-if="modelType != ''" 
-    class="model-bar" :class="`model-bar--${modelStatus.type}`">
+    class="olw-model-status-bar model-bar" :class="`model-bar--${modelStatus.type}`">
     <span class="material-symbols-outlined bar-icon">
         <template v-if="modelType === 'text'">
             psychology

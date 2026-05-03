@@ -36,7 +36,7 @@ const placeholderIcon = computed(() =>
 </script>
 
 <template>
-  <article class="entity-card">
+  <article class="olw-import-entity-card entity-card">
     <!-- Zone image -->
     <div class="image-zone">
       <!-- Image générée -->

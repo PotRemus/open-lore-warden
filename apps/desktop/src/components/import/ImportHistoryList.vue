@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ImportSummary } from '@open-lore-warden/domain'
+import ProgressSpinner from '@/volt/ProgressSpinner.vue'
 
 defineProps<{
   imports: ImportSummary[]
@@ -13,19 +14,63 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <section class="bg-surface-container p-8 rounded-xl relative shadow-xl overflow-hidden border border-outline-variant/10">
-    <div class="absolute top-0 left-0 w-1 h-full bg-secondary/50"></div>
-    <div class="flex justify-between items-end mb-8">
-      <h3 class="font-headline text-2xl flex items-center gap-2">
+  <section
+    :class="[
+      'olw-import-history-list', 
+      'bg-surface-container', 
+      'p-8', 
+      'rounded-xl', 
+      'relative', 
+      'shadow-xl', 
+      'overflow-hidden', 
+      'border', 
+      'border-outline-variant/10'
+    ]">
+    <div
+      :class="[
+        'absolute', 
+        'top-0', 
+        'left-0', 
+        'w-1', 
+        'h-full', 
+        'bg-secondary/50'
+      ]"></div>
+    <div
+      :class="[
+        'flex', 
+        'justify-between', 
+        'items-end', 
+        'mb-8'
+      ]">
+      <h3
+        :class="[
+          'font-headline', 
+          'text-2xl', 
+          'flex', 
+          'items-center', 
+          'gap-2'
+        ]">
         <span class="material-symbols-outlined title-icon">history</span>
         Campagnes importées
-        <span v-if="imports.length > 0" class="flex items-center justify-center rounded-full bg-surface-container-high p-1.5 w-7 h-7">{{ imports.length }}</span>
+        <span
+          v-if="imports.length > 0" 
+          :class="[
+            'flex', 
+            'items-center', 
+            'justify-center', 
+            'rounded-full', 
+            'bg-surface-container-high', 
+            'p-1.5', 
+            'w-7', 
+            'h-7'
+          ]">{{ imports.length }}</span>
       </h3>
     </div>
 
     <!-- Chargement initial -->
     <div v-if="loading" class="history-loading">
-      <span class="loading-spinner" />
+      <ProgressSpinner v-if="loading" />
+      <!-- <span class="loading-spinner" /> -->
       <span class="loading-label">Chargement…</span>
     </div>
 

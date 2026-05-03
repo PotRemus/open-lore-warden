@@ -54,7 +54,7 @@ const progressPercent = computed<number | null>(() => {
 </script>
 
 <template>
-  <div class="pipeline">
+  <div class="olw-import-processing-pipeline pipeline">
     <p class="pipeline-title">Traitement du scénario en cours…</p>
 
     <!-- Étapes -->

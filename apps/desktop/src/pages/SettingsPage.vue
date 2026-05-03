@@ -84,7 +84,7 @@ async function onRestart() {
 </script>
 
 <template>
-  <div class="p-8 max-w-xl">
+  <div class="olw-settings-page p-8 max-w-xl">
     <h1 class="font-headline text-3xl text-primary mb-2">{{ t('pages.settings.title') }}</h1>
     <!-- <p class="text-on-surface/60 font-body mb-10">{{ t('pages.settings.subtitle') }}</p> -->
 

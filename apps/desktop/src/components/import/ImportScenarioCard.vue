@@ -63,7 +63,7 @@ const regenerationError = computed(() =>
 </script>
 
 <template>
-  <section class="scenario-card">
+  <section class="olw-import-scenario-card scenario-card">
     <!-- En-tête scénario -->
     <header class="scenario-header">
       <div class="scenario-headline-row">

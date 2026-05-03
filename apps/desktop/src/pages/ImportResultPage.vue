@@ -248,7 +248,7 @@ onUnmounted(async () => {
 </script>
 
 <template>
-    <div class="import-detail-page relative z-10 h-full w-full flex flex-col custom-scrollbar overflow-y-auto p-10 gap-2">
+    <div class="olw-import-result-page relative z-10 h-full w-full flex flex-col custom-scrollbar overflow-y-auto p-10 gap-2">
         <!-- En-tête de page -->
         <TitlePage 
         title="Import Artifacts"

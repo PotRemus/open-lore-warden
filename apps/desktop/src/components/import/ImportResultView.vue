@@ -33,7 +33,7 @@ const pendingCount = computed(() => {
 </script>
 
 <template>
-  <div class="result-view">
+  <div class="olw-import-result-view result-view">
     <!-- Header campagne -->
     <ImportCampaignHeader
       :result="result"

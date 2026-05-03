@@ -37,7 +37,7 @@ const aiStatusLabel = computed<Record<string, string>>(() => ({
 
 <template>
   <aside
-    class="fixed left-0 top-0 h-full flex flex-col z-40 bg-surface-container-low w-64 border-r border-surface-variant/15 shadow-[40px_0_40px_rgba(0,0,0,0.4)] pt-24"
+    class="olw-side-nav-bar fixed left-0 top-0 h-full flex flex-col z-40 bg-surface-container-low w-64 border-r border-surface-variant/15 shadow-[40px_0_40px_rgba(0,0,0,0.4)] pt-24"
   >
     <!-- Campaign info -->
     <div class="px-6 mb-8">

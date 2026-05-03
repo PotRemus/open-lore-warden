@@ -22,7 +22,7 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "volt:vue": "pnpm --filter desktop volt:vue"
+    "volt:add": "pnpm --filter desktop volt:add"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

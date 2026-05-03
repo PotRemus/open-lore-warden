@@ -25,7 +25,7 @@ const systemLabel = computed(() => {
 </script>
 
 <template>
-  <header class="campaign-header">
+  <header class="olw-import-campaign-header campaign-header">
     <!-- Cover image (fond pleine largeur) -->
     <img
       v-if="coverSrc"

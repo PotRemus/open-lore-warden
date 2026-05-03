@@ -18,7 +18,7 @@ onMounted(refresh)
 </script>
 
 <template>
-  <div class="system-status-card">
+  <div class="olw-system-status-card system-status-card">
     <div v-if="loading" class="status-row status--loading">
       <span class="indicator" />
       <span>{{ t('systemStatus.connecting') }}</span>
