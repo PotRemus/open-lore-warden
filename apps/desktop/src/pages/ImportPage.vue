@@ -47,7 +47,7 @@ onMounted(async () => {
   ])
   if (systemsResult.status === 'fulfilled') gameSystems.value = systemsResult.value
   if (importsResult.status === 'fulfilled') imports.value = importsResult.value
-  // importsLoading.value = false
+  importsLoading.value = false
 
   // // Reprise selon l'état persisté dans le store
   // if (pageState.value === 'uploading') {

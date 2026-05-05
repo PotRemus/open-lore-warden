@@ -35,7 +35,7 @@ const theme = ref<ButtonPassThroughOptions>({
         p-outlined:bg-transparent enabled:hover:p-outlined:bg-primary-50 enabled:active:p-outlined:bg-primary-100
         p-outlined:border-primary-200 enabled:hover:p-outlined:border-primary-200 enabled:active:p-outlined:border-primary-200
         p-outlined:text-primary enabled:hover:p-outlined:text-primary enabled:active:p-outlined:text-primary
-        dark:p-outlined:bg-transparent dark:enabled:hover:p-outlined:bg-primary/5 dark:enabled:active:p-outlined:bg-primary/15
+        dark:p-outlined:bg-transparent dark:enabled:hover:p-outlined:bg-primary/15 dark:enabled:active:p-outlined:bg-primary/15
         dark:p-outlined:border-primary-700 dark:enabled:hover:p-outlined:border-primary-700 dark:enabled:active:p-outlined:border-primary-700
         dark:p-outlined:text-primary dark:enabled:hover:p-outlined:text-primary dark:enabled:active:p-outlined:text-primary
         p-text:bg-transparent enabled:hover:p-text:bg-primary-50 enabled:active:p-text:bg-primary-100

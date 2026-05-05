@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import type { PublicGameSystemDescriptor } from '@open-lore-warden/rules-engine'
+import Select from '@/volt/Select.vue'
 
 const props = defineProps<{
   gameSystems: PublicGameSystemDescriptor[]
@@ -21,16 +22,33 @@ const canSubmit = computed(
 
 const systemLabels: Record<string, string> = {
   'generic': 'Générique (système libre)',
+  'brp': 'Basic Roleplaying',
   'dnd-5e': 'Dungeons & Dragons 5e',
   'coc-7e': 'L\'Appel de Cthulhu 7e',
   'fate-core': 'Fate Core',
   'pbta': 'Powered by the Apocalypse',
+  'savage-worlds': 'Savage Worlds',
   'yze': 'Year Zero Engine',
 }
 
-function systemLabel(id: string): string {
-  return systemLabels[id] ?? id
+const systemDescriptions: Record<string, string> = {
+  'generic': 'Cadre neutre pour importer un scénario sans règles imposées.',
+  'brp': 'Système percentile classique axé sur les compétences et la progression réaliste.',
+  'dnd-5e': 'Fantasy héroïque centrée sur les classes, combats et sorts.',
+  'coc-7e': 'Horreur lovecraftienne fondée sur l\'enquête et la fragilité mentale.',
+  'fate-core': 'Système narratif souple basé sur les aspects et la fiction.',
+  'pbta': 'Jeu propulsé par des moves, conséquences et fiction partagée.',
+  'savage-worlds': 'Système pulp rapide et explosif orienté action, atouts et relances.',
+  'yze': 'Moteur de survie et tension utilisant des poignées de dés.',
 }
+
+const gameSystemOptions = computed(() =>
+  props.gameSystems.map((s) => ({
+    label: systemLabels[s.id] ?? s.id,
+    value: s.id,
+    description: systemDescriptions[s.id] ?? 'Description du système non disponible.',
+  })),
+)
 
 function onFileInput(event: Event) {
   const input = event.target as HTMLInputElement
@@ -61,28 +79,102 @@ function onSubmit() {
 </script>
 
 <template>
-  <div class="olw-import-upload-form upload-form">
+  <form
+    :class="[
+      'olw-import-upload-form', 
+      'flex',
+      'flex-col',
+      'gap-6',
+      'w-full',
+      'border',
+      'border-outline-variant',
+      'rounded-xl',
+      'p-8',
+      'bg-surface-container'
+    ]"
+    @submit="onSubmit">
     <!-- Système de jeu -->
-    <div class="field">
-      <label class="field-label">Système de jeu</label>
-      <select
+    <div
+      :class="[
+        'flex',
+        'flex-col',
+        'gap-2'
+      ]">
+      <label 
+        :class="[
+          'font-label',
+          'text-xs',
+          'uppercase',
+          'tracking-widest',
+          'text-on-surface',
+          'opacity-60'
+        ]">Système de jeu</label>
+      <Select
         v-model="selectedGameSystemId"
-        class="field-select"
         :disabled="loading"
+        :options="gameSystemOptions"
+        placeholder="— Choisir un système —"
+        option-value="value"
+        option-label="label"
       >
-        <option value="">— Choisir un système —</option>
-        <option v-for="s in gameSystems" :key="s.id" :value="s.id">
-          {{ systemLabel(s.id) }}
-        </option>
-      </select>
+        <template #option="slotProps">
+          <div
+            :class="[
+              'flex',
+              'flex-col', 
+              'gap-2'
+            ]">
+            <span>{{ slotProps.option.label }}</span>
+            <span
+              v-if="slotProps.option.description"
+              :class="['text-xs', 'text-on-surface', 'opacity-60']">
+              {{ slotProps.option.description }}
+            </span>
+          </div>
+        </template>
+      </Select>
     </div>
 
     <!-- Zone drag & drop -->
-    <div class="field">
-      <label class="field-label">Fichier PDF</label>
+    <div 
+      :class="[
+        'flex',
+        'flex-col',
+        'gap-1',
+      ]">
       <label
-        class="drop-zone"
-        :class="{ 'drop-zone--dragging': isDragging, 'drop-zone--filled': selectedFile }"
+        :class="[
+          'font-label',
+          'text-xs',
+          'uppercase',
+          'tracking-widest',
+          'text-on-surface',
+          'opacity-60'
+        ]">Fichier PDF</label>
+      <label
+        :class="[
+          'relative',
+          'flex',
+          'flex-col',
+          'items-center',
+          'justify-center',
+          'gap-1',
+          'px-6',
+          'py-8',
+          'bg-surface-container',
+          'border-2',
+          'border-dashed',
+          'border-outline-variant',
+          'rounded-xl',
+          'cursor-pointer',
+          'transition-colors',
+          'text-center',
+          'hover:border-primary',
+          'hover:bg-[color-mix(in_srgb,var(--color-primary)_6%,var(--color-surface-container))]',
+          { 
+            'drop-zone--dragging': isDragging,             
+            'border-solid border-primary': selectedFile 
+          }]"
         @dragover="onDragOver"
         @dragleave="onDragLeave"
         @drop.prevent="onDrop"
@@ -90,35 +182,73 @@ function onSubmit() {
         <input
           type="file"
           accept="application/pdf"
-          class="file-input"
+          :class="[
+            'absolute',
+            'inset-0',
+            'opacity-0',
+            'cursor-pointer',
+            'w-full',
+            'h-full'
+          ]"
           :disabled="loading"
           @change="onFileInput"
         />
         <template v-if="selectedFile">
-          <span class="material-symbols-outlined drop-icon drop-icon--filled">picture_as_pdf</span>
-          <span class="drop-filename">{{ selectedFile.name }}</span>
-          <span class="drop-hint">Cliquez ou déposez un autre fichier pour remplacer</span>
+          <span
+            :class="[
+              'material-symbols-outlined', 
+              'text-5xl',
+              'opacity-100', 
+              'text-primary'
+            ]">picture_as_pdf</span>
+          <span
+            :class="[
+              'text-[1rem]',
+              'font-semibold',
+              'text-on-surface',
+              'break-all'
+            ]">{{ selectedFile.name }}</span>
+          <span 
+            :class="[
+              'text-xs',
+              'text-on-surface',
+              'opacity-50'
+            ]">Cliquez ou déposez un autre fichier pour remplacer</span>
         </template>
         <template v-else>
-          <span class="material-symbols-outlined drop-icon">upload_file</span>
-          <span class="drop-label">Déposez votre PDF ici</span>
-          <span class="drop-hint">ou cliquez pour parcourir</span>
+          <span
+            :class="[
+              'material-symbols-outlined', 
+              'text-5xl',
+              'opacity-40',
+            ]">upload_file</span>
+          <span
+            :class="[
+              'text-[1rem]',
+              'text-on-surface',
+            ]">Déposez votre PDF ici</span>
+          <span
+            :class="[
+              'text-xs', 
+              'text-on-surface', 
+              'opacity-50'
+            ]">ou cliquez pour parcourir</span>
         </template>
       </label>
     </div>
 
     <!-- Bouton submit -->
     <button
+      type="submit"
       class="btn-submit"
       :class="{ 'btn-submit--disabled': !canSubmit }"
       :disabled="!canSubmit"
-      @click="onSubmit"
     >
       <span v-if="loading" class="btn-spinner" />
       <span v-else class="material-symbols-outlined">auto_stories</span>
       {{ loading ? 'Envoi en cours…' : 'Importer le scénario' }}
     </button>
-  </div>
+  </form>
 </template>
 
 <style scoped>
