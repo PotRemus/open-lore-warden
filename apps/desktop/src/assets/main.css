@@ -105,9 +105,9 @@
 
 /* Light */
 :root {
-  --p-primary-color: var(--p-primary-500);
-  --p-primary-contrast-color: var(--p-surface-0);
-  --p-primary-hover-color: var(--p-primary-600);
+  --p-primary-color: var(--color-primary);
+  --p-primary-contrast-color: var(--color-on-primary);
+  --p-primary-hover-color: rgba(148, 204, 255, 0.8);
   --p-primary-active-color: var(--p-primary-700);
   --p-content-border-color: var(--p-surface-200);
   --p-content-hover-background: var(--p-surface-100);

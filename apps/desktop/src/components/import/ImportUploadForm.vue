@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import type { PublicGameSystemDescriptor } from '@open-lore-warden/rules-engine'
 import Select from '@/volt/Select.vue'
+import Button from '@/volt/Button.vue'
 
 const props = defineProps<{
   gameSystems: PublicGameSystemDescriptor[]
@@ -172,7 +173,7 @@ function onSubmit() {
           'hover:border-primary',
           'hover:bg-[color-mix(in_srgb,var(--color-primary)_6%,var(--color-surface-container))]',
           { 
-            'drop-zone--dragging': isDragging,             
+            'border-primary bg-[color-mix(in_srgb,var(--color-primary)_6%,var(--color-surface-container))]': isDragging,             
             'border-solid border-primary': selectedFile 
           }]"
         @dragover="onDragOver"
@@ -238,21 +239,24 @@ function onSubmit() {
     </div>
 
     <!-- Bouton submit -->
-    <button
-      type="submit"
-      class="btn-submit"
-      :class="{ 'btn-submit--disabled': !canSubmit }"
-      :disabled="!canSubmit"
-    >
-      <span v-if="loading" class="btn-spinner" />
+     <Button
+        type="submit"
+        :disabled="!canSubmit"
+      >
+      <ProgressSpinner 
+        v-if="loading" 
+        :class="[
+          'w-5',
+          'h-5'
+        ]"/>
       <span v-else class="material-symbols-outlined">auto_stories</span>
       {{ loading ? 'Envoi en cours…' : 'Importer le scénario' }}
-    </button>
+    </Button>
   </form>
 </template>
 
 <style scoped>
-.upload-form {
+/* .upload-form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -261,9 +265,9 @@ function onSubmit() {
   border-radius: var(--radius-xl);
   padding: 2rem;
   background: var(--color-surface-container);
-}
+} */
 
-.field {
+/* .field {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -299,10 +303,10 @@ function onSubmit() {
 .field-select:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-}
+} */
 
 /* Zone drop */
-.drop-zone {
+/* .drop-zone {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -330,9 +334,9 @@ function onSubmit() {
   border-style: solid;
   border-color: var(--color-primary);
   background: color-mix(in srgb, var(--color-primary) 8%, var(--color-surface-container));
-}
+} */
 
-.file-input {
+/* .file-input {
   position: absolute;
   inset: 0;
   opacity: 0;
@@ -371,10 +375,10 @@ function onSubmit() {
   font-size: 0.75rem;
   color: var(--color-on-surface);
   opacity: 0.5;
-}
+} */
 
 /* Bouton submit */
-.btn-submit {
+/* .btn-submit {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -399,10 +403,10 @@ function onSubmit() {
 .btn-submit--disabled {
   opacity: 0.4;
   cursor: not-allowed;
-}
+} */
 
 /* Spinner bouton */
-.btn-spinner {
+/* .btn-spinner {
   display: inline-block;
   width: 1rem;
   height: 1rem;
@@ -414,5 +418,5 @@ function onSubmit() {
 
 @keyframes spin {
   to { transform: rotate(360deg); }
-}
+} */
 </style>
