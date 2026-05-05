@@ -2,7 +2,8 @@ import { z } from 'zod'
 import { randomUUID } from 'node:crypto'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { scenarioEnricherAgent } from '@/mastra/agents/scenario-enricher.agent'
+import { scenarioSkeletonAgent } from '@/mastra/agents/scenario-skeleton.agent'
+import { scenarioItemsAgent } from '@/mastra/agents/scenario-items.agent'
 import type { PageSection } from '@/services/pdf-extractor.service'
 import type { CampaignStructure, ScenarioStructure } from '@/services/scenario-classifier.service'
 import { getPagesText } from '@/services/scenario-classifier.service'
@@ -56,14 +57,21 @@ const ChapterLlmSchema = z.object({
   linkedNpcNames: z.array(z.string()).default([]),
 })
 
-const ScenarioLlmOutputSchema = z.object({
+// Phase 1 — squelette narratif : structure + noms des entités citées
+const ScenarioSkeletonLlmSchema = z.object({
   title: z.string(),
   summary: z.string(),
   description: z.string(),
   gmInstructions: z.string(),
+  mentionedLocationNames: z.array(z.string()).default([]),
+  mentionedNpcNames: z.array(z.string()).default([]),
+  chapters: z.array(ChapterLlmSchema).default([]),
+})
+
+// Phase 2 — entités enrichies : lieux et PNJ avec détails et imagePrompts
+const LocationsNpcsLlmSchema = z.object({
   locations: z.array(LocationLlmSchema).default([]),
   npcs: z.array(NpcLlmSchema).default([]),
-  chapters: z.array(ChapterLlmSchema).default([]),
 })
 
 // ---------------------------------------------------------------------------
@@ -87,7 +95,12 @@ ${pageText.slice(0, 15000)}
 `.trim()
 }
 
-function buildScenarioPrompt(
+/**
+ * Phase 1 — prompt focalisé sur la structure narrative.
+ * Exclut volontairement les pages de lieux/PNJ pour réduire la charge cognitive du LLM.
+ * Le LLM doit uniquement extraire les noms des entités citées (pas leurs détails).
+ */
+function buildScenarioSkeletonPrompt(
   scenarioStruct: ScenarioStructure,
   sections: PageSection[],
   gameSystem: string | null,
@@ -98,7 +111,9 @@ function buildScenarioPrompt(
     `Système de jeu : ${gameSystem ?? 'inconnu (déduire du contenu)'}`,
     '',
     'Tu lis un scénario complet de jeu de rôle.',
-    'Génère un objet structuré avec titre, synopsis, description, instructions MJ, lieux, personnages et chapitres.',
+    'PHASE 1 — STRUCTURE NARRATIVE : génère le squelette du scénario (titre, synopsis, chapitres).',
+    'Pour les lieux et personnages, extrais UNIQUEMENT leurs noms dans mentionedLocationNames et mentionedNpcNames.',
+    'Ne génère PAS les détails des lieux et personnages ici — ce sera fait dans une passe dédiée.',
     'Réécris chaque champ proprement à partir du source — ne copie pas le texte brut.',
     '',
   ]
@@ -116,16 +131,6 @@ function buildScenarioPrompt(
   if (scenarioStruct.introPages.length > 0) {
     blocks.push('=== INTRODUCTION ===')
     blocks.push(get(scenarioStruct.introPages))
-    blocks.push('')
-  }
-  if (scenarioStruct.locationPages.length > 0) {
-    blocks.push('=== LIEUX ===')
-    blocks.push(get(scenarioStruct.locationPages))
-    blocks.push('')
-  }
-  if (scenarioStruct.npcPages.length > 0) {
-    blocks.push('=== PERSONNAGES ===')
-    blocks.push(get(scenarioStruct.npcPages))
     blocks.push('')
   }
 
@@ -149,6 +154,69 @@ function buildScenarioPrompt(
   }
 
   return blocks.join('\n').slice(0, 40000)
+}
+
+/**
+ * Phase 2 — prompt focalisé sur l'extraction et l'enrichissement des lieux et PNJ.
+ * Reçoit les listes de noms issues de la Phase 1 comme ancres explicites :
+ * le LLM doit obligatoirement produire une entrée pour chaque nom listé.
+ */
+function buildLocationsNpcsPrompt(
+  scenarioStruct: ScenarioStructure,
+  sections: PageSection[],
+  gameSystem: string | null,
+  mentionedLocationNames: string[],
+  mentionedNpcNames: string[],
+): string {
+  const get = (pages: number[]) => getPagesText(sections, pages)
+
+  const blocks: string[] = [
+    `Système de jeu : ${gameSystem ?? 'inconnu (déduire du contenu)'}`,
+    '',
+    'PHASE 2 — LIEUX ET PERSONNAGES : enrichis les entités identifiées dans le scénario.',
+    'Tu dois générer une entrée complète pour CHAQUE nom listé ci-dessous.',
+    'Si un lieu ou personnage n\'a pas de page dédiée dans le texte source, génère un contenu',
+    'cohérent et plausible à partir du contexte général du scénario.',
+    'Réécris chaque champ proprement — ne copie pas le texte brut.',
+    '',
+  ]
+
+  if (mentionedLocationNames.length > 0) {
+    blocks.push(`LIEUX ATTENDUS (${mentionedLocationNames.length}) :`)
+    blocks.push(mentionedLocationNames.map((n) => `- ${n}`).join('\n'))
+    blocks.push('')
+  }
+
+  if (mentionedNpcNames.length > 0) {
+    blocks.push(`PERSONNAGES ATTENDUS (${mentionedNpcNames.length}) :`)
+    blocks.push(mentionedNpcNames.map((n) => `- ${n}`).join('\n'))
+    blocks.push('')
+  }
+
+  if (scenarioStruct.locationPages.length > 0) {
+    blocks.push('=== PAGES LIEUX (SOURCE) ===')
+    blocks.push(get(scenarioStruct.locationPages))
+    blocks.push('')
+  }
+  if (scenarioStruct.npcPages.length > 0) {
+    blocks.push('=== PAGES PERSONNAGES (SOURCE) ===')
+    blocks.push(get(scenarioStruct.npcPages))
+    blocks.push('')
+  }
+
+  // Contexte supplémentaire : intro + header pour aider à générer les entités sans page dédiée
+  if (scenarioStruct.introPages.length > 0) {
+    blocks.push('=== CONTEXTE SCÉNARIO (INTRODUCTION) ===')
+    blocks.push(get(scenarioStruct.introPages))
+    blocks.push('')
+  }
+  if (scenarioStruct.headerPages.length > 0) {
+    blocks.push('=== CONTEXTE SCÉNARIO (HEADER) ===')
+    blocks.push(get(scenarioStruct.headerPages))
+    blocks.push('')
+  }
+
+  return blocks.join('\n').slice(0, 30000)
 }
 
 // ---------------------------------------------------------------------------
@@ -182,7 +250,7 @@ export async function generateCampaignHeader(
 
   const prompt = buildCampaignHeaderPrompt(pageText, gameSystem)
 
-  const result = await scenarioEnricherAgent.generate(prompt, {
+  const result = await scenarioSkeletonAgent.generate(prompt, {
     structuredOutput: { schema: CampaignHeaderLlmSchema },
   })
 
@@ -203,28 +271,80 @@ export async function generateCampaignHeader(
 // Génération d'un scénario complet (Passe 2 — 1 appel par scénario)
 // ---------------------------------------------------------------------------
 
+// ---------------------------------------------------------------------------
+// Phase 2A — squelette narratif (titre, synopsis, chapitres, noms des entités)
+// ---------------------------------------------------------------------------
+
+async function generateScenarioSkeleton(
+  scenarioStruct: ScenarioStructure,
+  sections: PageSection[],
+  gameSystem: string | null,
+): Promise<z.infer<typeof ScenarioSkeletonLlmSchema>> {
+  const prompt = buildScenarioSkeletonPrompt(scenarioStruct, sections, gameSystem)
+
+  const result = await scenarioSkeletonAgent.generate(prompt, {
+    structuredOutput: { schema: ScenarioSkeletonLlmSchema },
+  })
+
+  return ScenarioSkeletonLlmSchema.parse(result.object)
+}
+
+// ---------------------------------------------------------------------------
+// Phase 2B — enrichissement des lieux et PNJ
+// ---------------------------------------------------------------------------
+
+async function generateLocationsNpcs(
+  scenarioStruct: ScenarioStructure,
+  sections: PageSection[],
+  gameSystem: string | null,
+  mentionedLocationNames: string[],
+  mentionedNpcNames: string[],
+): Promise<z.infer<typeof LocationsNpcsLlmSchema>> {
+  const prompt = buildLocationsNpcsPrompt(
+    scenarioStruct,
+    sections,
+    gameSystem,
+    mentionedLocationNames,
+    mentionedNpcNames,
+  )
+
+  const result = await scenarioItemsAgent.generate(prompt, {
+    structuredOutput: { schema: LocationsNpcsLlmSchema },
+  })
+
+  return LocationsNpcsLlmSchema.parse(result.object)
+}
+
+// ---------------------------------------------------------------------------
+// Génération d'un scénario complet — orchestrateur (interface publique inchangée)
+// ---------------------------------------------------------------------------
+
 export async function generateScenario(
   scenarioStruct: ScenarioStructure,
   sections: PageSection[],
   gameSystem: string | null,
 ): Promise<Scenario> {
-  const prompt = buildScenarioPrompt(scenarioStruct, sections, gameSystem)
+  // Phase 1 : squelette narratif + extraction des noms d'entités
+  const skeleton = await generateScenarioSkeleton(scenarioStruct, sections, gameSystem)
 
-  const result = await scenarioEnricherAgent.generate(prompt, {
-    structuredOutput: { schema: ScenarioLlmOutputSchema },
-  })
+  // Phase 2 : enrichissement lieux et PNJ, guidé par les noms extraits
+  const lore = await generateLocationsNpcs(
+    scenarioStruct,
+    sections,
+    gameSystem,
+    skeleton.mentionedLocationNames,
+    skeleton.mentionedNpcNames,
+  )
 
-  const raw = ScenarioLlmOutputSchema.parse(result.object)
-
-  // Assignation des IDs — les lieux et PNJ d'abord (les chapitres les référencent)
-  const locations: Location[] = raw.locations.map(({ name, description, imagePrompt }) => ({
+  // Assignation des IDs — lieux et PNJ d'abord (les chapitres les référencent)
+  const locations: Location[] = lore.locations.map(({ name, description, imagePrompt }) => ({
     id: randomUUID(),
     name,
     description,
     imagePrompt,
   }))
 
-  const npcs: NpcProfile[] = raw.npcs.map(({ name, role, description, stats, imagePrompt }) => ({
+  const npcs: NpcProfile[] = lore.npcs.map(({ name, role, description, stats, imagePrompt }) => ({
     id: randomUUID(),
     name,
     role,
@@ -234,7 +354,7 @@ export async function generateScenario(
   }))
 
   // Résolution des références noms → IDs + association des sourcePages
-  const chapters: Chapter[] = raw.chapters.map((ch, i) => {
+  const chapters: Chapter[] = skeleton.chapters.map((ch, i) => {
     const chapterStruct = scenarioStruct.chapters[i]
     return {
       id: randomUUID(),
@@ -250,10 +370,10 @@ export async function generateScenario(
 
   return {
     id: randomUUID(),
-    title: raw.title,
-    summary: raw.summary,
-    description: raw.description,
-    gmInstructions: raw.gmInstructions,
+    title: skeleton.title,
+    summary: skeleton.summary,
+    description: skeleton.description,
+    gmInstructions: skeleton.gmInstructions,
     sourcePages: scenarioStruct.sourcePages,
     locations,
     npcs,

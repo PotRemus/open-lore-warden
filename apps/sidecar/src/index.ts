@@ -30,6 +30,12 @@ app.register(scenarioImportRoute)
 
 const start = async () => {
   try {
+    // Pré-charge les modules Mastra (agents + workflows) avant d'écouter.
+    // En mode dev (node --watch + tsx), le premier chargement de ces modules
+    // peut déclencher un restart du processus via inotify/WSL.
+    // L'effectuer ici garantit que tout restart éventuel survient avant que
+    // le serveur n'accepte des connexions — la seconde tentative sera stable.
+    await import('@/mastra/index')
     await app.listen({ port: config.PORT, host: config.HOST })
   } catch (err) {
     app.log.error(err)

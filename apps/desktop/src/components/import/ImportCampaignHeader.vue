@@ -2,6 +2,8 @@
 import { computed } from 'vue'
 import type { CampaignImportResult } from '@open-lore-warden/domain'
 import { getSidecarBaseUrl } from '@/stores/settings.store'
+import Tag from '@/volt/Tag.vue'
+import Button from '@/volt/Button.vue'
 
 const props = defineProps<{
   result: CampaignImportResult
@@ -43,9 +45,31 @@ const systemLabel = computed(() => {
     <!-- Infos (positionnées sur la partie sombre) -->
     <div class="campaign-info">
       <div class="meta-row">
-        <span v-if="result.genre" class="badge badge--primary">{{ result.genre }}</span>
-        <span v-if="result.theme" class="badge badge--secondary">{{ result.theme }}</span>
-        <span v-if="systemLabel" class="badge badge--neutral">{{ systemLabel }}</span>
+        <Tag
+          v-if="result.genre"
+          severity="info"
+          :class="[
+            'font-label',
+            'text-xs',                
+            'uppercase',
+          ]">{{ result.genre }}</Tag>
+        <Tag
+          v-if="result.theme" 
+          severity="warn"
+          :class="[
+            'font-label',
+            'text-xs',                
+            'uppercase',
+          ]">{{ result.theme }}</Tag>
+        <Tag
+          v-if="systemLabel"
+          severity="secondary"
+          :class="[
+            'font-label',
+            'text-xs',                
+            'uppercase',
+            'opacity-80'
+          ]">{{ systemLabel }}</Tag>
       </div>
 
       <h1 class="campaign-title">{{ result.title }}</h1>
@@ -58,7 +82,7 @@ const systemLabel = computed(() => {
       </p>
 
       <!-- Bouton global génération images -->
-      <button
+      <Button
         v-if="pendingCount > 0"
         class="btn-generate-all"
         @click="emit('generateAll')"
@@ -66,7 +90,7 @@ const systemLabel = computed(() => {
         <span class="material-symbols-outlined">image</span>
         Générer toutes les images
         <span class="pending-badge">{{ pendingCount }}</span>
-      </button>
+      </Button>
       <p v-else class="all-generated">
         <span class="material-symbols-outlined">check_circle</span>
         Toutes les images ont été générées

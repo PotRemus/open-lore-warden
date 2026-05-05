@@ -2,7 +2,7 @@ import type { FastifyPluginAsync } from 'fastify'
 import { writeFileSync, mkdirSync, readFileSync, readdirSync } from 'node:fs'
 import { join, basename } from 'node:path'
 import { listPublicSystemDescriptors } from '@open-lore-warden/rules-engine'
-import { checkSdHealth } from '@open-lore-warden/llm-provider'
+import { checkLlmHealth, checkSdHealth } from '@open-lore-warden/llm-provider'
 import type { ImportSummary, CampaignImportResult } from '@open-lore-warden/domain'
 import { config } from '@/config/index'
 import {
@@ -212,6 +212,13 @@ export const scenarioImportRoute: FastifyPluginAsync = async (app) => {
     if (!filename.toLowerCase().endsWith('.pdf')) {
       return reply.status(400).send({
         error: 'Le fichier doit avoir l\'extension .pdf',
+      })
+    }
+
+    const llmReady = await checkLlmHealth()
+    if (!llmReady) {
+      return reply.status(503).send({
+        error: 'Le serveur LLM n\'est pas joignable. Attendez que le modèle soit chargé avant de lancer l\'import.',
       })
     }
 

@@ -3,6 +3,7 @@ import { ref, computed } from 'vue'
 import type { PublicGameSystemDescriptor } from '@open-lore-warden/rules-engine'
 import Select from '@/volt/Select.vue'
 import Button from '@/volt/Button.vue'
+import ProgressSpinner from '@/volt/ProgressSpinner.vue'
 
 const props = defineProps<{
   gameSystems: PublicGameSystemDescriptor[]

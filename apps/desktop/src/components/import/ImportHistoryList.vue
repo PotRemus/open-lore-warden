@@ -155,8 +155,7 @@ const emit = defineEmits<{
             ]">
             <Tag
               v-if="item.genre"
-              severity="info" 
-              value="Info"
+              severity="info"
               :class="[
                 'font-label',
                 'text-xs',                
@@ -164,8 +163,7 @@ const emit = defineEmits<{
               ]">{{ item.genre }}</Tag>
             <Tag
               v-if="item.theme" 
-              severity="warn" 
-              value="Warn"
+              severity="warn"
               :class="[
                 'font-label',
                 'text-xs',
