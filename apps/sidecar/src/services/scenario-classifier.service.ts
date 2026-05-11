@@ -351,7 +351,7 @@ function filterPhantomScenarios(campaign: CampaignStructure): CampaignStructure 
   const phantomPages: number[] = []
 
   for (const scenario of campaign.scenarios) {
-    if (scenario.sourcePages.length > MIN_SCENARIO_PAGES) {
+    if (scenario.sourcePages.length > MIN_SCENARIO_PAGES && scenario.chapters.length > 0) {
       validScenarios.push(scenario)
     } else {
       // Réabsorber les pages du fantôme dans les pages GM de la campagne

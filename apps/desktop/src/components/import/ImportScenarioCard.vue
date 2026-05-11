@@ -63,49 +63,56 @@ const regenerationError = computed(() =>
 </script>
 
 <template>
-  <section class="olw-import-scenario-card scenario-card">
+  <section class="olw-import-scenario-card flex flex-col gap-6 p-6 bg-surface-container-low rounded-xl border border-outline-variant">
     <!-- En-tête scénario -->
-    <header class="scenario-header">
-      <div class="scenario-headline-row">
-        <div class="scenario-meta">
-          <span class="scenario-index">Scénario {{ scenarioIndex + 1 }}</span>
-          <span v-if="scenario.sourcePages.length > 0" class="scenario-pages">
+    <header class="flex flex-col gap-2">
+      <div class="flex items-center justify-between gap-3 flex-wrap">
+        <div class="flex items-center gap-3">
+          <span class="font-label text-[0.6875rem] font-bold tracking-[0.08em] uppercase text-primary">
+            Scénario {{ scenarioIndex + 1 }}
+          </span>
+          <span v-if="scenario.sourcePages.length > 0" class="font-label text-[0.6875rem] text-on-surface opacity-45">
             Pages {{ scenario.sourcePages[0] }}–{{ scenario.sourcePages[scenario.sourcePages.length - 1] }}
           </span>
         </div>
         <button
-          class="btn-regenerate-scenario"
+          class="inline-flex items-center gap-[0.375rem] px-3 py-[0.375rem] bg-transparent text-primary border border-[color-mix(in_srgb,var(--color-primary)_35%,transparent)] rounded-lg font-label text-xs font-semibold cursor-pointer transition-[background,border-color,opacity] duration-150 hover:bg-[color-mix(in_srgb,var(--color-primary)_10%,transparent)] hover:border-primary disabled:opacity-60 disabled:cursor-not-allowed"
           :disabled="isRegenerateButtonDisabled"
           @click="emit('regenerateScenario', scenario.id)"
         >
-          <span class="material-symbols-outlined">
+          <span class="material-symbols-outlined text-base">
             {{ isRegenerating ? 'hourglass_top' : 'refresh' }}
           </span>
           {{ buttonLabel }}
         </button>
       </div>
-      <h2 class="scenario-title">{{ scenario.title }}</h2>
-      <p class="scenario-summary">{{ scenario.summary }}</p>
-      <div v-if="isRegenerating" class="scenario-regeneration-progress">
-        <div class="scenario-regeneration-progress-head">
-          <span class="scenario-regeneration-step">{{ currentStepLabel }}</span>
-          <span class="scenario-regeneration-percent">{{ progressPercent }}%</span>
+      <h2 class="font-headline text-[1.375rem] text-on-surface m-0">{{ scenario.title }}</h2>
+      <p class="font-body text-[0.9375rem] text-on-surface opacity-75 leading-[1.6] m-0">{{ scenario.summary }}</p>
+      <div v-if="isRegenerating" class="flex flex-col gap-[0.4rem]">
+        <div class="flex items-center justify-between gap-3">
+          <span class="font-body text-[0.8125rem] text-primary">{{ currentStepLabel }}</span>
+          <span class="font-label text-xs text-primary">{{ progressPercent }}%</span>
         </div>
-        <div class="scenario-regeneration-bar">
-          <div class="scenario-regeneration-fill" :style="{ width: `${progressPercent}%` }" />
+        <div class="w-full h-[0.4rem] rounded-full bg-[color-mix(in_srgb,var(--color-primary)_14%,var(--color-surface-container-highest))] overflow-hidden">
+          <div
+            class="h-full bg-primary transition-[width] duration-200 ease-in-out"
+            :style="{ width: `${progressPercent}%` }"
+          />
         </div>
       </div>
-      <p v-if="regenerationError" class="scenario-regeneration-error">{{ regenerationError }}</p>
+      <p v-if="regenerationError" class="m-0 font-body text-[0.8125rem] text-error">{{ regenerationError }}</p>
     </header>
 
     <!-- Section Lieux -->
-    <div v-if="scenario.locations.length > 0" class="entity-section">
-      <h3 class="entity-section-title">
-        <span class="material-symbols-outlined section-icon">location_on</span>
+    <div v-if="scenario.locations.length > 0" class="flex flex-col gap-[0.875rem]">
+      <h3 class="flex items-center gap-2 font-label text-xs font-bold tracking-[0.06em] uppercase text-on-surface opacity-55 m-0">
+        <span class="material-symbols-outlined text-base">location_on</span>
         Lieux
-        <span class="entity-count">{{ scenario.locations.length }}</span>
+        <span class="inline-flex items-center justify-center min-w-5 h-5 px-[0.375rem] bg-surface-container-highest rounded-full text-[0.6875rem] font-bold">
+          {{ scenario.locations.length }}
+        </span>
       </h3>
-      <div class="entity-grid">
+      <div class="grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-[0.875rem]">
         <ImportEntityCard
           v-for="loc in scenario.locations"
           :key="loc.id"
@@ -118,13 +125,15 @@ const regenerationError = computed(() =>
     </div>
 
     <!-- Section PNJ -->
-    <div v-if="scenario.npcs.length > 0" class="entity-section">
-      <h3 class="entity-section-title">
-        <span class="material-symbols-outlined section-icon">group</span>
+    <div v-if="scenario.npcs.length > 0" class="flex flex-col gap-[0.875rem]">
+      <h3 class="flex items-center gap-2 font-label text-xs font-bold tracking-[0.06em] uppercase text-on-surface opacity-55 m-0">
+        <span class="material-symbols-outlined text-base">group</span>
         Personnages non-joueurs
-        <span class="entity-count">{{ scenario.npcs.length }}</span>
+        <span class="inline-flex items-center justify-center min-w-5 h-5 px-[0.375rem] bg-surface-container-highest rounded-full text-[0.6875rem] font-bold">
+          {{ scenario.npcs.length }}
+        </span>
       </h3>
-      <div class="entity-grid">
+      <div class="grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-[0.875rem]">
         <ImportEntityCard
           v-for="npc in scenario.npcs"
           :key="npc.id"
@@ -139,208 +148,9 @@ const regenerationError = computed(() =>
     <!-- Fallback si aucune entité -->
     <p
       v-if="scenario.locations.length === 0 && scenario.npcs.length === 0"
-      class="no-entities"
+      class="font-body text-sm text-on-surface opacity-40 m-0 italic"
     >
       Aucun lieu ni PNJ identifié pour ce scénario.
     </p>
   </section>
 </template>
-
-<style scoped>
-.scenario-card {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  padding: 1.5rem;
-  background: var(--color-surface-container-low);
-  border-radius: var(--radius-xl);
-  border: 1px solid var(--color-outline-variant);
-}
-
-/* En-tête */
-.scenario-header {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.scenario-meta {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.scenario-headline-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-
-.scenario-index {
-  font-family: var(--font-label);
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-primary);
-}
-
-.scenario-pages {
-  font-family: var(--font-label);
-  font-size: 0.6875rem;
-  color: var(--color-on-surface);
-  opacity: 0.45;
-}
-
-.scenario-title {
-  font-family: var(--font-headline);
-  font-size: 1.375rem;
-  color: var(--color-on-surface);
-  margin: 0;
-}
-
-.scenario-summary {
-  font-family: var(--font-body);
-  font-size: 0.9375rem;
-  color: var(--color-on-surface);
-  opacity: 0.75;
-  line-height: 1.6;
-  margin: 0;
-}
-
-.btn-regenerate-scenario {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  padding: 0.375rem 0.75rem;
-  background: transparent;
-  color: var(--color-primary);
-  border: 1px solid color-mix(in srgb, var(--color-primary) 35%, transparent);
-  border-radius: var(--radius-lg);
-  font-family: var(--font-label);
-  font-size: 0.75rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    background 0.15s,
-    border-color 0.15s,
-    opacity 0.15s;
-}
-
-.btn-regenerate-scenario:hover {
-  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
-  border-color: var(--color-primary);
-}
-
-.btn-regenerate-scenario:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.btn-regenerate-scenario .material-symbols-outlined {
-  font-size: 1rem;
-}
-
-.scenario-regeneration-progress {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.scenario-regeneration-progress-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-}
-
-.scenario-regeneration-step {
-  font-family: var(--font-body);
-  font-size: 0.8125rem;
-  color: var(--color-primary);
-}
-
-.scenario-regeneration-percent {
-  font-family: var(--font-label);
-  font-size: 0.75rem;
-  color: var(--color-primary);
-}
-
-.scenario-regeneration-bar {
-  width: 100%;
-  height: 0.4rem;
-  border-radius: var(--radius-full);
-  background: color-mix(in srgb, var(--color-primary) 14%, var(--color-surface-container-highest));
-  overflow: hidden;
-}
-
-.scenario-regeneration-fill {
-  height: 100%;
-  background: var(--color-primary);
-  transition: width 0.2s ease;
-}
-
-.scenario-regeneration-error {
-  margin: 0;
-  font-family: var(--font-body);
-  font-size: 0.8125rem;
-  color: var(--color-error);
-}
-
-/* Sections entités */
-.entity-section {
-  display: flex;
-  flex-direction: column;
-  gap: 0.875rem;
-}
-
-.entity-section-title {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--font-label);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-on-surface);
-  opacity: 0.55;
-  margin: 0;
-}
-
-.section-icon {
-  font-size: 1rem;
-}
-
-.entity-count {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 1.25rem;
-  height: 1.25rem;
-  padding: 0 0.375rem;
-  background: var(--color-surface-container-highest);
-  border-radius: var(--radius-full);
-  font-size: 0.6875rem;
-  font-weight: 700;
-}
-
-/* Grille d'entités */
-.entity-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 0.875rem;
-}
-
-/* Fallback */
-.no-entities {
-  font-family: var(--font-body);
-  font-size: 0.875rem;
-  color: var(--color-on-surface);
-  opacity: 0.4;
-  margin: 0;
-  font-style: italic;
-}
-</style>

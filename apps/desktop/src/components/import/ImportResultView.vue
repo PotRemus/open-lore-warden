@@ -33,7 +33,7 @@ const pendingCount = computed(() => {
 </script>
 
 <template>
-  <div class="olw-import-result-view result-view">
+  <div class="olw-import-result-view flex flex-col gap-6 w-full">
     <!-- Header campagne -->
     <ImportCampaignHeader
       :result="result"
@@ -42,7 +42,7 @@ const pendingCount = computed(() => {
     />
 
     <!-- Scénarios -->
-    <div v-if="result.scenarios.length > 0" class="scenarios-list">
+    <div v-if="result.scenarios.length > 0" class="scenarios-list flex flex-col gap-5">
       <ImportScenarioCard
         v-for="(scenario, idx) in result.scenarios"
         :key="scenario.id"
@@ -55,32 +55,8 @@ const pendingCount = computed(() => {
         @regenerate-scenario="(scenarioId) => emit('regenerateScenario', scenarioId)"
       />
     </div>
-    <p v-else class="no-scenarios">
+    <p v-else class="color-on-surface text-sm italic m-0 opacity-50">
       Aucun scénario trouvé dans ce PDF.
     </p>
   </div>
 </template>
-
-<style scoped>
-.result-view {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  width: 100%;
-}
-
-.scenarios-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.no-scenarios {
-  font-family: var(--font-body);
-  font-size: 0.9375rem;
-  color: var(--color-on-surface);
-  opacity: 0.5;
-  margin: 0;
-  font-style: italic;
-}
-</style>

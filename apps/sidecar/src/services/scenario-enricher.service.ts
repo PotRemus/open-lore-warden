@@ -90,6 +90,8 @@ Extrais également les deux champs suivants pour guider la génération d'illust
 - genre : le type d'univers visuel (ex : "fantasy médiéval", "science-fiction", "horreur lovecraftienne", "steampunk", "western")
 - theme : le thème narratif dominant (ex : "vengeance et rédemption", "mystère et corruption", "survie désespérée", "exploration et découverte")
 
+S'il manque des éléments dans le texte source, fais de ton mieux pour les déduire à partir du contexte général de la campagne (par exemple, le genre, le thème ou le titre).
+
 === TEXTE SOURCE ===
 ${pageText.slice(0, 15000)}
 `.trim()
@@ -239,10 +241,13 @@ function resolveIds(
 
 export async function generateCampaignHeader(
   sections: PageSection[],
-  campaignStruct: Pick<CampaignStructure, 'introPages' | 'gmPages'>,
+  campaignStruct: CampaignStructure,
   gameSystem: string | null,
 ): Promise<Omit<CampaignImportResult, 'importId' | 'sourceFilename' | 'generatedAt' | 'scenarios'>> {
   const allPages = [...campaignStruct.introPages, ...campaignStruct.gmPages]
+  if (allPages.length === 0) {
+    allPages.push(...campaignStruct.scenarios.flatMap((s) => [...s.headerPages, ...s.introPages, ...s.gmPages]))
+  }
   const pageText =
     allPages.length > 0
       ? getPagesText(sections, allPages)

@@ -27,244 +27,73 @@ const systemLabel = computed(() => {
 </script>
 
 <template>
-  <header class="olw-import-campaign-header campaign-header">
+  <header class="olw-import-campaign-header relative min-h-112.5 rounded-xl border border-outline-variant overflow-hidden">
     <!-- Cover image (fond pleine largeur) -->
     <img
       v-if="coverSrc"
       :src="coverSrc"
       :alt="result.title"
-      class="cover-img"
+      class="absolute inset-0 w-full h-full object-cover z-0"
     />
-    <div v-else class="cover-placeholder">
-      <span class="material-symbols-outlined cover-icon">auto_stories</span>
+    <div
+      v-else
+      class="absolute inset-0 flex items-center justify-center bg-surface-container-high z-0"
+    >
+      <span class="material-symbols-outlined text-[4rem] text-white opacity-20">auto_stories</span>
     </div>
 
     <!-- Calque dégradé transparent → noir -->
-    <div class="cover-gradient" />
+    <div class="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_10%,var(--color-surface))] z-1" />
 
     <!-- Infos (positionnées sur la partie sombre) -->
-    <div class="campaign-info">
-      <div class="meta-row">
+    <div class="absolute bottom-0 left-0 right-0 pt-8 px-7 pb-6 z-2 flex flex-col gap-3">
+      <div class="flex flex-wrap gap-1.5">
         <Tag
           v-if="result.genre"
           severity="info"
-          :class="[
-            'font-label',
-            'text-xs',                
-            'uppercase',
-          ]">{{ result.genre }}</Tag>
+          class="font-label text-xs uppercase"
+        >{{ result.genre }}</Tag>
         <Tag
-          v-if="result.theme" 
+          v-if="result.theme"
           severity="warn"
-          :class="[
-            'font-label',
-            'text-xs',                
-            'uppercase',
-          ]">{{ result.theme }}</Tag>
+          class="font-label text-xs uppercase"
+        >{{ result.theme }}</Tag>
         <Tag
           v-if="systemLabel"
           severity="secondary"
-          :class="[
-            'font-label',
-            'text-xs',                
-            'uppercase',
-            'opacity-80'
-          ]">{{ systemLabel }}</Tag>
+          class="font-label text-xs uppercase opacity-80"
+        >{{ systemLabel }}</Tag>
       </div>
 
-      <h1 class="campaign-title">{{ result.title }}</h1>
+      <h1 class="font-headline text-[2rem] text-white m-0 leading-[1.2] [text-shadow:0_2px_12px_rgba(0,0,0,0.6)]">
+        {{ result.title }}
+      </h1>
 
-      <p class="campaign-summary">{{ result.summary }}</p>
+      <p class="font-body text-[0.9375rem] text-white/80 leading-[1.6] m-0">
+        {{ result.summary }}
+      </p>
 
-      <p class="campaign-source">
-        <span class="material-symbols-outlined source-icon">picture_as_pdf</span>
+      <p class="flex items-center gap-1.5 font-body text-xs text-white/45 m-0">
+        <span class="material-symbols-outlined text-base">picture_as_pdf</span>
         Source : {{ result.sourceFilename }}
       </p>
 
       <!-- Bouton global génération images -->
       <Button
         v-if="pendingCount > 0"
-        class="btn-generate-all"
+        class="inline-flex self-start"
         @click="emit('generateAll')"
       >
         <span class="material-symbols-outlined">image</span>
         Générer toutes les images
-        <span class="pending-badge">{{ pendingCount }}</span>
+        <span class="inline-flex items-center justify-center min-w-5 h-5 px-1.5 bg-on-primary text-primary rounded-full text-[0.6875rem] font-bold">
+          {{ pendingCount }}
+        </span>
       </Button>
-      <p v-else class="all-generated">
+      <p v-else class="flex items-center gap-1.5 font-body text-sm text-primary m-0 mt-1">
         <span class="material-symbols-outlined">check_circle</span>
         Toutes les images ont été générées
       </p>
     </div>
   </header>
 </template>
-
-<style scoped>
-.campaign-header {
-  position: relative;
-  min-height: 450px;
-  border-radius: var(--radius-xl);
-  border: 1px solid var(--color-outline-variant);
-  overflow: hidden;
-}
-
-/* Cover pleine largeur */
-.cover-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-}
-
-.cover-placeholder {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--color-surface-container-high);
-  z-index: 0;
-}
-
-.cover-icon {
-  font-size: 4rem;
-  color: #fff;
-  opacity: 0.2;
-}
-
-/* Calque dégradé transparent → noir */
-.cover-gradient {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, transparent 10%, var(--color-surface));
-  z-index: 1;
-}
-
-/* Infos campagne — sur la partie sombre */
-.campaign-info {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 2rem 1.75rem 1.5rem;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.meta-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.375rem;
-}
-
-.badge {
-  font-family: var(--font-label);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  padding: 0.25rem 0.625rem;
-  border-radius: var(--radius-full);
-}
-
-.badge--primary {
-  background: color-mix(in srgb, var(--color-primary) 30%, transparent);
-  color: var(--color-primary);
-  border: 1px solid color-mix(in srgb, var(--color-primary) 40%, transparent);
-}
-
-.badge--secondary {
-  background: color-mix(in srgb, var(--color-secondary) 30%, transparent);
-  color: var(--color-secondary);
-  border: 1px solid color-mix(in srgb, var(--color-secondary) 40%, transparent);
-}
-
-.badge--neutral {
-  background: rgba(255 255 255 / 0.3);
-  color: rgba(255 255 255 / 0.75);
-  border: 1px solid rgba(255 255 255 / 0.2);
-}
-
-.campaign-title {
-  font-family: var(--font-headline);
-  font-size: 2rem;
-  color: #fff;
-  margin: 0;
-  line-height: 1.2;
-  text-shadow: 0 2px 12px rgba(0 0 0 / 0.6);
-}
-
-.campaign-summary {
-  font-family: var(--font-body);
-  font-size: 0.9375rem;
-  color: rgba(255 255 255 / 0.8);
-  line-height: 1.6;
-  margin: 0;
-}
-
-.campaign-source {
-  display: flex;
-  align-items: center;
-  gap: 0.375rem;
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  color: rgba(255 255 255 / 0.45);
-  margin: 0;
-}
-
-.source-icon {
-  font-size: 1rem;
-}
-
-/* Bouton génération globale */
-.btn-generate-all {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  align-self: flex-start;
-  padding: 0.625rem 1.25rem;
-  background: var(--color-primary);
-  color: var(--color-on-primary);
-  border: none;
-  border-radius: var(--radius-xl);
-  font-family: var(--font-label);
-  font-size: 0.875rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: opacity 0.15s;
-  margin-top: 0.25rem;
-}
-
-.btn-generate-all:hover {
-  opacity: 0.9;
-}
-
-.pending-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 1.25rem;
-  height: 1.25rem;
-  padding: 0 0.375rem;
-  background: var(--color-on-primary);
-  color: var(--color-primary);
-  border-radius: var(--radius-full);
-  font-size: 0.6875rem;
-  font-weight: 700;
-}
-
-.all-generated {
-  display: flex;
-  align-items: center;
-  gap: 0.375rem;
-  font-family: var(--font-body);
-  font-size: 0.875rem;
-  color: var(--color-primary);
-  margin: 0;
-  margin-top: 0.25rem;
-}
-</style>
